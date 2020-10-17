@@ -1,5 +1,4 @@
 import React from "react";
-import { Instagram } from '@material-ui/icons';
 import style from './style.module.scss';
 
 function Header() {

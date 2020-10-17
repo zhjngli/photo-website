@@ -8,7 +8,9 @@ function Footer() {
       <br/>
       <p>
         <Copyright /> 2020
-        <a href="https://www.instagram.com/zhjngli/" target="_blank"><Instagram /></a>
+        <a href="https://www.instagram.com/zhjngli/" target="_blank" rel="noreferrer noopener">
+          <Instagram />
+        </a>
       </p>
     </div>
   );
