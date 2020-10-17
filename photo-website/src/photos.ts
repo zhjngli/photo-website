@@ -1,4 +1,5 @@
-const app_uri = `${window.location.hostname}${window.location.port ? ':'+window.location.port: ''}/photos`;
+// const app_uri = `${window.location.protocol}//${window.location.hostname}${window.location.port ? ':'+window.location.port: ''}/photos`;
+const app_uri = 'https://zhjngli-photo.netlify.app/photos'
 
 export const photos = [
   {
