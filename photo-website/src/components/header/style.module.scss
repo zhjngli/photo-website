@@ -1,0 +1,29 @@
+.navbar {
+  overflow: hidden;
+  width: 100%;
+  margin: 25px 25px 25px 8px;
+  display: flex;
+  align-items: baseline;
+}
+
+.navbar span {
+  float: left;
+  display: block;
+  text-align: left;
+  text-decoration: none;
+}
+
+.navbar span.pages {
+  color: #989898;
+  padding: 16px 16px 16px 16px;
+}
+
+.navbar span.title {
+  color: black;
+  font-size: x-large;
+  padding: 16px 16px 16px 0px;
+}
+
+.navbar span.pages:hover {
+  color: black;
+}
