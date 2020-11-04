@@ -7,6 +7,11 @@ function Header() {
       <span className={style.title}>zhijiang li</span>
       <span className={style.pages}>about</span>
       <span className={style.pages}>contact</span>
+      <span>
+        <a href="https://www.instagram.com/zhjngli/" target="_blank" rel="noreferrer noopener" className={style.pages}>
+          instagram
+        </a>
+      </span>
     </div>
   );
 }

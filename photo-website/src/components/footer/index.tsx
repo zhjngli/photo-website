@@ -1,17 +1,13 @@
 import React from "react";
+import style from './style.module.scss';
 import { Instagram, Copyright } from '@material-ui/icons';
 
 
 function Footer() {
   return (
-    <div>
-      <br/>
-      <p>
-        <Copyright /> 2020
-        <a href="https://www.instagram.com/zhjngli/" target="_blank" rel="noreferrer noopener">
-          <Instagram />
-        </a>
-      </p>
+    <div className={style.container}>
+      <Copyright />
+      <div className={style.year}>2020</div>
     </div>
   );
 }

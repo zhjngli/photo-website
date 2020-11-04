@@ -13,17 +13,21 @@
   text-decoration: none;
 }
 
-.navbar span.pages {
+.pages {
   color: #989898;
   padding: 16px 16px 16px 16px;
 }
 
-.navbar span.title {
+.title {
   color: black;
   font-size: x-large;
   padding: 16px 16px 16px 0px;
 }
 
-.navbar span.pages:hover {
+.pages:hover {
   color: black;
+}
+
+a.pages {
+  text-decoration: none;
 }

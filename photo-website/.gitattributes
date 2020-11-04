@@ -1,9 +1,1 @@
-photos/ZLIS3199-sun-provia.jpg filter=lfs diff=lfs merge=lfs -text
-photos/DSCF0299-1.jpg filter=lfs diff=lfs merge=lfs -text
-photos/ZLIS3067-ifonlyabird.jpg filter=lfs diff=lfs merge=lfs -text
-photos/ZLIS3086-railing.jpg filter=lfs diff=lfs merge=lfs -text
-photos/ZLIS3142-dutchlight.jpg filter=lfs diff=lfs merge=lfs -text
-photos/ZLIS3146-frames.jpg filter=lfs diff=lfs merge=lfs -text
-photos/ZLIS2973-zigzag.jpg filter=lfs diff=lfs merge=lfs -text
-photos/ZLIS3062-3stripes.jpg filter=lfs diff=lfs merge=lfs -text
-photos/ZLIS3132-chingus.jpg filter=lfs diff=lfs merge=lfs -text
+*.jpg filter=lfs diff=lfs merge=lfs -text
