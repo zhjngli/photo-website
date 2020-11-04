@@ -1,6 +1,6 @@
 import React from "react";
 import style from './style.module.scss';
-import { Instagram, Copyright } from '@material-ui/icons';
+import { Copyright } from '@material-ui/icons';
 
 
 function Footer() {
