@@ -9,7 +9,7 @@ import { Container, Fade } from '@material-ui/core';
 import About from './components/about';
 import Footer from './components/footer';
 import Header from './components/header';
-import MyGallery from './components/gallery';
+import PhotoGallery from './components/gallery';
 import Contact from './components/contact';
 
 ReactDOM.render(
@@ -21,7 +21,7 @@ ReactDOM.render(
           <Header />
           <Fade>
             <Switch>
-              <Route exact path="/" component={MyGallery} />
+              <Route exact path="/" component={PhotoGallery} />
               <Route path="/about" component={About} />
               <Route path="/contact" component={Contact} />
             </Switch>

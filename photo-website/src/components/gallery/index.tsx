@@ -3,7 +3,7 @@ import Gallery from "react-photo-gallery";
 import Carousel, { Modal, ModalGateway } from "react-images";
 import { photos } from "../../photos";
 
-function MyGallery() {
+function PhotoGallery() {
   const [currentImage, setCurrentImage] = useState(0);
   const [viewerIsOpen, setViewerIsOpen] = useState(false);
 
@@ -39,4 +39,4 @@ function MyGallery() {
   );
 }
 
-export default MyGallery;
+export default PhotoGallery;

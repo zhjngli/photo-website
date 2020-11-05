@@ -1,19 +1,20 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import style from './style.module.scss';
 
 function Header() {
   return (
     <div className={style.navbar}>
-      <a href="/" className={style.title}>
+      <NavLink to="/" className={style.title}>
         zhijiang li
-      </a>
-      <a href="/about" className={style.pages}>
+      </NavLink>
+      <NavLink to="/about" className={style.links} activeClassName={style.activeNavLink}>
         about
-      </a>
-      <a href="/contact" className={style.pages}>
+      </NavLink>
+      <NavLink to="/contact" className={style.links} activeClassName={style.activeNavLink}>
         contact
-      </a>
-      <a href="https://www.instagram.com/zhjngli/" target="_blank" rel="noreferrer noopener" className={style.pages}>
+      </NavLink>
+      <a href="https://www.instagram.com/zhjngli/" target="_blank" rel="noreferrer noopener" className={style.links}>
         instagram
       </a>
     </div>

@@ -6,25 +6,22 @@
   align-items: baseline;
 }
 
-.navbar span {
-  float: left;
-  display: block;
-  text-align: left;
-  text-decoration: none;
-}
-
-.pages {
-  color: #989898;
-  padding: 16px 16px 16px 16px;
-}
-
 .title {
   color: black;
   font-size: x-large;
   padding: 16px 16px 16px 0px;
 }
 
-.pages:hover {
+.links {
+  color: #989898;
+  padding: 16px 16px 16px 16px;
+}
+
+.links:hover {
+  color: black;
+}
+
+.activeNavLink {
   color: black;
 }
 
