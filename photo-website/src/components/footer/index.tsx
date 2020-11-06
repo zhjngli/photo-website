@@ -1,13 +1,11 @@
 import React from "react";
 import style from './style.module.scss';
-import { Copyright } from '@material-ui/icons';
 
 
 function Footer() {
   return (
     <div className={style.container}>
-      <Copyright />
-      <div className={style.year}>2020</div>
+      &copy; 2020.
     </div>
   );
 }

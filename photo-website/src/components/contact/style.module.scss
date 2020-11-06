@@ -1,0 +1,18 @@
+@import 'src/theme/colors.module.scss';
+
+.container {
+  margin: 8px;
+  width: 400px;
+}
+
+.text {
+  color: $text;
+}
+
+.link {
+  color: black;
+  
+  &:hover {
+    color: $text;
+  }
+}

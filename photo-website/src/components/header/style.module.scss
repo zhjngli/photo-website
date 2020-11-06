@@ -1,3 +1,5 @@
+@import 'src/theme/colors.module.scss';
+
 .navbar {
   overflow: hidden;
   width: 100%;
@@ -10,21 +12,20 @@
   color: black;
   font-size: x-large;
   padding: 16px 16px 16px 0px;
+  text-decoration: none;
 }
 
 .links {
-  color: #989898;
+  color: $text;
   padding: 16px 16px 16px 16px;
-}
+  text-decoration: none;
 
-.links:hover {
-  color: black;
+  &:hover {
+    color: black;
+  }
 }
 
 .activeNavLink {
   color: black;
-}
-
-a {
-  text-decoration: none;
+  font-weight: 500;
 }
