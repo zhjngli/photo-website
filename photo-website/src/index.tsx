@@ -3,32 +3,14 @@ import ReactDOM from 'react-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from './theme';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
-import { Container, Fade } from '@material-ui/core';
-import About from './components/about';
-import Footer from './components/footer';
-import Header from './components/header';
-import PhotoGallery from './components/gallery';
-import Contact from './components/contact';
+import Page from './page';
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
     <CssBaseline />
-      <BrowserRouter>
-        <Container maxWidth={false} >
-          <Header />
-          <Fade>
-            <Switch>
-              <Route exact path="/" component={PhotoGallery} />
-              <Route path="/about" component={About} />
-              <Route path="/contact" component={Contact} />
-            </Switch>
-          </Fade>
-          <Footer />
-        </Container>
-      </BrowserRouter>
+    <Page />
   </ThemeProvider>,
   document.querySelector('#root'),
 );
