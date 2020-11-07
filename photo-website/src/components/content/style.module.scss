@@ -8,3 +8,11 @@
 .text {
   color: $text;
 }
+
+.link {
+  color: black;
+  
+  &:hover {
+    color: $text;
+  }
+}

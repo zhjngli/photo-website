@@ -2,12 +2,10 @@ import React from "react";
 import style from './style.module.scss';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { Fade } from '@material-ui/core';
-import About from '../components/about';
+import { About, Contact, NotFound } from '../components/content';
 import Footer from '../components/footer';
 import Header from '../components/header';
 import PhotoGallery from '../components/gallery';
-import Contact from '../components/contact';
-import NotFound from '../components/notfound';
 
 class Page extends React.Component {
   render() {
