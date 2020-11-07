@@ -1,41 +1,61 @@
 @import 'src/theme/colors.module.scss';
+@import 'src/theme/dimensions.module.scss';
 
-.container {
-  overflow: hidden;
-  width: 100%;
-  margin: 25px 25px 25px 8px;
-  display: flex;
-  align-items: baseline;
-}
+@media only screen and (max-width: $screen-reactive-width) {
+  .container {
+    width: calc(100% - 2 * #{$photo-gallery-margin});
+    margin: 50px auto 25px;
+    display: flex;
+    flex-direction: column;
+  }
 
-@media only screen and (max-device-width: 800px) {
+  .title {
+    margin: 0 auto;
+  }
+
   .navbar {
-    display: none;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    margin: 16px auto 0;
   }
 }
 
-@media only screen and (min-device-width: 801px) {
+@media only screen and (min-width: calc(#{$screen-reactive-width} + 1px)) {
+  .container {
+    overflow: hidden;
+    width: calc(100% - 2 * #{$photo-gallery-margin});
+    margin: 25px 25px 25px $photo-gallery-margin;
+    display: flex;
+    align-items: baseline;
+  }
 
+  .title {
+    padding: 16px 16px 16px 0px;
+  }
 }
 
 .title {
   color: black;
   font-size: x-large;
-  padding: 16px 16px 16px 0px;
   text-decoration: none;
 }
 
 .links {
-  color: $text;
+  color: $default-copy-color;
   padding: 16px 16px 16px 16px;
   text-decoration: none;
 
   &:hover {
-    color: black;
+    color: $highlight-color;
   }
 }
 
 .activeNavLink {
   color: black;
   font-weight: 500;
+
+  &:hover {
+    color: black;
+  }
 }
