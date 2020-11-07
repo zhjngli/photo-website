@@ -3,11 +3,8 @@
 
 @media only screen and (max-width: $screen-reactive-width) {
   .container {
-    display: flex;
-    flex-direction: column;
     text-align: center;
     margin: $photo-gallery-margin auto;
-    width: calc(min(100%, 400px));
   }
 
   .text {
@@ -17,11 +14,14 @@
 
 @media only screen and (min-width: calc(#{$screen-reactive-width} + 1px)) {
   .container {
-    display: flex;
-    flex-direction: column;
     margin: $photo-gallery-margin;
-    width: calc(min(100%, 400px));
   }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: calc(min(100%, 400px));
 }
 
 .text {
