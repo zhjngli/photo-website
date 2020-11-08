@@ -1,11 +1,11 @@
-// import clouds from './images/DSCF0299-1.jpg';
+import clouds from './photos/201910-cloudbloom.jpg';
 
 export const photos = [
   {
     // horizontal
-    src: `dev/null`,
+    src: `${clouds}`,
     srcSet: [
-      `dev/null?nf_resize=fit&w=1080 1080w`
+      `${clouds}?nf_resize=fit&w=1080 1080w`
     ],
     sizes: ["(min-width: 480px) 50vw,(min-width: 1024px) 33.3vw,100vw"],
     width: 3,
