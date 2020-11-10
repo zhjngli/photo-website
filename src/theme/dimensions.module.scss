@@ -1,2 +1,9 @@
 $screen-reactive-width: 500px;
-$photo-gallery-margin: 8px;
+
+$photo-gallery-row-height: 400px;
+$photo-gallery-margin: 4px;
+
+:export {
+  photoGalleryRowHeight: $photo-gallery-row-height;
+  photoGalleryMargin: $photo-gallery-margin;
+}
