@@ -49,7 +49,6 @@
     "@babel/preset-react": "^7.12.5",
     "@types/webpack-env": "^1.15.3",
     "babel-loader": "^8.1.0",
-    "copy-webpack-plugin": "^6.3.0",
     "mini-css-extract-plugin": "^1.3.0",
     "raw-loader": "^4.0.2",
     "robotstxt-webpack-plugin": "^7.0.0",

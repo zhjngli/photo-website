@@ -1,6 +1,6 @@
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const RobotstxtPlugin = require("robotstxt-webpack-plugin");
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -18,6 +18,10 @@ module.exports = {
       template: 'public/index.html',
       filename: 'index.html',
       favicon: 'src/assets/icons/favicon.ico',
+      meta: {
+        'viewport': 'width=device-width, initial-scale=1',
+        'description': "Zhijiang's photos",
+      }
     }),
     new RobotstxtPlugin({
       options: {
@@ -66,6 +70,7 @@ module.exports = {
   ],
   entry: './src/index.tsx',
   module: {
+    // consider: https://www.npmjs.com/package/common-config-webpack-plugin
     rules: [
       {
         test: /\.tsx?$/,
@@ -111,10 +116,14 @@ module.exports = {
   },
   optimization: {
     minimizer: [new UglifyJsPlugin()],
+    splitChunks: { // https://medium.com/@Yoriiis/the-real-power-of-webpack-4-splitchunks-plugin-fad097c45ba0
+      chunks: 'all',
+      name: !isProd,
+    }
   },
   output: {
     chunkFilename: '[id].js',
-    filename: 'bundle.js',
+    filename: '[hash].js',
     path: path.resolve(__dirname, `${outputDir}`),
     publicPath: process.env.ASSET_PATH || '/',
   },
