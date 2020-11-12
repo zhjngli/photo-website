@@ -6,7 +6,7 @@ class About extends React.Component {
     return (
       <div className={style.container}>
         <p className={style.text}>
-          Zhijiang loves the unique perspectives a camera and lens brings to the world. He hopes to develop and share his own vision through his work.
+          Hello! After picking up a camera, I quickly gravitated towards a style of street photography characterized by hard light and shadows, anonymity and abstraction. I'm still developing my vision, finding my style, and enjoying the process. Thank you for joining me in this journey!
         </p>
       </div>
     );
