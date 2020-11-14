@@ -26,7 +26,5 @@
     X-XSS-Protection = "1; mode=block"
     Content-Security-Policy = '''
       frame-ancestors 'none';
-      script-src 'self' 'unsafe-eval';
-      object-src 'self';
       default-src blob: 'self';
     '''
