@@ -9,7 +9,6 @@ const isProd = process.env.NODE_ENV === 'production';
 const outputDir = 'dist';
 
 module.exports = {
-  mode: isProd ? 'production' : 'development',
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].[hash].min.css',
