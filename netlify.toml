@@ -3,6 +3,8 @@
   publish = "dist/"
   command = "npm run-script build"
 
+[context.production.environment]
+  NODE_ENV = "production"
 [context.branch-deploy.environment]
   NODE_ENV = "development"
 
