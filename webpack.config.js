@@ -122,7 +122,7 @@ module.exports = {
     }
   },
   output: {
-    chunkFilename: '[id].js',
+    chunkFilename: '[id].[hash].js',
     filename: '[hash].js',
     path: path.resolve(__dirname, `${outputDir}`),
     publicPath: process.env.ASSET_PATH || '/',
