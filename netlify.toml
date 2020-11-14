@@ -21,6 +21,7 @@
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
+    Content-Security-Policy = "script-src 'self' 'unsafe-eval'; object-src 'self'; default-src 'self';"
 #    Content-Security-Policy = "default-src 'self';"
 
 #    cache-control = "public, no-cache, max-age=0, must-revalidate"
