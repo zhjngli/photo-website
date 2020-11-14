@@ -16,12 +16,11 @@
   for = "/*"
 
   [headers.values]
-#    strict-transport-security = "max-age=31536000; includeSubDomains; preload"
-#    Referrer-Policy = "no-referrer"
+    strict-transport-security = "max-age=31536000; includeSubDomains; preload"
+    Referrer-Policy = "strict-origin-when-cross-origin"
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
-    Content-Security-Policy = "default-src blob: 'self';"
 #    Content-Security-Policy = "default-src 'self';"
 
 #    cache-control = "public, no-cache, max-age=0, must-revalidate"
