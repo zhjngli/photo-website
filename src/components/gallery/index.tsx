@@ -45,7 +45,7 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
                 onClick={(event, {photo, index}) => this.openLightbox(index)}
                 targetRowHeight={parseInt(variables.photoGalleryRowHeight)}
                 margin={parseInt(variables.photoGalleryMargin)} />
-        <ModalGateway>
+        {/* <ModalGateway>
           {this.state.viewerIsOpen ? (
             <Modal onClose={this.closeLightbox}>
               <Carousel
@@ -59,7 +59,7 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
               />
             </Modal>
           ) : null}
-        </ModalGateway>
+        </ModalGateway> */}
       </div>
     );
   }
