@@ -29,5 +29,4 @@
     X-XSS-Protection = "1; mode=block"
     Content-Security-Policy = '''
       frame-ancestors 'none';
-      default-src blob: 'self';
     '''
