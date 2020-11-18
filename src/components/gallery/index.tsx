@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React from "react";
 import Gallery from "react-photo-gallery";
 import Carousel, { Modal, ModalGateway } from "react-images";
 import { photos } from "./photos";
@@ -41,7 +41,7 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
     return (
       <div>
         <Gallery photos={photos}
-                direction='column'
+                direction='row'
                 onClick={(event, {photo, index}) => this.openLightbox(index)}
                 targetRowHeight={parseInt(variables.photoGalleryRowHeight)}
                 margin={parseInt(variables.photoGalleryMargin)} />
