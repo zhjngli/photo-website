@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const RobotstxtPlugin = require("robotstxt-webpack-plugin");
 const WebpackPwaManifest = require('webpack-pwa-manifest');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
 
 const isProd = process.env.NODE_ENV === 'production';
 const outputDir = 'dist';
@@ -115,7 +115,7 @@ module.exports = {
     extensions: [ '.tsx', '.ts', '.js' ],
   },
   optimization: {
-    minimizer: [new UglifyJsPlugin()],
+    minimizer: [new TerserPlugin()],
     splitChunks: { // https://medium.com/@Yoriiis/the-real-power-of-webpack-4-splitchunks-plugin-fad097c45ba0
       chunks: 'all',
       name: !isProd,
