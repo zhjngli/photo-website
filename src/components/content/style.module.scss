@@ -1,5 +1,6 @@
 @import 'src/theme/colors.module.scss';
 @import 'src/theme/dimensions.module.scss';
+@import 'src/theme/fonts.module.scss';
 
 @media only screen and (max-width: $screen-reactive-width) {
   .container {
@@ -25,7 +26,7 @@
 }
 
 .text {
-  color: $default-copy-color;
+  @include copy-font-style;
 }
 
 .link {

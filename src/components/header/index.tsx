@@ -7,7 +7,7 @@ class Header extends React.Component {
     return (
       <div className={style.container}>
         <NavLink to="/" className={style.title}>
-          zhijiang li
+          ƶhijiang li
         </NavLink>
         <div className={style.navbar}>
           <NavLink to="/about" className={style.links} activeClassName={style.activeNavLink}>

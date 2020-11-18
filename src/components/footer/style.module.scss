@@ -1,9 +1,10 @@
 @import 'src/theme/colors.module.scss';
 @import 'src/theme/dimensions.module.scss';
+@import 'src/theme/fonts.module.scss';
 
 .container {
   margin-top: 75px;
-  color: $default-copy-color;
+  @include nav-style;
 }
 
 @media only screen and (max-width: $screen-reactive-width) {

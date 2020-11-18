@@ -1,5 +1,6 @@
 @import 'src/theme/colors.module.scss';
 @import 'src/theme/dimensions.module.scss';
+@import 'src/theme/fonts.module.scss';
 
 @media only screen and (max-width: $screen-reactive-width) {
   .container {
@@ -36,13 +37,12 @@
 }
 
 .title {
-  color: black;
-  font-size: x-large;
+  @include title-style;
   text-decoration: none;
 }
 
 .links {
-  color: $default-copy-color;
+  @include nav-style;
   padding: 16px 16px 16px 16px;
   text-decoration: none;
 
@@ -52,10 +52,10 @@
 }
 
 .activeNavLink {
-  color: black;
-  font-weight: 500;
+  color: $emphasis-color;
 
   &:hover {
-    color: black;
+    // hovering an active link doesn't change the color 
+    color: $emphasis-color;
   }
 }
