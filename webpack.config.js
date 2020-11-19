@@ -18,7 +18,7 @@ module.exports = {
       patterns: [
         {
           // since the image isn't being used in src, webpack won't bundle it. copy it instead
-          from: 'src/assets/meta/metatag-1,5-1.jpg',
+          from: 'src/assets/meta/metatag-1-1.jpg',
           to: "dist",
           transformPath(targetPath, absolutePath) {
             return ogImage;
@@ -41,6 +41,12 @@ module.exports = {
     }),
     new HtmlWebpackTagsPlugin({
       metas: [
+        {
+          attributes: {
+            property: 'og:url',
+            content: 'zhjngli-photo.netlify.app'
+          }
+        },
         {
           attributes: {
             property: 'og:type',
