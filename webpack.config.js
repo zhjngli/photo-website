@@ -18,7 +18,7 @@ module.exports = {
       patterns: [
         {
           // since the image isn't being used in src, webpack won't bundle it. copy it instead
-          from: 'src/assets/meta/metatag-1-1.jpg',
+          from: 'src/assets/meta/metatag-1-1,5.jpg',
           to: "dist",
           transformPath(targetPath, absolutePath) {
             return ogImage;
