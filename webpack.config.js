@@ -9,8 +9,10 @@ const TerserPlugin = require("terser-webpack-plugin");
 
 const isProd = process.env.NODE_ENV === 'production';
 const outputDir = 'dist';
-const description = "Photo gallery of selected works.";
-const ogImage = 'me.jpg'
+
+const metaTitle = "Zhijiang Li";
+const metaDescription = "Photo gallery of selected works.";
+const metaImage = 'me.jpg'
 
 module.exports = {
   plugins: [
@@ -21,7 +23,7 @@ module.exports = {
           from: 'src/assets/meta/metatag-1-1,5.jpg',
           to: "dist",
           transformPath(targetPath, absolutePath) {
-            return ogImage;
+            return metaImage;
           },
         },
       ],
@@ -36,7 +38,7 @@ module.exports = {
       favicon: 'src/assets/icons/favicon.ico',
       meta: {
         'viewport': 'width=device-width, initial-scale=1',
-        'description': description,
+        'description': metaDescription,
       }
     }),
     new HtmlWebpackTagsPlugin({
@@ -56,39 +58,69 @@ module.exports = {
         {
           attributes: {
             property: 'og:title',
-            content: 'Zhijiang Li'
+            content: metaTitle
           }
         },
         {
           attributes: {
             property: 'og:description',
-            content: description
+            content: metaDescription
           }
         },
         {
           attributes: {
-              property: 'og:image',
-              content: ogImage,
+            property: 'og:image',
+            content: metaImage,
           }
         },
         {
           attributes: {
-              property: 'og:image:type',
-              content: "image/jpeg"
+            property: 'og:image:type',
+            content: "image/jpeg"
           }
         },
-        // {
-        //   attributes: {
-        //       property: 'og:image:width',
-        //       content: "200"
-        //   }
-        // },
-        // {
-        //   attributes: {
-        //       property: 'og:image:height',
-        //       content: "200"
-        //   }
-        // }
+        {
+          attributes: {
+              property: 'og:image:width',
+              content: "1080"
+          }
+        },
+        {
+          attributes: {
+              property: 'og:image:height',
+              content: "1618"
+          }
+        },
+        {
+          attributes: {
+            name: 'twitter:card',
+            content: 'summary'
+          }
+        },
+        {
+          attributes: {
+            name: 'twitter:site',
+            content: '@zhjngli'
+          }
+        },
+        {
+          attributes: {
+            name: 'twitter:title',
+            content: metaTitle,
+          }
+        },
+        {
+          attributes: {
+            name: 'twitter:description',
+            content: metaDescription
+          }
+        },
+        {
+          attributes: {
+            name: 'twitter:image',
+            content: metaImage
+          }
+        },
       ]
     }),
     new RobotstxtPlugin({
