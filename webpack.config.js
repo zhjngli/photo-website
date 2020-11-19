@@ -9,7 +9,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 
 const isProd = process.env.NODE_ENV === 'production';
 const outputDir = 'dist';
-const description = "Zhijiang's photography";
+const description = "Photo gallery of selected works.";
 const ogImage = 'me.jpg'
 
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
       patterns: [
         {
           // since the image isn't being used in src, webpack won't bundle it. copy it instead
-          from: 'src/assets/photos/metatag-1,91-1.jpg',
+          from: 'src/assets/meta/metatag-1,5-1.jpg',
           to: "dist",
           transformPath(targetPath, absolutePath) {
             return ogImage;
@@ -50,7 +50,7 @@ module.exports = {
         {
           attributes: {
             property: 'og:title',
-            content: 'zhjng.li'
+            content: 'Zhijiang Li'
           }
         },
         {
