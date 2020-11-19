@@ -6,8 +6,6 @@ const RobotstxtPlugin = require("robotstxt-webpack-plugin");
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const TerserPlugin = require("terser-webpack-plugin");
 
-// const metaImage = require('src/assets/photos/metatag-1,91-1.jpg');
-
 const isProd = process.env.NODE_ENV === 'production';
 const outputDir = 'dist';
 
