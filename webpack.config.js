@@ -1,4 +1,5 @@
 const path = require('path');
+const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -8,9 +9,23 @@ const TerserPlugin = require("terser-webpack-plugin");
 
 const isProd = process.env.NODE_ENV === 'production';
 const outputDir = 'dist';
+const description = "Zhijiang's photography";
+const ogImage = 'me.jpg'
 
 module.exports = {
   plugins: [
+    new CopyPlugin({
+      patterns: [
+        {
+          // since the image isn't being used in src, webpack won't bundle it. copy it instead
+          from: 'src/assets/photos/metatag-1,91-1.jpg',
+          to: "dist",
+          transformPath(targetPath, absolutePath) {
+            return ogImage;
+          },
+        },
+      ],
+    }),
     new MiniCssExtractPlugin({
       filename: '[name].[hash].min.css',
       chunkFilename: '[id].[hash].min.css'
@@ -21,59 +36,55 @@ module.exports = {
       favicon: 'src/assets/icons/favicon.ico',
       meta: {
         'viewport': 'width=device-width, initial-scale=1',
-        'description': "Zhijiang's photography",
-        'og:type': 'website',
-        'og:title': 'zhjng.li',
-        'og:description': "Zhijiang's photography",
-        'og:image': 'src/assets/photos/metatag-1,91-1.jpg',
+        'description': description,
       }
     }),
-    // new HtmlWebpackTagsPlugin({
-    //   metas: [
-    //     {
-    //       attributes: {
-    //         property: 'og:type',
-    //         content: 'website'
-    //       }
-    //     },
-    //     {
-    //       attributes: {
-    //         property: 'og:title',
-    //         content: 'zhjng.li'
-    //       }
-    //     },
-    //     {
-    //       attributes: {
-    //         property: 'og:description',
-    //         content: "Zhijiang's photography"
-    //       }
-    //     },
-    //     {
-    //       path: path.resolve('src/assets/photos/metatag-1,91-1.jpg'),
-    //       attributes: {
-    //           property: 'og:image'
-    //       }
-    //     },
-    //     {
-    //       attributes: {
-    //           property: 'og:image:type',
-    //           content: "image/jpeg"
-    //       }
-    //     },
-    //     // {
-    //     //   attributes: {
-    //     //       property: 'og:image:width',
-    //     //       content: "200"
-    //     //   }
-    //     // },
-    //     // {
-    //     //   attributes: {
-    //     //       property: 'og:image:height',
-    //     //       content: "200"
-    //     //   }
-    //     // }
-    //   ]
-    // }),
+    new HtmlWebpackTagsPlugin({
+      metas: [
+        {
+          attributes: {
+            property: 'og:type',
+            content: 'website'
+          }
+        },
+        {
+          attributes: {
+            property: 'og:title',
+            content: 'zhjng.li'
+          }
+        },
+        {
+          attributes: {
+            property: 'og:description',
+            content: description
+          }
+        },
+        {
+          path: ogImage,
+          attributes: {
+              property: 'og:image'
+          }
+        },
+        {
+          attributes: {
+              property: 'og:image:type',
+              content: "image/jpeg"
+          }
+        },
+        // {
+        //   attributes: {
+        //       property: 'og:image:width',
+        //       content: "200"
+        //   }
+        // },
+        // {
+        //   attributes: {
+        //       property: 'og:image:height',
+        //       content: "200"
+        //   }
+        // }
+      ]
+    }),
     new RobotstxtPlugin({
       options: {
         policy: [
