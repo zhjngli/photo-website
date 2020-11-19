@@ -10,7 +10,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 const isProd = process.env.NODE_ENV === 'production';
 const outputDir = 'dist';
 
-const baseUrl = 'https://zhjngli-photo.netlify.app';
+const baseUrl = 'https://metatags--zhjngli-photo.netlify.app';
 const metaTitle = "Zhijiang Li";
 const metaDescription = "Photo gallery of selected works.";
 const metaImageName = 'me.jpg';
