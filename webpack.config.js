@@ -21,55 +21,59 @@ module.exports = {
       favicon: 'src/assets/icons/favicon.ico',
       meta: {
         'viewport': 'width=device-width, initial-scale=1',
-        'description': "Zhijiang's photos",
+        'description': "Zhijiang's photography",
+        'og:type': 'website',
+        'og:title': 'zhjng.li',
+        'og:description': "Zhijiang's photography",
+        'og:image': 'src/assets/photos/metatag-1,91-1.jpg',
       }
     }),
-    new HtmlWebpackTagsPlugin({
-      metas: [
-        {
-          attributes: {
-            property: 'og:type',
-            content: 'website'
-          }
-        },
-        {
-          attributes: {
-            property: 'og:title',
-            content: 'zhjng.li'
-          }
-        },
-        {
-          attributes: {
-            property: 'og:description',
-            content: "Zhijiang's photography"
-          }
-        },
-        {
-          path: path.resolve('src/assets/photos/metatag-1,91-1.jpg'),
-          attributes: {
-              property: 'og:image'
-          }
-        },
-        {
-          attributes: {
-              property: 'og:image:type',
-              content: "image/jpeg"
-          }
-        },
-        // {
-        //   attributes: {
-        //       property: 'og:image:width',
-        //       content: "200"
-        //   }
-        // },
-        // {
-        //   attributes: {
-        //       property: 'og:image:height',
-        //       content: "200"
-        //   }
-        // }
-      ]
-    }),
+    // new HtmlWebpackTagsPlugin({
+    //   metas: [
+    //     {
+    //       attributes: {
+    //         property: 'og:type',
+    //         content: 'website'
+    //       }
+    //     },
+    //     {
+    //       attributes: {
+    //         property: 'og:title',
+    //         content: 'zhjng.li'
+    //       }
+    //     },
+    //     {
+    //       attributes: {
+    //         property: 'og:description',
+    //         content: "Zhijiang's photography"
+    //       }
+    //     },
+    //     {
+    //       path: path.resolve('src/assets/photos/metatag-1,91-1.jpg'),
+    //       attributes: {
+    //           property: 'og:image'
+    //       }
+    //     },
+    //     {
+    //       attributes: {
+    //           property: 'og:image:type',
+    //           content: "image/jpeg"
+    //       }
+    //     },
+    //     // {
+    //     //   attributes: {
+    //     //       property: 'og:image:width',
+    //     //       content: "200"
+    //     //   }
+    //     // },
+    //     // {
+    //     //   attributes: {
+    //     //       property: 'og:image:height',
+    //     //       content: "200"
+    //     //   }
+    //     // }
+    //   ]
+    // }),
     new RobotstxtPlugin({
       options: {
         policy: [
