@@ -1,5 +1,7 @@
 const path = require('path');
+const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const RobotstxtPlugin = require("robotstxt-webpack-plugin");
 const WebpackPwaManifest = require('webpack-pwa-manifest');
@@ -8,8 +10,26 @@ const TerserPlugin = require("terser-webpack-plugin");
 const isProd = process.env.NODE_ENV === 'production';
 const outputDir = 'dist';
 
+const baseUrl = 'https://zhjngli-photo.netlify.app';
+const metaTitle = "Zhijiang Li";
+const metaDescription = "Photo gallery of selected works.";
+const metaImageName = 'me.jpg';
+const metaImage = baseUrl + '/' + metaImageName;
+
 module.exports = {
   plugins: [
+    new CopyPlugin({
+      patterns: [
+        {
+          // since the image isn't being used in src, webpack won't bundle it. copy it instead
+          from: 'src/assets/meta/metatag-1-1,5.jpg',
+          to: "dist",
+          transformPath(targetPath, absolutePath) {
+            return metaImageName;
+          },
+        },
+      ],
+    }),
     new MiniCssExtractPlugin({
       filename: '[name].[hash].min.css',
       chunkFilename: '[id].[hash].min.css'
@@ -20,8 +40,90 @@ module.exports = {
       favicon: 'src/assets/icons/favicon.ico',
       meta: {
         'viewport': 'width=device-width, initial-scale=1',
-        'description': "Zhijiang's photos",
+        'description': metaDescription,
       }
+    }),
+    new HtmlWebpackTagsPlugin({
+      metas: [
+        {
+          attributes: {
+            property: 'og:url',
+            content: baseUrl
+          }
+        },
+        {
+          attributes: {
+            property: 'og:type',
+            content: 'website'
+          }
+        },
+        {
+          attributes: {
+            property: 'og:title',
+            content: metaTitle
+          }
+        },
+        {
+          attributes: {
+            property: 'og:description',
+            content: metaDescription
+          }
+        },
+        {
+          attributes: {
+            property: 'og:image',
+            content: metaImage,
+          }
+        },
+        {
+          attributes: {
+            property: 'og:image:type',
+            content: "image/jpeg"
+          }
+        },
+        {
+          attributes: {
+              property: 'og:image:width',
+              content: "1080"
+          }
+        },
+        {
+          attributes: {
+              property: 'og:image:height',
+              content: "1618"
+          }
+        },
+        {
+          attributes: {
+            name: 'twitter:card',
+            content: 'summary'
+          }
+        },
+        {
+          attributes: {
+            name: 'twitter:site',
+            content: '@zhjngli'
+          }
+        },
+        {
+          attributes: {
+            name: 'twitter:title',
+            content: metaTitle,
+          }
+        },
+        {
+          attributes: {
+            name: 'twitter:description',
+            content: metaDescription
+          }
+        },
+        {
+          attributes: {
+            name: 'twitter:image',
+            content: metaImage
+          }
+        },
+      ]
     }),
     new RobotstxtPlugin({
       options: {
