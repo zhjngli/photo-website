@@ -10,9 +10,10 @@ const TerserPlugin = require("terser-webpack-plugin");
 const isProd = process.env.NODE_ENV === 'production';
 const outputDir = 'dist';
 
+const baseUrl = 'https://zhjngli-photo.netlify.app';
 const metaTitle = "Zhijiang Li";
 const metaDescription = "Photo gallery of selected works.";
-const metaImage = 'me.jpg'
+const metaImage = baseUrl + '/me.jpg';
 
 module.exports = {
   plugins: [
@@ -46,7 +47,7 @@ module.exports = {
         {
           attributes: {
             property: 'og:url',
-            content: 'zhjngli-photo.netlify.app'
+            content: baseUrl
           }
         },
         {
