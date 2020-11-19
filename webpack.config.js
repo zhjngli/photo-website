@@ -1,9 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const RobotstxtPlugin = require("robotstxt-webpack-plugin");
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const TerserPlugin = require("terser-webpack-plugin");
+
+// const metaImage = require('src/assets/photos/metatag-1,91-1.jpg');
 
 const isProd = process.env.NODE_ENV === 'production';
 const outputDir = 'dist';
@@ -22,6 +25,52 @@ module.exports = {
         'viewport': 'width=device-width, initial-scale=1',
         'description': "Zhijiang's photos",
       }
+    }),
+    new HtmlWebpackTagsPlugin({
+      metas: [
+        {
+          attributes: {
+            property: 'og:type',
+            content: 'website'
+          }
+        },
+        {
+          attributes: {
+            property: 'og:title',
+            content: 'zhjng.li'
+          }
+        },
+        {
+          attributes: {
+            property: 'og:description',
+            content: "Zhijiang's photography"
+          }
+        },
+        {
+          path: path.resolve('src/assets/photos/metatag-1,91-1.jpg'),
+          attributes: {
+              property: 'og:image'
+          }
+        },
+        {
+          attributes: {
+              property: 'og:image:type',
+              content: "image/jpeg"
+          }
+        },
+        // {
+        //   attributes: {
+        //       property: 'og:image:width',
+        //       content: "200"
+        //   }
+        // },
+        // {
+        //   attributes: {
+        //       property: 'og:image:height',
+        //       content: "200"
+        //   }
+        // }
+      ]
     }),
     new RobotstxtPlugin({
       options: {

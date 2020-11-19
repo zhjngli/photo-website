@@ -42,7 +42,7 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
       <div>
         <Gallery photos={photos}
                 direction='row'
-                onClick={(event, {photo, index}) => this.openLightbox(index)}
+                // onClick={(event, {photo, index}) => this.openLightbox(index)}
                 targetRowHeight={parseInt(variables.photoGalleryRowHeight)}
                 margin={parseInt(variables.photoGalleryMargin)} />
         {/* <ModalGateway>
