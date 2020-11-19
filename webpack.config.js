@@ -13,7 +13,8 @@ const outputDir = 'dist';
 const baseUrl = 'https://zhjngli-photo.netlify.app';
 const metaTitle = "Zhijiang Li";
 const metaDescription = "Photo gallery of selected works.";
-const metaImage = baseUrl + '/me.jpg';
+const metaImageName = 'me.jpg';
+const metaImage = baseUrl + '/' + metaImageName;
 
 module.exports = {
   plugins: [
@@ -24,7 +25,7 @@ module.exports = {
           from: 'src/assets/meta/metatag-1-1,5.jpg',
           to: "dist",
           transformPath(targetPath, absolutePath) {
-            return metaImage;
+            return metaImageName;
           },
         },
       ],
