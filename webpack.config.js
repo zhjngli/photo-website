@@ -66,9 +66,9 @@ module.exports = {
           }
         },
         {
-          path: ogImage,
           attributes: {
-              property: 'og:image'
+              property: 'og:image',
+              content: ogImage,
           }
         },
         {
