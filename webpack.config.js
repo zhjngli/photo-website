@@ -137,8 +137,10 @@ module.exports = {
     }),
     new WebpackPwaManifest({
       short_name: "zhjng.li",
-      name: "Zhijiang Li",
+      name: metaTitle,
+      description: metaDescription,
       inject: true,
+      ios: true,
       icons: [
         {
           src: path.resolve('src/assets/icons/favicon.ico'),
@@ -162,7 +164,8 @@ module.exports = {
           src: path.resolve('src/assets/icons/android-chrome-512x512.png'),
           type: "image/png",
           sizes: [512],
-          destination: path.join('icons', 'android')
+          destination: path.join('icons', 'android'),
+          ios: 'startup'
         }
       ],
       start_url: ".",
