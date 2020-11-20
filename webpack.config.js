@@ -136,8 +136,9 @@ module.exports = {
       }
     }),
     new WebpackPwaManifest({
-      short_name: "zhijiang li photos",
-      name: "zhijiang li photos",
+      short_name: "zhjng.li",
+      name: "Zhijiang Li",
+      inject: true,
       icons: [
         {
           src: path.resolve('src/assets/icons/favicon.ico'),
