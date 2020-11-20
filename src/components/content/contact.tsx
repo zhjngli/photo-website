@@ -3,7 +3,7 @@ import style from './style.module.scss';
 
 class Contact extends React.Component {
   componentDidMount() {
-    gtag('config', 'G-R0M2056RBS', {
+    window.gtag('config', 'G-R0M2056RBS', {
       'page_title' : 'contact',
       'page_path': '/contact'
     });

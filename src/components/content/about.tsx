@@ -3,7 +3,7 @@ import style from './style.module.scss';
 
 class About extends React.Component {
   componentDidMount() {
-    gtag('config', 'G-R0M2056RBS', {
+    window.gtag('config', 'G-R0M2056RBS', {
       'page_title' : 'about',
       'page_path': '/about'
     });
