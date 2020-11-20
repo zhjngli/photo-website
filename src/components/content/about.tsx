@@ -2,6 +2,13 @@ import React from "react";
 import style from './style.module.scss';
 
 class About extends React.Component {
+  componentDidMount() {
+    gtag('config', 'G-R0M2056RBS', {
+      'page_title' : 'about',
+      'page_path': '/about'
+    });
+  }
+
   render () {
     return (
       <div className={style.container}>
