@@ -142,7 +142,7 @@ module.exports = {
       inject: true,
       ios: {
         'apple-mobile-web-app-title': 'zhjng.li',
-        'apple-mobile-web-app-status-bar-style': 'white'
+        'apple-mobile-web-app-status-bar-style': 'default'
       },
       icons: [
         {
@@ -154,8 +154,7 @@ module.exports = {
           src: path.resolve('src/assets/icons/icon-180.png'),
           type: "image/png",
           sizes: [180],
-          destination: 'icons',
-          ios: true
+          destination: 'icons'
         },
         {
           src: path.resolve('src/assets/icons/icon-192.png'),
