@@ -140,7 +140,10 @@ module.exports = {
       name: metaTitle,
       description: metaDescription,
       inject: true,
-      ios: true,
+      ios: {
+        'apple-mobile-web-app-title': 'zhjng.li',
+        'apple-mobile-web-app-status-bar-style': 'white'
+      },
       icons: [
         {
           src: path.resolve('src/assets/icons/favicon.ico'),
@@ -148,23 +151,24 @@ module.exports = {
           type: "image/x-icon"
         },
         {
-          src: path.resolve('src/assets/icons/apple-touch-icon.png'),
+          src: path.resolve('src/assets/icons/icon-180.png'),
           type: "image/png",
           sizes: [180],
-          destination: path.join('icons', 'ios'),
+          destination: 'icons',
           ios: true
         },
         {
-          src: path.resolve('src/assets/icons/android-chrome-192x192.png'),
+          src: path.resolve('src/assets/icons/icon-192.png'),
           type: "image/png",
           sizes: [192],
-          destination: path.join('icons', 'android')
+          destination: 'icons',
+          ios: true
         },
         {
-          src: path.resolve('src/assets/icons/android-chrome-512x512.png'),
+          src: path.resolve('src/assets/icons/icon-512.png'),
           type: "image/png",
           sizes: [512],
-          destination: path.join('icons', 'android'),
+          destination: 'icons',
           ios: 'startup'
         }
       ],
