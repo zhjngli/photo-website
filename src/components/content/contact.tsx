@@ -1,14 +1,8 @@
 import React from "react";
+import AnalyticsContent from '../analyticsContent';
 import style from './style.module.scss';
 
-class Contact extends React.Component {
-  componentDidMount() {
-    window.gtag('config', 'G-R0M2056RBS', {
-      'page_title' : 'contact',
-      'page_path': '/contact'
-    });
-  }
-
+class Contact extends AnalyticsContent {
   render() {
     return (
       <div className={style.container}>

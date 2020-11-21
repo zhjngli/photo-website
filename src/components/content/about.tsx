@@ -1,14 +1,8 @@
 import React from "react";
+import AnalyticsContent from '../analyticsContent';
 import style from './style.module.scss';
 
-class About extends React.Component {
-  componentDidMount() {
-    window.gtag('config', 'G-R0M2056RBS', {
-      'page_title' : 'about',
-      'page_path': '/about'
-    });
-  }
-
+class About extends AnalyticsContent {
   render () {
     return (
       <div className={style.container}>
