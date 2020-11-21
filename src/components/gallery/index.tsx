@@ -1,10 +1,12 @@
 import React from "react";
 import Gallery from "react-photo-gallery";
-import Carousel, { Modal, ModalGateway } from "react-images";
+import AnalyticsContent from '../analyticsContent';
+import AnalyticsContentProps from '../analyticsContent/types';
+// import Carousel, { Modal, ModalGateway } from "react-images";
 import { photos } from "./photos";
 import variables from '../../theme/dimensions.module.scss';
 
-type GalleryProps = {}
+type GalleryProps = {} & AnalyticsContentProps
 
 type GalleryState = {
   currentImage: number,
@@ -40,6 +42,9 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
   render() {
     return (
       <div>
+        {/* use pageTitle 'home' when accessing it from within the website rather than a page load
+            e.g. clicking into about page then back to home page */}
+        <AnalyticsContent pagePath={this.props.pagePath} pageTitle={this.props.pageTitle} />
         <Gallery photos={photos}
                 direction='row'
                 // onClick={(event, {photo, index}) => this.openLightbox(index)}

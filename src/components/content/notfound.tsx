@@ -1,12 +1,14 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
+import AnalyticsContent from '../analyticsContent';
 import style from './style.module.scss';
 
-class NotFound extends React.Component {
+class NotFound extends AnalyticsContent {
   render () {
     return (
       <div className={style.container}>
         <p className={style.text}>
-          Sorry, content not found! Go to <a href="/" className={style.link}>home</a>.
+          Sorry, content not found! Go to <NavLink to="/" className={style.link}>home</NavLink>.
         </p>
       </div>
     );

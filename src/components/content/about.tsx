@@ -1,7 +1,8 @@
 import React from "react";
+import AnalyticsContent from '../analyticsContent';
 import style from './style.module.scss';
 
-class About extends React.Component {
+class About extends AnalyticsContent {
   render () {
     return (
       <div className={style.container}>

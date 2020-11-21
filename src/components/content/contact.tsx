@@ -1,7 +1,9 @@
 import React from "react";
+import AnalyticsContent from '../analyticsContent';
+import InstaLink from '../instaLink';
 import style from './style.module.scss';
 
-class Contact extends React.Component {
+class Contact extends AnalyticsContent {
   render() {
     return (
       <div className={style.container}>
@@ -9,7 +11,7 @@ class Contact extends React.Component {
           Let's create something!
         </p>
         <p className={style.text}>
-          Message me on <a href="https://www.instagram.com/zhjngli/" target="_blank" rel="noreferrer noopener" className={style.link}>Instagram</a>.
+          Message me on <InstaLink style={style.link} />.
         </p>
       </div>
     );

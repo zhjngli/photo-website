@@ -7,6 +7,25 @@ import Footer from '../components/footer';
 import Header from '../components/header';
 import PhotoGallery from '../components/gallery';
 
+const contentPages = {
+  home: {
+    pageTitle: 'home',
+    pagePath: '/'
+  },
+  about: {
+    pageTitle: 'about',
+    pagePath: '/about'
+  },
+  contact: {
+    pageTitle: 'contact',
+    pagePath: '/contact'
+  },
+  notFound: {
+    pageTitle: 'notfound',
+    pagePath: '/notfound'
+  },
+}
+
 class Page extends React.Component {
   render() {
     return (
@@ -15,11 +34,19 @@ class Page extends React.Component {
           <Header />
           <Fade>
             <Switch>
-              <Route exact path="/" component={PhotoGallery} />
-              <Route path="/about" component={About} />
-              <Route path="/contact" component={Contact} />
-              <Route path="/notfound" component={NotFound} />
-              <Redirect to="/notfound" />
+              <Route exact path={contentPages.home.pagePath}>
+                <PhotoGallery {...contentPages.home} />
+              </Route>
+              <Route exact path={contentPages.about.pagePath}>
+                <About {...contentPages.about} />
+              </Route>
+              <Route exact path={contentPages.contact.pagePath}>
+                <Contact {...contentPages.contact} />
+              </Route>
+              <Route exact path={contentPages.notFound.pagePath}>
+                <NotFound {...contentPages.notFound} />
+              </Route>
+              <Redirect to={contentPages.notFound.pagePath} />
             </Switch>
           </Fade>
           <Footer />
