@@ -16,7 +16,7 @@ class AnalyticsContent extends React.Component<AnalyticsContentProps> {
   // way to do this.
   // I created this component to reduce duplicate code of the gtag function call, but maybe it's worth
   // keeping the gtag call in all components which use it, assuming there's more complex analytics
-  // functionality that I might to use in the future.
+  // functionality that I might want to use in the future.
   render() {
     return <></>;
   }
