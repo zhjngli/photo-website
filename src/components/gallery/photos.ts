@@ -34,6 +34,24 @@ export const photos = [
   //   height: 2
   // },
   {
+    src: `${p08}`,
+    sizes: defaultSizes,
+    width: 2,
+    height: 3
+  },
+  {
+    src: `${p06}`,
+    sizes: defaultSizes,
+    width: 3,
+    height: 2
+  },
+  {
+    src: `${p04}`,
+    sizes: defaultSizes,
+    width: 2,
+    height: 3
+  },
+  {
     src: `${p13}`,
     sizes: defaultSizes,
     width: 2,
@@ -41,6 +59,18 @@ export const photos = [
   },
   {
     src: `${p12}`,
+    sizes: defaultSizes,
+    width: 3,
+    height: 2
+  },
+  {
+    src: `${p05}`,
+    sizes: defaultSizes,
+    width: 2,
+    height: 3
+  },
+  {
+    src: `${p09}`,
     sizes: defaultSizes,
     width: 3,
     height: 2
@@ -58,37 +88,7 @@ export const photos = [
     height: 2
   },
   {
-    src: `${p09}`,
-    sizes: defaultSizes,
-    width: 3,
-    height: 2
-  },
-  {
-    src: `${p08}`,
-    sizes: defaultSizes,
-    width: 2,
-    height: 3
-  },
-  {
     src: `${p07}`,
-    sizes: defaultSizes,
-    width: 2,
-    height: 3
-  },
-  {
-    src: `${p06}`,
-    sizes: defaultSizes,
-    width: 3,
-    height: 2
-  },
-  {
-    src: `${p05}`,
-    sizes: defaultSizes,
-    width: 2,
-    height: 3
-  },
-  {
-    src: `${p04}`,
     sizes: defaultSizes,
     width: 2,
     height: 3
