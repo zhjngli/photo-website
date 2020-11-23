@@ -1,7 +1,6 @@
 import React from "react";
 import style from './style.module.scss';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import { Fade } from '@material-ui/core';
 import { About, Contact, NotFound } from '../components/content';
 import Footer from '../components/footer';
 import Header from '../components/header';
@@ -29,29 +28,27 @@ const contentPages = {
 class Page extends React.Component {
   render() {
     return (
-      <BrowserRouter>
-        <div className={style.container}>
+      <div className={style.container}>
+        <BrowserRouter>
           <Header />
-          <Fade>
-            <Switch>
-              <Route exact path={contentPages.home.pagePath}>
-                <PhotoGallery {...contentPages.home} />
-              </Route>
-              <Route exact path={contentPages.about.pagePath}>
-                <About {...contentPages.about} />
-              </Route>
-              <Route exact path={contentPages.contact.pagePath}>
-                <Contact {...contentPages.contact} />
-              </Route>
-              <Route exact path={contentPages.notFound.pagePath}>
-                <NotFound {...contentPages.notFound} />
-              </Route>
-              <Redirect to={contentPages.notFound.pagePath} />
-            </Switch>
-          </Fade>
+          <Switch>
+            <Route exact path={contentPages.home.pagePath}>
+              <PhotoGallery {...contentPages.home} />
+            </Route>
+            <Route exact path={contentPages.about.pagePath}>
+              <About {...contentPages.about} />
+            </Route>
+            <Route exact path={contentPages.contact.pagePath}>
+              <Contact {...contentPages.contact} />
+            </Route>
+            <Route exact path={contentPages.notFound.pagePath}>
+              <NotFound {...contentPages.notFound} />
+            </Route>
+            <Redirect to={contentPages.notFound.pagePath} />
+          </Switch>
           <Footer />
-        </div>
-      </BrowserRouter>
+        </BrowserRouter>
+      </div>
     );
   }
 }
