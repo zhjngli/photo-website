@@ -16,13 +16,14 @@
     "react-images": "^1.1.7",
     "react-photo-gallery": "^8.0.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3"
+    "react-scripts": "^4.0.1"
   },
   "scripts": {
     "start": "webpack serve --mode development --env development",
     "build": "webpack --mode production",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "clean": "rm -rf node_modules",
+    "reinstall": "npm run clean && npm install",
+    "rebuild": "npm run clean && npm install && npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -41,6 +42,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.5",
     "@testing-library/react": "^9.5.0",
