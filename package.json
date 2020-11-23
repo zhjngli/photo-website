@@ -13,7 +13,8 @@
     "react-images": "^1.1.7",
     "react-photo-gallery": "^8.0.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.1"
+    "react-scripts": "^4.0.1",
+    "webpack-cli": "^4.2.0"
   },
   "scripts": {
     "start": "webpack serve --mode development --env development",
@@ -57,7 +58,6 @@
     "ts-loader": "^8.0.11",
     "typescript": "^3.9.7",
     "webpack": "^4.44.2",
-    "webpack-cli": "^4.2.0",
     "webpack-dev-server": "^3.11.0",
     "webpack-pwa-manifest": "^4.3.0"
   }
