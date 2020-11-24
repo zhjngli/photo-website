@@ -1,9 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import AnalyticsContent from '../analyticsContent';
+import withAnalytics from '../analyticsContent';
 import style from './style.module.scss';
 
-class NotFound extends AnalyticsContent {
+class NotFound extends React.Component {
   render () {
     return (
       <div className={style.container}>
@@ -15,4 +15,4 @@ class NotFound extends AnalyticsContent {
   }
 }
 
-export default NotFound;
+export default withAnalytics(NotFound);

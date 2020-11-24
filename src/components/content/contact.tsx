@@ -1,9 +1,9 @@
 import React from "react";
-import AnalyticsContent from '../analyticsContent';
+import withAnalytics from '../analyticsContent';
 import InstaLink from '../instaLink';
 import style from './style.module.scss';
 
-class Contact extends AnalyticsContent {
+class Contact extends React.Component {
   render() {
     return (
       <div className={style.container}>
@@ -18,4 +18,4 @@ class Contact extends AnalyticsContent {
   }
 }
 
-export default Contact;
+export default withAnalytics(Contact);

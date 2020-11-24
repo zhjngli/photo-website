@@ -1,8 +1,8 @@
 import React from "react";
-import AnalyticsContent from '../analyticsContent';
+import withAnalytics from '../analyticsContent';
 import style from './style.module.scss';
 
-class About extends AnalyticsContent {
+class About extends React.Component {
   render () {
     return (
       <div className={style.container}>
@@ -14,4 +14,4 @@ class About extends AnalyticsContent {
   }
 }
 
-export default About;
+export default withAnalytics(About);
