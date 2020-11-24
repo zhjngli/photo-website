@@ -32,7 +32,7 @@
   }
 
   .title {
-    padding: 16px 16px 16px 0px;
+    margin: 16px 16px 16px 0px;
   }
 }
 
@@ -43,7 +43,7 @@
 
 .links {
   @include nav-style;
-  padding: 16px 16px 16px 16px;
+  margin: 16px 16px 16px 16px;
   text-transform: lowercase;
   text-decoration: none;
 
