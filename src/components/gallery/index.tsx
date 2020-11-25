@@ -9,7 +9,13 @@ type GalleryProps = {}
 
 type GalleryState = {
   currentImage: number,
-  viewerIsOpen: boolean
+  viewerIsOpen: boolean,
+  galleryDirection: string,
+}
+
+enum GalleryDirection {
+  Row = 'row',
+  Col = 'column',
 }
 
 class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
@@ -18,10 +24,30 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
 
     this.state = {
       currentImage: 0,
-      viewerIsOpen: false
+      viewerIsOpen: false,
+      galleryDirection: 'row'
     };
     this.openLightbox = this.openLightbox.bind(this);
     this.closeLightbox = this.closeLightbox.bind(this);
+    this.handleResize = this.handleResize.bind(this);
+  }
+
+  handleResize(): void {
+    if (window.innerWidth <= parseInt(variables.screenReactiveWidth)
+        && this.state.galleryDirection === GalleryDirection.Row) {
+      this.setState((prevState: GalleryState) => ({
+        currentImage: this.state.currentImage,
+        viewerIsOpen: this.state.viewerIsOpen,
+        galleryDirection: GalleryDirection.Col
+      }));
+    } else if (window.innerWidth > parseInt(variables.screenReactiveWidth)
+               && this.state.galleryDirection === GalleryDirection.Col) {
+      this.setState((prevState: GalleryState) => ({
+        currentImage: this.state.currentImage,
+        viewerIsOpen: this.state.viewerIsOpen,
+        galleryDirection: GalleryDirection.Row
+      }));
+    }
   }
 
   openLightbox(index: number): void {
@@ -38,11 +64,20 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
     }));
   }
 
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
   render() {
     return (
       <div>
         <Gallery photos={photos}
-                direction='row'
+                direction={this.state.galleryDirection}
+                columns={1}
                 // onClick={(event, {photo, index}) => this.openLightbox(index)}
                 targetRowHeight={parseInt(variables.photoGalleryRowHeight)}
                 margin={parseInt(variables.photoGalleryMargin)} />
