@@ -1,9 +1,8 @@
 import React from "react";
 import Gallery from "react-photo-gallery";
 import withAnalytics from '../analyticsContent';
-// import Carousel, { Modal, ModalGateway } from "react-images";
 import { photos } from "./photos";
-import variables from '../../theme/dimensions.module.scss';
+import {screenReactiveWidth, photoGalleryMargin, photoGalleryRowHeight} from '../../theme/dimensions';
 
 type GalleryProps = {}
 
@@ -33,14 +32,14 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
   }
 
   handleResize(): void {
-    if (window.innerWidth <= parseInt(variables.screenReactiveWidth)
+    if (window.innerWidth <= screenReactiveWidth
         && this.state.galleryDirection === GalleryDirection.Row) {
       this.setState((prevState: GalleryState) => ({
         currentImage: this.state.currentImage,
         viewerIsOpen: this.state.viewerIsOpen,
         galleryDirection: GalleryDirection.Col
       }));
-    } else if (window.innerWidth > parseInt(variables.screenReactiveWidth)
+    } else if (window.innerWidth > screenReactiveWidth
                && this.state.galleryDirection === GalleryDirection.Col) {
       this.setState((prevState: GalleryState) => ({
         currentImage: this.state.currentImage,
@@ -79,23 +78,8 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
                 direction={this.state.galleryDirection}
                 columns={1}
                 // onClick={(event, {photo, index}) => this.openLightbox(index)}
-                targetRowHeight={parseInt(variables.photoGalleryRowHeight)}
-                margin={parseInt(variables.photoGalleryMargin)} />
-        {/* <ModalGateway>
-          {this.state.viewerIsOpen ? (
-            <Modal onClose={this.closeLightbox}>
-              <Carousel
-                currentIndex={this.state.currentImage}
-                views={photos.map(x => ({
-                  ...x,
-                  // srcset: x.srcSet,
-                  source: x.src
-                  // caption: x.title
-                }))}
-              />
-            </Modal>
-          ) : null}
-        </ModalGateway> */}
+                targetRowHeight={photoGalleryRowHeight}
+                margin={photoGalleryMargin} />
       </div>
     );
   }
