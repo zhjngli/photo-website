@@ -1,5 +1,6 @@
 import React from "react";
 import withAnalytics from '../analyticsContent';
+import AnalyticsContentProps from "../analyticsContent/types";
 import style from './style.module.scss';
 
 class About extends React.Component {
@@ -15,3 +16,8 @@ class About extends React.Component {
 }
 
 export default withAnalytics(About);
+
+export const AboutPageDefinitions: AnalyticsContentProps = {
+  pageTitle: 'about',
+  pagePath: '/about'
+}

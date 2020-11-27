@@ -4,26 +4,11 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { About, Contact, NotFound } from '../components/content';
 import Footer from '../components/footer';
 import Header from '../components/header';
-import PhotoGallery from '../components/gallery';
+import PhotoGallery, { HomePageDefinitions } from '../components/gallery';
+import { AboutPageDefinitions } from "../components/content/about";
+import { ContactPageDefinitions } from "../components/content/contact";
+import { NotFoundPageDefinitions } from "../components/content/notfound";
 
-const contentPages = {
-  home: {
-    pageTitle: 'home',
-    pagePath: '/'
-  },
-  about: {
-    pageTitle: 'about',
-    pagePath: '/about'
-  },
-  contact: {
-    pageTitle: 'contact',
-    pagePath: '/contact'
-  },
-  notFound: {
-    pageTitle: 'notfound',
-    pagePath: '/notfound'
-  },
-}
 
 class Page extends React.Component {
   render() {
@@ -32,19 +17,19 @@ class Page extends React.Component {
         <BrowserRouter>
           <Header />
           <Switch>
-            <Route exact path={contentPages.home.pagePath}>
-              <PhotoGallery {...contentPages.home} />
+            <Route exact path={HomePageDefinitions.pagePath}>
+              <PhotoGallery {...HomePageDefinitions} />
             </Route>
-            <Route exact path={contentPages.about.pagePath}>
-              <About {...contentPages.about} />
+            <Route exact path={AboutPageDefinitions.pagePath}>
+              <About {...AboutPageDefinitions} />
             </Route>
-            <Route exact path={contentPages.contact.pagePath}>
-              <Contact {...contentPages.contact} />
+            <Route exact path={ContactPageDefinitions.pagePath}>
+              <Contact {...ContactPageDefinitions} />
             </Route>
-            <Route exact path={contentPages.notFound.pagePath}>
-              <NotFound {...contentPages.notFound} />
+            <Route exact path={NotFoundPageDefinitions.pagePath}>
+              <NotFound {...NotFoundPageDefinitions} />
             </Route>
-            <Redirect to={contentPages.notFound.pagePath} />
+            <Redirect to={NotFoundPageDefinitions.pagePath} />
           </Switch>
           <Footer />
         </BrowserRouter>

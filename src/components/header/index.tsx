@@ -1,5 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { AboutPageDefinitions } from "../content/about";
+import { ContactPageDefinitions } from "../content/contact";
+import { HomePageDefinitions } from "../gallery";
 import InstaLink from '../instaLink';
 import style from './style.module.scss';
 
@@ -7,14 +10,14 @@ class Header extends React.Component {
   render() {
     return (
       <div className={style.container}>
-        <NavLink to="/" className={style.title}>
+        <NavLink to={HomePageDefinitions.pagePath} className={style.title}>
           ƶhijiang li
         </NavLink>
         <div className={style.navbar}>
-          <NavLink to="/about" className={style.links} activeClassName={style.activeNavLink}>
+          <NavLink to={AboutPageDefinitions.pagePath} className={style.links} activeClassName={style.activeNavLink}>
             about
           </NavLink>
-          <NavLink to="/contact" className={style.links} activeClassName={style.activeNavLink}>
+          <NavLink to={ContactPageDefinitions.pagePath} className={style.links} activeClassName={style.activeNavLink}>
             contact
           </NavLink>
           <InstaLink style={style.links} />

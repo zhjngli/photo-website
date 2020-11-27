@@ -4,6 +4,7 @@ import withAnalytics from '../analyticsContent';
 import { photos } from "./photos";
 import {screenReactiveWidth, photoGalleryMargin, photoGalleryRowHeight} from '../../theme/dimensions';
 import Carousel from "../carousel";
+import AnalyticsContentProps from "../analyticsContent/types";
 
 type GalleryProps = {}
 
@@ -89,3 +90,8 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
 }
 
 export default withAnalytics(PhotoGallery);
+
+export const HomePageDefinitions: AnalyticsContentProps = {
+  pageTitle: 'home',
+  pagePath: '/'
+}

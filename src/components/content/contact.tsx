@@ -1,5 +1,6 @@
 import React from "react";
 import withAnalytics from '../analyticsContent';
+import AnalyticsContentProps from "../analyticsContent/types";
 import InstaLink from '../instaLink';
 import style from './style.module.scss';
 
@@ -19,3 +20,8 @@ class Contact extends React.Component {
 }
 
 export default withAnalytics(Contact);
+
+export const ContactPageDefinitions: AnalyticsContentProps = {
+  pageTitle: 'contact',
+  pagePath: '/contact'
+}
