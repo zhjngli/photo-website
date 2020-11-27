@@ -3,6 +3,7 @@ import Gallery from "react-photo-gallery";
 import withAnalytics from '../analyticsContent';
 import { photos } from "./photos";
 import {screenReactiveWidth, photoGalleryMargin, photoGalleryRowHeight} from '../../theme/dimensions';
+import Carousel from "../carousel";
 
 type GalleryProps = {}
 
@@ -35,15 +36,11 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
     if (window.innerWidth <= screenReactiveWidth
         && this.state.galleryDirection === GalleryDirection.Row) {
       this.setState((prevState: GalleryState) => ({
-        currentImage: this.state.currentImage,
-        viewerIsOpen: this.state.viewerIsOpen,
         galleryDirection: GalleryDirection.Col
       }));
     } else if (window.innerWidth > screenReactiveWidth
                && this.state.galleryDirection === GalleryDirection.Col) {
       this.setState((prevState: GalleryState) => ({
-        currentImage: this.state.currentImage,
-        viewerIsOpen: this.state.viewerIsOpen,
         galleryDirection: GalleryDirection.Row
       }));
     }
@@ -71,15 +68,21 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
     window.removeEventListener('resize', this.handleResize);
   }
 
-  render() {
+  render(): React.ReactNode {
     return (
       <div>
-        <Gallery photos={photos}
-                direction={this.state.galleryDirection}
-                columns={1}
-                // onClick={(event, {photo, index}) => this.openLightbox(index)}
-                targetRowHeight={photoGalleryRowHeight}
-                margin={photoGalleryMargin} />
+        {this.state.viewerIsOpen ?
+          <Carousel photos={photos}
+                    index={this.state.currentImage}
+                    onClose={this.closeLightbox} />
+        :
+          <Gallery photos={photos}
+                  direction={this.state.galleryDirection}
+                  columns={1}
+                  onClick={(event, {photo, index}) => this.openLightbox(index)}
+                  targetRowHeight={photoGalleryRowHeight}
+                  margin={photoGalleryMargin} />
+        }
       </div>
     );
   }

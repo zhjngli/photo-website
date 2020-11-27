@@ -1,0 +1,58 @@
+@import 'src/theme/colors.module.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: auto;
+  min-width: 320px;
+}
+
+.closeContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.button {
+  border: none;
+  background-color: white;
+  color: $default-copy-color;
+
+  &:focus {
+    outline: none;
+    color: $highlight-color;
+  }
+  
+  &:hover {
+    color: $highlight-color;
+  }
+}
+
+.prev {
+  margin-right: 20px;
+}
+
+.next {
+  margin-left: 20px;
+}
+
+.imageContainer {
+  display: flex;
+  width: 100%;
+  // subtract amount of pixels larger than header+footer
+  height: calc(100vh - 378px);
+}
+
+.navContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  color: $default-copy-color;
+}
+
+.carousel {
+  display: block;
+  margin: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
