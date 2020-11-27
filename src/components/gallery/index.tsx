@@ -25,10 +25,10 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
     this.state = {
       currentImage: 0,
       viewerIsOpen: false,
-      galleryDirection: 'row'
+      galleryDirection: window.innerWidth <= screenReactiveWidth ? GalleryDirection.Col : GalleryDirection.Row
     };
-    this.openLightbox = this.openLightbox.bind(this);
-    this.closeLightbox = this.closeLightbox.bind(this);
+    this.openViewer = this.openViewer.bind(this);
+    this.closeViewer = this.closeViewer.bind(this);
     this.handleResize = this.handleResize.bind(this);
   }
 
@@ -46,14 +46,14 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
     }
   }
 
-  openLightbox(index: number): void {
+  openViewer(index: number): void {
     this.setState((prevState: GalleryState) => ({
       currentImage: index,
       viewerIsOpen: true
     }));
   }
 
-  closeLightbox(): void {
+  closeViewer(): void {
     this.setState((prevState: GalleryState) => ({
       currentImage: 0,
       viewerIsOpen: false
@@ -74,12 +74,12 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
         {this.state.viewerIsOpen ?
           <Carousel photos={photos}
                     index={this.state.currentImage}
-                    onClose={this.closeLightbox} />
+                    onClose={this.closeViewer} />
         :
           <Gallery photos={photos}
                   direction={this.state.galleryDirection}
                   columns={1}
-                  onClick={(event, {photo, index}) => this.openLightbox(index)}
+                  onClick={(event, {photo, index}) => this.openViewer(index)}
                   targetRowHeight={photoGalleryRowHeight}
                   margin={photoGalleryMargin} />
         }
