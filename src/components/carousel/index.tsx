@@ -27,6 +27,7 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
     }
     this.handleClose = this.handleClose.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleDivClick = this.handleDivClick.bind(this);
     this.nextImage = this.nextImage.bind(this);
     this.prevImage = this.prevImage.bind(this);
   }
@@ -38,6 +39,14 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
   handleKeyPress(event: KeyboardEvent): void {
     if (ESCAPE_KEYS.includes(event.code)) {
       this.handleClose();
+    }
+  }
+
+  handleDivClick(event: MouseEvent): void {
+    if (event.pageX <= window.innerWidth / 2) {
+      this.prevImage();
+    } else {
+      this.nextImage();
     }
   }
 
@@ -55,24 +64,32 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
 
   componentDidMount() {
     window.addEventListener('keyup', this.handleKeyPress);
+    document.getElementById('image')?.addEventListener('click', (event) => this.handleDivClick(event));
+    document.getElementById('close')?.addEventListener('click', (event) => this.handleClose());
+    document.getElementById('prev')?.addEventListener('click', (event) => this.prevImage());
+    document.getElementById('next')?.addEventListener('click', (event) => this.nextImage());
   }
 
   componentWillUnmount() {
     window.removeEventListener('keyup', this.handleKeyPress);
+    document.getElementById('image')?.removeEventListener('click', (event) => this.handleDivClick(event));
+    document.getElementById('close')?.removeEventListener('click', (event) => this.handleClose());
+    document.getElementById('prev')?.removeEventListener('click', (event) => this.prevImage());
+    document.getElementById('next')?.removeEventListener('click', (event) => this.nextImage());
   }
 
   render(): React.ReactNode {
     return (
       <div className={style.container}>
         <div className={style.closeContainer}>
-          <button className={`${style.button} ${style.close}`} onClick={this.handleClose}>X</button>
+          <button className={style.button} id={'close'}>X</button>
         </div>
-        <div className={style.imageContainer}>
+        <div className={style.imageContainer} id={'image'}>
           <CarouselImage {...this.props.photos[this.state.index]} />
         </div>
         <div className={style.navContainer}>
-          <button className={`${style.button} ${style.prev}`} onClick={this.prevImage}>{"<"}</button>
-          <button className={`${style.button} ${style.next}`} onClick={this.nextImage}>{">"}</button>
+          <button className={`${style.button} ${style.prev}`} id={'prev'}>{"<"}</button>
+          <button className={`${style.button} ${style.next}`} id={'next'}>{">"}</button>
         </div>
       </div>
     );
