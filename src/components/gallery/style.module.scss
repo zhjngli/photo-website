@@ -1,7 +1,21 @@
+@import 'src/theme/colors.module.scss';
+
 .unselectable {
   user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
   -o-user-select: none;
+}
+
+.imageContainer:hover .overlay {
+  opacity: .5;
+}
+
+.overlay {
+  position: absolute;
+  opacity: 0;
+  background-color: $emphasis-color;
+  transition: .2s ease;
+  top: 0;
 }

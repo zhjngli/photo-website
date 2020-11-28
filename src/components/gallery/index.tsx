@@ -1,5 +1,5 @@
-import React from "react";
-import Gallery from "react-photo-gallery";
+import React, { CSSProperties } from "react";
+import Gallery, { PhotoProps, renderImageClickHandler, RenderImageProps } from "react-photo-gallery";
 import withAnalytics from '../analyticsContent';
 import { photos } from "./photos";
 import {screenReactiveWidth, photoGalleryMargin, photoGalleryRowHeight} from '../../theme/dimensions';
@@ -70,6 +70,52 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
     window.removeEventListener('resize', this.handleResize);
   }
 
+  renderImage(renderImageProps: RenderImageProps): React.ReactElement {
+    const photo: PhotoProps = renderImageProps.photo;
+    const clickHandler: renderImageClickHandler = renderImageProps.onClick ? renderImageProps.onClick : () => null;
+    const cont: CSSProperties = renderImageProps.direction === "row" ?
+        {
+          cursor: "pointer",
+          overflow: "hidden",
+          margin: renderImageProps.margin,
+          height: photo.height,
+          width: photo.width,
+          position: "relative"
+        }
+        :
+        {
+          cursor: "pointer",
+          overflow: "hidden",
+          margin: renderImageProps.margin,
+          height: photo.height,
+          width: photo.width,
+          position: "absolute",
+          left: renderImageProps.left,
+          top: renderImageProps.top,
+        };
+    return (
+      <div
+        className={style.imageContainer}
+        style={cont}
+        onClick={event => clickHandler(event, {...photo, index: renderImageProps.index})}
+      >
+        <img
+          src={photo.src}
+          height={photo.height}
+          width={photo.width}
+        />
+        <div
+          style={{
+            height: photo.height,
+            width: photo.width
+          }}
+          className={style.overlay}
+        >
+        </div>
+      </div>
+    );
+  }
+
   render(): React.ReactNode {
     return (
       <div className={style.unselectable}>
@@ -82,6 +128,7 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
                   direction={this.state.galleryDirection}
                   columns={1}
                   onClick={(event, {photo, index}) => this.openViewer(index)}
+                  renderImage={this.renderImage}
                   targetRowHeight={photoGalleryRowHeight}
                   margin={photoGalleryMargin} />
         }
