@@ -5,6 +5,7 @@ import { photos } from "./photos";
 import {screenReactiveWidth, photoGalleryMargin, photoGalleryRowHeight} from '../../theme/dimensions';
 import Carousel from "../carousel";
 import AnalyticsContentProps from "../analyticsContent/types";
+import style from './style.module.scss';
 
 type GalleryProps = {}
 
@@ -71,7 +72,7 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
 
   render(): React.ReactNode {
     return (
-      <div>
+      <div className={style.unselectable}>
         {this.state.viewerIsOpen ?
           <Carousel photos={photos}
                     index={this.state.currentImage}
