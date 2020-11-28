@@ -17,9 +17,9 @@ class NotFound extends React.Component {
   }
 }
 
-export default withAnalytics(NotFound);
-
 export const NotFoundPageDefinitions: AnalyticsContentProps = {
   pageTitle: 'notfound',
   pagePath: '/notfound'
 }
+
+export default withAnalytics(NotFound, NotFoundPageDefinitions);

@@ -15,9 +15,9 @@ class About extends React.Component {
   }
 }
 
-export default withAnalytics(About);
-
 export const AboutPageDefinitions: AnalyticsContentProps = {
   pageTitle: 'about',
   pagePath: '/about'
 }
+
+export default withAnalytics(About, AboutPageDefinitions);

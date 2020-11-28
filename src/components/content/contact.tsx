@@ -19,9 +19,9 @@ class Contact extends React.Component {
   }
 }
 
-export default withAnalytics(Contact);
-
 export const ContactPageDefinitions: AnalyticsContentProps = {
   pageTitle: 'contact',
   pagePath: '/contact'
 }
+
+export default withAnalytics(Contact, ContactPageDefinitions);

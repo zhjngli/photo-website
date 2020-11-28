@@ -89,9 +89,9 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
   }
 }
 
-export default withAnalytics(PhotoGallery);
-
 export const HomePageDefinitions: AnalyticsContentProps = {
   pageTitle: 'home',
   pagePath: '/'
 }
+
+export default withAnalytics(PhotoGallery, HomePageDefinitions);

@@ -18,16 +18,16 @@ class Page extends React.Component {
           <Header />
           <Switch>
             <Route exact path={HomePageDefinitions.pagePath}>
-              <PhotoGallery {...HomePageDefinitions} />
+              <PhotoGallery />
             </Route>
             <Route exact path={AboutPageDefinitions.pagePath}>
-              <About {...AboutPageDefinitions} />
+              <About />
             </Route>
             <Route exact path={ContactPageDefinitions.pagePath}>
-              <Contact {...ContactPageDefinitions} />
+              <Contact />
             </Route>
             <Route exact path={NotFoundPageDefinitions.pagePath}>
-              <NotFound {...NotFoundPageDefinitions} />
+              <NotFound />
             </Route>
             <Redirect to={NotFoundPageDefinitions.pagePath} />
           </Switch>
