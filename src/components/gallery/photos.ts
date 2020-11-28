@@ -17,7 +17,7 @@ import p13 from '../../assets/photos/202010-atlantic.jpg';
 const defaultSizes = [`
   (min-width: 480px) 50vw,
   (min-width: 1024px) 33.3vw,
-  (max-width: 489px) 90vw
+  (max-width: 480px) 90vw
   `];
 
 export const photos = [
