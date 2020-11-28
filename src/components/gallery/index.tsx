@@ -73,22 +73,15 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
   renderImage(renderImageProps: RenderImageProps): React.ReactElement {
     const photo: PhotoProps = renderImageProps.photo;
     const clickHandler: renderImageClickHandler = renderImageProps.onClick ? renderImageProps.onClick : () => null;
-    const cont: CSSProperties = renderImageProps.direction === "row" ?
-        {
-          cursor: "pointer",
-          overflow: "hidden",
-          margin: renderImageProps.margin,
-          height: photo.height,
-          width: photo.width,
-          position: "relative"
-        }
+    const defaultCss: CSSProperties = {
+      margin: renderImageProps.margin,
+      height: photo.height,
+      width: photo.width,
+    }
+    const directionalCss: CSSProperties = renderImageProps.direction === "row" ?
+        { position: "relative" }
         :
         {
-          cursor: "pointer",
-          overflow: "hidden",
-          margin: renderImageProps.margin,
-          height: photo.height,
-          width: photo.width,
           position: "absolute",
           left: renderImageProps.left,
           top: renderImageProps.top,
@@ -96,21 +89,12 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
     return (
       <div
         className={style.imageContainer}
-        style={cont}
+        style={{...defaultCss, ...directionalCss}}
         onClick={event => clickHandler(event, {...photo, index: renderImageProps.index})}
       >
-        <img
-          src={photo.src}
-          height={photo.height}
-          width={photo.width}
-        />
-        <div
-          style={{
-            height: photo.height,
-            width: photo.width
-          }}
-          className={style.overlay}
-        >
+        <img src={photo.src} className={style.image} />
+        <div className={style.overlay}>
+          <span className={style.overlayAlt}>{photo.alt}</span>
         </div>
       </div>
     );

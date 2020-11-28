@@ -36,6 +36,7 @@ export const photos = [
   {
     src: `${p08}`,
     sizes: defaultSizes,
+    alt: 'Hollywood',
     width: 2,
     height: 3
   },

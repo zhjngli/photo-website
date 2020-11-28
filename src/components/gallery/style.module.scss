@@ -1,4 +1,5 @@
 @import 'src/theme/colors.module.scss';
+@import 'src/theme/fonts.module.scss';
 
 .unselectable {
   user-select: none;
@@ -8,14 +9,36 @@
   -o-user-select: none;
 }
 
+.imageContainer {
+  display: block;
+  cursor: pointer;
+  overflow: hidden;
+}
+
 .imageContainer:hover .overlay {
-  opacity: .5;
+  opacity: 1;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
 }
 
 .overlay {
   position: absolute;
   opacity: 0;
-  background-color: $emphasis-color;
+  background-color: rgba($emphasis-color, 0.5);
   transition: .2s ease;
   top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlayAlt {
+  @include copy-font-style;
+  color: white;
 }
