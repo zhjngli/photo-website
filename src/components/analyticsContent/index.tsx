@@ -8,7 +8,7 @@ function withAnalytics<P>(Component: React.ComponentType<P>, pageDefs: Analytics
       // console.log("gtagging from: ", pageDefs.pageTitle, pageDefs.pagePath);
       window.gtag('config', 'G-R0M2056RBS', {
         'page_title' : pageDefs.pageTitle,
-        'page_path': pageDefs.pageTitle
+        'page_path': pageDefs.pagePath
       });
     }
 
