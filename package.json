@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "build": "webpack --mode production",
-    "clean": "rm -rf node_modules",
-    "rebuild": "npm run clean && npm install && npm run build",
-    "reinstall": "npm run clean && npm install",
+    "clean": "rm -r dist",
+    "clean-packages": "rm -rf node_modules",
+    "rebuild": "npm run clean && npm run build",
+    "reinstall": "npm run clean-packages && npm install",
     "start": "webpack serve --mode development --env development"
   },
   "browserslist": {
@@ -29,6 +30,7 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.5",
+    "@babel/preset-typescript": "^7.12.7",
     "@types/node": "^12.19.4",
     "@types/react": "^16.9.56",
     "@types/react-dom": "^16.9.9",
