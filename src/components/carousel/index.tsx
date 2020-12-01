@@ -3,7 +3,9 @@ import { PhotoProps } from 'react-photo-gallery';
 import CarouselImage from './carouselImage';
 import style from './style.module.scss';
 
-const ESCAPE_KEYS = [27, "Escape"];
+const ESCAPE_KEYS = ["Escape", 27];
+const LEFT_ARROW_KEYS = ["ArrowLeft", 37];
+const RIGHT_ARROW_KEYS = ["ArrowRight", 39];
 
 type CarouselProps = {
   onClose: () => void,
@@ -40,6 +42,12 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
     if (ESCAPE_KEYS.includes(event.code)) {
       this.handleClose();
     }
+    else if (LEFT_ARROW_KEYS.includes(event.code)) {
+      this.prevImage();
+    }
+    else if (RIGHT_ARROW_KEYS.includes(event.code)) {
+      this.nextImage();
+    }
   }
 
   handleDivClick(event: MouseEvent): void {
@@ -63,7 +71,7 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
   }
 
   componentDidMount() {
-    window.addEventListener('keyup', this.handleKeyPress);
+    window.addEventListener('keydown', this.handleKeyPress);
     document.getElementById('image')?.addEventListener('click', (event) => this.handleDivClick(event));
     document.getElementById('close')?.addEventListener('click', (event) => this.handleClose());
     document.getElementById('prev')?.addEventListener('click', (event) => this.prevImage());
@@ -71,7 +79,7 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('keyup', this.handleKeyPress);
+    window.removeEventListener('keydown', this.handleKeyPress);
     document.getElementById('image')?.removeEventListener('click', (event) => this.handleDivClick(event));
     document.getElementById('close')?.removeEventListener('click', (event) => this.handleClose());
     document.getElementById('prev')?.removeEventListener('click', (event) => this.prevImage());
