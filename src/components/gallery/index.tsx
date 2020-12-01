@@ -1,17 +1,16 @@
 import React, { CSSProperties } from "react";
 import Gallery, { PhotoProps, renderImageClickHandler, RenderImageProps } from "react-photo-gallery";
 import withAnalytics from '../analyticsContent';
-import { photos } from "./photos";
 import {screenReactiveWidth, photoGalleryMargin, photoGalleryRowHeight} from '../../theme/dimensions';
-import Carousel from "../carousel";
 import AnalyticsContentProps from "../analyticsContent/types";
 import style from './style.module.scss';
 
-type GalleryProps = {}
+type GalleryProps = {
+  openViewer: (index: number) => void,
+  photos: Array<PhotoProps>,
+}
 
 type GalleryState = {
-  currentImage: number,
-  viewerIsOpen: boolean,
   galleryDirection: string,
 }
 
@@ -25,12 +24,8 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
     super(props);
 
     this.state = {
-      currentImage: 0,
-      viewerIsOpen: false,
       galleryDirection: window.innerWidth <= screenReactiveWidth ? GalleryDirection.Col : GalleryDirection.Row
     };
-    this.openViewer = this.openViewer.bind(this);
-    this.closeViewer = this.closeViewer.bind(this);
     this.handleResize = this.handleResize.bind(this);
   }
 
@@ -46,20 +41,6 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
         galleryDirection: GalleryDirection.Row
       }));
     }
-  }
-
-  openViewer(index: number): void {
-    this.setState((prevState: GalleryState) => ({
-      currentImage: index,
-      viewerIsOpen: true
-    }));
-  }
-
-  closeViewer(): void {
-    this.setState((prevState: GalleryState) => ({
-      currentImage: 0,
-      viewerIsOpen: false
-    }));
   }
 
   componentDidMount() {
@@ -102,21 +83,13 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
 
   render(): React.ReactNode {
     return (
-      <div className={style.unselectable}>
-        {this.state.viewerIsOpen ?
-          <Carousel photos={photos}
-                    index={this.state.currentImage}
-                    onClose={this.closeViewer} />
-        :
-          <Gallery photos={photos}
-                  direction={this.state.galleryDirection}
-                  columns={1}
-                  onClick={(event, {photo, index}) => this.openViewer(index)}
-                  renderImage={this.renderImage}
-                  targetRowHeight={photoGalleryRowHeight}
-                  margin={photoGalleryMargin} />
-        }
-      </div>
+      <Gallery photos={this.props.photos}
+              direction={this.state.galleryDirection}
+              columns={1}
+              onClick={(event, {photo, index}) => this.props.openViewer(index)}
+              renderImage={this.renderImage}
+              targetRowHeight={photoGalleryRowHeight}
+              margin={photoGalleryMargin} />
     );
   }
 }

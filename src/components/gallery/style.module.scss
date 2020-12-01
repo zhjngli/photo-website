@@ -1,14 +1,6 @@
 @import 'src/theme/colors.module.scss';
 @import 'src/theme/fonts.module.scss';
 
-.unselectable {
-  user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -o-user-select: none;
-}
-
 .imageContainer {
   display: block;
   cursor: pointer;

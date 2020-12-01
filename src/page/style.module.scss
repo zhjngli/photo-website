@@ -1,5 +1,13 @@
 @import 'src/theme/dimensions.module.scss';
 
+.unselectable {
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+
 @media only screen and (max-width: $screen-reactive-width) {
   .container {
     min-width: 320px;
