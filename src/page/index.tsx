@@ -12,7 +12,7 @@ import { NotFoundPageDefinitions } from "../components/content/notfound";
 import photos from './photos';
 
 type PageState = {
-  currentImage: number,
+  gallerySelectedImageIndex: number,
   viewerIsOpen: boolean,
 }
 
@@ -21,7 +21,7 @@ class Page extends React.Component<{}, PageState> {
     super(props);
 
     this.state = {
-      currentImage: 0,
+      gallerySelectedImageIndex: 0,
       viewerIsOpen: false,
     }
     this.openViewer = this.openViewer.bind(this);
@@ -30,14 +30,14 @@ class Page extends React.Component<{}, PageState> {
 
   openViewer(index: number): void {
     this.setState((prevState: PageState) => ({
-      currentImage: index,
+      gallerySelectedImageIndex: index,
       viewerIsOpen: true
     }));
   }
 
   closeViewer(): void {
     this.setState((prevState: PageState) => ({
-      currentImage: 0,
+      gallerySelectedImageIndex: 0,
       viewerIsOpen: false
     }));
   }
@@ -47,7 +47,7 @@ class Page extends React.Component<{}, PageState> {
       <div className={style.unselectable}>
         {this.state.viewerIsOpen ?
           <Carousel photos={photos}
-                    index={this.state.currentImage}
+                    initialIndex={this.state.gallerySelectedImageIndex}
                     onClose={this.closeViewer} />
           :
           <PhotoGallery photos={photos}

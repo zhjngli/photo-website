@@ -10,7 +10,7 @@ const RIGHT_ARROW_KEYS = ["ArrowRight", 39];
 type CarouselProps = {
   onClose: () => void,
   photos: Array<PhotoProps>,
-  index: number,
+  initialIndex: number,
 }
 
 type CarouselState = {
@@ -25,7 +25,7 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
 
     this.numPhotos = this.props.photos.length;
     this.state = {
-      index: this.props.index,
+      index: this.props.initialIndex,
     }
     this.handleClose = this.handleClose.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
