@@ -36,7 +36,6 @@ export default [
   {
     src: `${p08}`,
     sizes: defaultSizes,
-    alt: 'Hollywood',
     width: 2,
     height: 3
   },
