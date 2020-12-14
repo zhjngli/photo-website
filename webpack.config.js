@@ -19,15 +19,20 @@ const metaImage = baseUrl + '/' + metaImageName;
 module.exports = {
   plugins: [
     new CopyPlugin({
+      // webpack won't bundle any content not being used in src. copy it instead
       patterns: [
-        {
-          // since the image isn't being used in src, webpack won't bundle it. copy it instead
+        { // metatag
           from: 'src/assets/meta/metatag-1-1,5.jpg',
           to: "dist",
           transformPath(targetPath, absolutePath) {
             return metaImageName;
           },
         },
+        { // self-hosted
+          from: "**/*",
+          context: path.resolve(__dirname, "src", "self-hosted"),
+          to: "i/[path]/[contenthash].[ext]",
+        }
       ],
     }),
     new MiniCssExtractPlugin({
