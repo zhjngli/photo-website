@@ -1,1 +1,1 @@
-*.jpg filter=lfs diff=lfs merge=lfs -text
+src/assets/photos/*.jpg filter=lfs diff=lfs merge=lfs -text
