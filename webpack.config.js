@@ -30,7 +30,7 @@ module.exports = {
         },
         { // self-hosted
           from: "**/*",
-          context: path.resolve(__dirname, "src", "self-hosted"),
+          context: path.resolve(__dirname, "src", "assets", "self-hosted"),
           to: "i/[path]/[contenthash].[ext]",
         }
       ],
