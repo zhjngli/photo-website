@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const RobotstxtPlugin = require("robotstxt-webpack-plugin");
-const WebpackPwaManifest = require('webpack-pwa-manifest');
 const TerserPlugin = require("terser-webpack-plugin");
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -29,7 +28,7 @@ module.exports = {
         },
         { // favicons
           from: "*",
-          context: path.resolve(__dirname, "src", "assets", "icons"),
+          context: path.resolve(__dirname, "src", "assets", "favicons"),
         },
         { // self-hosted
           from: "**/*",
@@ -45,7 +44,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'public/index.html',
       filename: 'index.html',
-      favicon: 'src/assets/icons/favicon.ico',
+      favicon: 'src/assets/favicons/favicon.ico',
       meta: {
         'viewport': 'width=device-width, initial-scale=1',
         'description': metaDescription,
@@ -142,48 +141,7 @@ module.exports = {
             }
         ]
       }
-    }),
-    // new WebpackPwaManifest({
-    //   short_name: "zhjng.li",
-    //   name: metaTitle,
-    //   description: metaDescription,
-    //   inject: true,
-    //   ios: {
-    //     'apple-mobile-web-app-title': 'zhjng.li',
-    //     'apple-mobile-web-app-status-bar-style': 'default'
-    //   },
-    //   icons: [
-    //     {
-    //       src: path.resolve('src/assets/icons/favicon.ico'),
-    //       sizes: [16, 24, 32, 64],
-    //       type: "image/x-icon"
-    //     },
-    //     {
-    //       src: path.resolve('src/assets/icons/icon-180.png'),
-    //       type: "image/png",
-    //       sizes: [180],
-    //       destination: 'icons'
-    //     },
-    //     {
-    //       src: path.resolve('src/assets/icons/icon-192.png'),
-    //       type: "image/png",
-    //       sizes: [192],
-    //       destination: 'icons',
-    //       ios: true
-    //     },
-    //     {
-    //       src: path.resolve('src/assets/icons/icon-512.png'),
-    //       type: "image/png",
-    //       sizes: [512],
-    //       destination: 'icons',
-    //       ios: 'startup'
-    //     }
-    //   ],
-    //   start_url: ".",
-    //   display: "standalone",
-    //   theme_color: "#000000",
-    //   background_color: "#ffffff"
-    // })
+    })
   ],
   entry: './src/index.tsx',
   module: {

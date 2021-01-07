@@ -2,7 +2,6 @@
     "name": "Zhijiang Li",
     "short_name": "zhjng.li",
     "description": "Photo gallery of selected works.",
-    "orientation": "portrait",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -15,7 +14,7 @@
             "type": "image/png"
         }
     ],
-    "start_url": ".",
+    "start_url": "https://zhjngli.com",
     "theme_color": "#ffffff",
     "background_color": "#ffffff",
     "display": "standalone"
