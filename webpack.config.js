@@ -23,10 +23,13 @@ module.exports = {
       patterns: [
         { // metatag
           from: 'src/assets/meta/metatag-1-1,5.jpg',
-          to: "dist",
           transformPath(targetPath, absolutePath) {
             return metaImageName;
           },
+        },
+        { // favicons
+          from: "*",
+          context: path.resolve(__dirname, "src", "assets", "icons"),
         },
         { // self-hosted
           from: "**/*",
@@ -140,47 +143,47 @@ module.exports = {
         ]
       }
     }),
-    new WebpackPwaManifest({
-      short_name: "zhjng.li",
-      name: metaTitle,
-      description: metaDescription,
-      inject: true,
-      ios: {
-        'apple-mobile-web-app-title': 'zhjng.li',
-        'apple-mobile-web-app-status-bar-style': 'default'
-      },
-      icons: [
-        {
-          src: path.resolve('src/assets/icons/favicon.ico'),
-          sizes: [16, 24, 32, 64],
-          type: "image/x-icon"
-        },
-        {
-          src: path.resolve('src/assets/icons/icon-180.png'),
-          type: "image/png",
-          sizes: [180],
-          destination: 'icons'
-        },
-        {
-          src: path.resolve('src/assets/icons/icon-192.png'),
-          type: "image/png",
-          sizes: [192],
-          destination: 'icons',
-          ios: true
-        },
-        {
-          src: path.resolve('src/assets/icons/icon-512.png'),
-          type: "image/png",
-          sizes: [512],
-          destination: 'icons',
-          ios: 'startup'
-        }
-      ],
-      start_url: ".",
-      display: "standalone",
-      theme_color: "#000000",
-      background_color: "#ffffff"
-    })
+    // new WebpackPwaManifest({
+    //   short_name: "zhjng.li",
+    //   name: metaTitle,
+    //   description: metaDescription,
+    //   inject: true,
+    //   ios: {
+    //     'apple-mobile-web-app-title': 'zhjng.li',
+    //     'apple-mobile-web-app-status-bar-style': 'default'
+    //   },
+    //   icons: [
+    //     {
+    //       src: path.resolve('src/assets/icons/favicon.ico'),
+    //       sizes: [16, 24, 32, 64],
+    //       type: "image/x-icon"
+    //     },
+    //     {
+    //       src: path.resolve('src/assets/icons/icon-180.png'),
+    //       type: "image/png",
+    //       sizes: [180],
+    //       destination: 'icons'
+    //     },
+    //     {
+    //       src: path.resolve('src/assets/icons/icon-192.png'),
+    //       type: "image/png",
+    //       sizes: [192],
+    //       destination: 'icons',
+    //       ios: true
+    //     },
+    //     {
+    //       src: path.resolve('src/assets/icons/icon-512.png'),
+    //       type: "image/png",
+    //       sizes: [512],
+    //       destination: 'icons',
+    //       ios: 'startup'
+    //     }
+    //   ],
+    //   start_url: ".",
+    //   display: "standalone",
+    //   theme_color: "#000000",
+    //   background_color: "#ffffff"
+    // })
   ],
   entry: './src/index.tsx',
   module: {
