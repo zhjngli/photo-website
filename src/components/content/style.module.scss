@@ -104,3 +104,10 @@ textarea, input {
     background-color: #555;
   }
 }
+
+.recaptcha {
+  @include contact-form-style;
+  font-size: 9px;
+  color: $default-copy-color;
+  margin-bottom: 12px;
+}
