@@ -4,7 +4,7 @@
 
 @media only screen and (max-width: $screen-reactive-width) {
   .container {
-    text-align: center;
+    // text-align: center;
     margin: $photo-gallery-margin auto;
   }
 
@@ -34,5 +34,72 @@
   
   &:hover {
     color: $highlight-color;
+  }
+}
+
+.formContainer {
+  margin: 32px 0;
+}
+
+.formFieldsContainer {
+  @include copy-font-style;
+  margin: 24px 0;
+
+  label {
+    display: inline-block;
+    margin: 4px 0;
+    font-size: 12px;
+  }
+}
+
+.nameContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  @include copy-font-style;
+  font-size: 12px;
+
+  label {
+    // overrides default label margin for the first/last name mini label
+    margin: 0;
+  }
+}
+
+.firstNameContainer {
+  margin-right: 16px;
+}
+
+textarea, input {
+  @include contact-form-style;
+  width: calc(100% - 2*#{8px + 1px});
+  background-color: #fafafa;
+  padding: 8px;
+  border: 1px solid $default-copy-color;
+  border-radius: 3px;
+  resize: vertical;
+
+  &:focus {
+    background-color: white;
+    outline: $emphasis-color auto 1px;
+  }
+}
+
+.submitButton {
+  @include contact-form-style;
+  font-variant: small-caps;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+
+  border: none;
+  border-radius: 3px;
+  background-color: $emphasis-color;
+  color: white;
+  padding: 6px 16px;
+
+  &:hover {
+    background-color: #555;
   }
 }
