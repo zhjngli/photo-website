@@ -1,18 +1,18 @@
 @import 'src/theme/colors.module.scss';
 
 /* hind-madurai-300 - latin */
-// @font-face {
-//   font-family: 'Hind Madurai';
-//   font-style: normal;
-//   font-weight: 300;
-//   src: url('../../assets/fonts/hind-madurai-v6-latin-300.eot'); /* IE9 Compat Modes */
-//   src: local(''),
-//        url('../../assets/fonts/hind-madurai-v6-latin-300.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-//        url('../../assets/fonts/hind-madurai-v6-latin-300.woff2') format('woff2'), /* Super Modern Browsers */
-//        url('../../assets/fonts/hind-madurai-v6-latin-300.woff') format('woff'), /* Modern Browsers */
-//        url('../../assets/fonts/hind-madurai-v6-latin-300.ttf') format('truetype'), /* Safari, Android, iOS */
-//        url('../../assets/fonts/hind-madurai-v6-latin-300.svg#HindMadurai') format('svg'); /* Legacy iOS */
-// }
+@font-face {
+  font-family: 'Hind Madurai';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../../assets/fonts/hind-madurai-v6-latin-300.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../../assets/fonts/hind-madurai-v6-latin-300.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../../assets/fonts/hind-madurai-v6-latin-300.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../../assets/fonts/hind-madurai-v6-latin-300.woff') format('woff'), /* Modern Browsers */
+       url('../../assets/fonts/hind-madurai-v6-latin-300.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../../assets/fonts/hind-madurai-v6-latin-300.svg#HindMadurai') format('svg'); /* Legacy iOS */
+}
 
 /* noto-serif-regular - latin-ext_latin */
 @font-face {
@@ -28,9 +28,16 @@
        url('../../assets/fonts/noto-serif-v9-latin-ext_latin-regular.svg#NotoSerif') format('svg'); /* Legacy iOS */
 }
 
+@mixin contact-form-style {
+  font-family: Hind Madurai, sans-serif;
+  font-size: 14px;
+  color: $emphasis-color;
+  line-height: 1.8em;
+  letter-spacing: 0.01em;
+}
+
 @mixin copy-font-style {
   font-family: Noto Serif, serif;
-  // font-weight: 300;
   font-size: 14px;
   color: $default-copy-color;
   line-height: 1.8em;
