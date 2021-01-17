@@ -3,6 +3,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const RobotstxtPlugin = require("robotstxt-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
@@ -50,6 +51,12 @@ module.exports = {
         'description': metaDescription,
       }
     }),
+    // new FontPreloadPlugin({
+    //   indexFile: 'index.html',
+    //   extensions: ['woff2', 'woff', 'ttf', 'eot'],
+    //   insertBefore: 'head > link:nth-child(1)',
+    //   crossorigin: false,
+    // }),
     new HtmlWebpackTagsPlugin({
       metas: [
         {
@@ -131,6 +138,12 @@ module.exports = {
           }
         },
       ]
+    }),
+    new PreloadWebpackPlugin({
+      rel: 'preload',
+      as: 'font',
+      include: 'allAssets',
+      fileWhitelist: [/\.(woff2?|eot|ttf|otf)(\?.*)?$/i],
     }),
     new RobotstxtPlugin({
       options: {
