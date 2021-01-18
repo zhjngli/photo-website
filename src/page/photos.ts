@@ -14,11 +14,13 @@ import p13 from '../assets/photos/202010-atlantic.jpg';
 // import p14 from '../assets/photos/202010-cloudtexture.jpg';
 // import p15 from '../assets/photos/202010-keysview.jpg';
 
-const defaultSizes = [`
+const defaultSizes = [
+  `
   (min-width: 480px) 50vw,
   (min-width: 1024px) 33.3vw,
   (max-width: 480px) 90vw
-  `];
+  `
+];
 
 export default [
   // {
@@ -110,5 +112,5 @@ export default [
     sizes: defaultSizes,
     width: 3,
     height: 2
-  },
+  }
 ];

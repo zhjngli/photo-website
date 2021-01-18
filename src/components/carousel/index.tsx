@@ -3,30 +3,30 @@ import { PhotoProps } from 'react-photo-gallery';
 import CarouselImage from './carouselImage';
 import style from './style.module.scss';
 
-const ESCAPE_KEYS = ["Escape", 27];
-const LEFT_ARROW_KEYS = ["ArrowLeft", 37];
-const RIGHT_ARROW_KEYS = ["ArrowRight", 39];
+const ESCAPE_KEYS = ['Escape', 27];
+const LEFT_ARROW_KEYS = ['ArrowLeft', 37];
+const RIGHT_ARROW_KEYS = ['ArrowRight', 39];
 
 type CarouselProps = {
-  onClose: () => void,
-  photos: Array<PhotoProps>,
-  initialIndex: number,
-}
+  onClose: () => void;
+  photos: Array<PhotoProps>;
+  initialIndex: number;
+};
 
 type CarouselState = {
-  index: number,
-}
+  index: number;
+};
 
 class Carousel extends React.Component<CarouselProps, CarouselState> {
-  numPhotos;
+  numPhotos: number;
 
   constructor(props: CarouselProps) {
     super(props);
 
     this.numPhotos = this.props.photos.length;
     this.state = {
-      index: this.props.initialIndex,
-    }
+      index: this.props.initialIndex
+    };
     this.handleClose = this.handleClose.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleDivClick = this.handleDivClick.bind(this);
@@ -41,11 +41,9 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
   handleKeyPress(event: KeyboardEvent): void {
     if (ESCAPE_KEYS.includes(event.code)) {
       this.handleClose();
-    }
-    else if (LEFT_ARROW_KEYS.includes(event.code)) {
+    } else if (LEFT_ARROW_KEYS.includes(event.code)) {
       this.prevImage();
-    }
-    else if (RIGHT_ARROW_KEYS.includes(event.code)) {
+    } else if (RIGHT_ARROW_KEYS.includes(event.code)) {
       this.nextImage();
     }
   }
@@ -70,34 +68,40 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
     }));
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     window.addEventListener('keydown', this.handleKeyPress);
     document.getElementById('image')?.addEventListener('click', (event) => this.handleDivClick(event));
-    document.getElementById('close')?.addEventListener('click', (event) => this.handleClose());
-    document.getElementById('prev')?.addEventListener('click', (event) => this.prevImage());
-    document.getElementById('next')?.addEventListener('click', (event) => this.nextImage());
+    document.getElementById('close')?.addEventListener('click', (_event) => this.handleClose());
+    document.getElementById('prev')?.addEventListener('click', (_event) => this.prevImage());
+    document.getElementById('next')?.addEventListener('click', (_event) => this.nextImage());
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     window.removeEventListener('keydown', this.handleKeyPress);
     document.getElementById('image')?.removeEventListener('click', (event) => this.handleDivClick(event));
-    document.getElementById('close')?.removeEventListener('click', (event) => this.handleClose());
-    document.getElementById('prev')?.removeEventListener('click', (event) => this.prevImage());
-    document.getElementById('next')?.removeEventListener('click', (event) => this.nextImage());
+    document.getElementById('close')?.removeEventListener('click', (_event) => this.handleClose());
+    document.getElementById('prev')?.removeEventListener('click', (_event) => this.prevImage());
+    document.getElementById('next')?.removeEventListener('click', (_event) => this.nextImage());
   }
 
   render(): React.ReactNode {
     return (
       <div className={style.container}>
         <div className={style.closeContainer}>
-          <button className={style.button} id={'close'}>X</button>
+          <button className={style.button} id={'close'}>
+            X
+          </button>
         </div>
         <div className={style.imageContainer} id={'image'}>
           <CarouselImage {...this.props.photos[this.state.index]} />
         </div>
         <div className={style.navContainer}>
-          <button className={`${style.button} ${style.prev}`} id={'prev'}>{"<"}</button>
-          <button className={`${style.button} ${style.next}`} id={'next'}>{">"}</button>
+          <button className={`${style.button} ${style.prev}`} id={'prev'}>
+            {'<'}
+          </button>
+          <button className={`${style.button} ${style.next}`} id={'next'}>
+            {'>'}
+          </button>
         </div>
       </div>
     );

@@ -6,7 +6,8 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended'
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended'
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -21,22 +22,12 @@ module.exports = {
     '@typescript-eslint',
     'prettier'
   ],
+  settings: {
+    react: {
+      version: 'detect'
+    }
+  },
   rules: {
-    'indent': [
-      'error',
-      2
-    ],
-    'linebreak-style': [
-      'error',
-      'unix'
-    ],
-    'quotes': [
-      'error',
-      'single'
-    ],
-    'semi': [
-      'error',
-      'always'
-    ]
+    '@typescript-eslint/no-unused-vars': ["error", { "argsIgnorePattern": "^_" }]
   }
 };

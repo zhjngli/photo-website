@@ -1,28 +1,30 @@
-import React from "react";
+import React from 'react';
 
 type InstaLinkProps = {
-  style: string,
-}
+  style: string;
+};
 
 class InstaLink extends React.Component<InstaLinkProps> {
-  onClick() {
+  onClick(): void {
     window.gtag('event', 'click', {
-      'event_category': 'outbound',
-      'event_label': 'instagram',
-      'transport_type': 'beacon',
+      event_category: 'outbound',
+      event_label: 'instagram',
+      transport_type: 'beacon'
     });
   }
 
-  render() {
+  render(): React.ReactNode {
     return (
-      <a href="https://www.instagram.com/zhjngli/"
-         target="_blank"
-         rel="noreferrer noopener"
-         onClick={this.onClick}
-         className={this.props.style}>
+      <a
+        href="https://www.instagram.com/zhjngli/"
+        target="_blank"
+        rel="noreferrer noopener"
+        onClick={this.onClick}
+        className={this.props.style}
+      >
         Instagram
       </a>
-    )
+    );
   }
 }
 

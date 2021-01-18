@@ -1,7 +1,7 @@
-import React from "react";
-import NetlifyForm from "react-netlify-form";
+import React from 'react';
+import NetlifyForm from 'react-netlify-form';
 import withAnalytics from '../analyticsContent';
-import AnalyticsContentProps from "../analyticsContent/types";
+import AnalyticsContentProps from '../analyticsContent/types';
 import InstaLink from '../instaLink';
 import style from './style.module.scss';
 
@@ -9,25 +9,18 @@ class Contact extends React.Component {
   render() {
     return (
       <div className={style.container}>
+        <p className={style.text}>Let&apos;s create something!</p>
         <p className={style.text}>
-          Let's create something!
+          Please fill out the form below for prints and other inquiries. Or, message me on{' '}
+          <InstaLink style={style.link} />.
         </p>
-        <p className={style.text}>
-          Please fill out the form below for prints and other inquiries. Or, message me on <InstaLink style={style.link} />.
-        </p>
-        <NetlifyForm name='contact'
-          children={({ loading, error, success }) => (
+        <NetlifyForm name="contact">
+          {({ loading, error, success }) => (
             <div className={style.formContainer}>
-              {loading &&
-                <p className={style.text}>Loading...</p>
-              }
-              {error &&
-                <p className={style.text}>Your submission was not sent. Please try again later.</p>
-              }
-              {success &&
-                <p className={style.text}>Thank you for the submission!</p>
-              }
-              {!loading && !success &&
+              {loading && <p className={style.text}>Loading...</p>}
+              {error && <p className={style.text}>Your submission was not sent. Please try again later.</p>}
+              {success && <p className={style.text}>Thank you for the submission!</p>}
+              {!loading && !success && (
                 <div className={style.text}>
                   <div className={style.formFieldsContainer}>
                     <label>Name *</label>
@@ -64,10 +57,10 @@ class Contact extends React.Component {
                   </div>
                   <button className={style.submitButton}>send message</button>
                 </div>
-              }
+              )}
             </div>
           )}
-        />
+        </NetlifyForm>
       </div>
     );
   }
@@ -76,6 +69,6 @@ class Contact extends React.Component {
 export const ContactPageDefinitions: AnalyticsContentProps = {
   pageTitle: 'contact',
   pagePath: '/contact'
-}
+};
 
 export default withAnalytics(Contact, ContactPageDefinitions);

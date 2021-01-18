@@ -1,22 +1,22 @@
-import React, { CSSProperties } from "react";
-import Gallery, { PhotoProps, renderImageClickHandler, RenderImageProps } from "react-photo-gallery";
+import React, { CSSProperties } from 'react';
+import Gallery, { PhotoProps, renderImageClickHandler, RenderImageProps } from 'react-photo-gallery';
 import withAnalytics from '../analyticsContent';
-import {screenReactiveWidth, photoGalleryMargin, photoGalleryRowHeight} from '../../theme/dimensions';
-import AnalyticsContentProps from "../analyticsContent/types";
+import { screenReactiveWidth, photoGalleryMargin, photoGalleryRowHeight } from '../../theme/dimensions';
+import AnalyticsContentProps from '../analyticsContent/types';
 import style from './style.module.scss';
 
 type GalleryProps = {
-  openViewer: (index: number) => void,
-  photos: Array<PhotoProps>,
-}
+  openViewer: (index: number) => void;
+  photos: Array<PhotoProps>;
+};
 
 type GalleryState = {
-  galleryDirection: string,
-}
+  galleryDirection: string;
+};
 
 enum GalleryDirection {
   Row = 'row',
-  Col = 'column',
+  Col = 'column'
 }
 
 class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
@@ -30,24 +30,22 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
   }
 
   handleResize(): void {
-    if (window.innerWidth <= screenReactiveWidth
-        && this.state.galleryDirection === GalleryDirection.Row) {
-      this.setState((prevState: GalleryState) => ({
+    if (window.innerWidth <= screenReactiveWidth && this.state.galleryDirection === GalleryDirection.Row) {
+      this.setState((_prevState: GalleryState) => ({
         galleryDirection: GalleryDirection.Col
       }));
-    } else if (window.innerWidth > screenReactiveWidth
-               && this.state.galleryDirection === GalleryDirection.Col) {
-      this.setState((prevState: GalleryState) => ({
+    } else if (window.innerWidth > screenReactiveWidth && this.state.galleryDirection === GalleryDirection.Col) {
+      this.setState((_prevState: GalleryState) => ({
         galleryDirection: GalleryDirection.Row
       }));
     }
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     window.addEventListener('resize', this.handleResize);
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     window.removeEventListener('resize', this.handleResize);
   }
 
@@ -57,21 +55,21 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
     const defaultCss: CSSProperties = {
       margin: renderImageProps.margin,
       height: photo.height,
-      width: photo.width,
-    }
-    const directionalCss: CSSProperties = renderImageProps.direction === "row" ?
-        { position: "relative" }
-        :
-        {
-          position: "absolute",
-          left: renderImageProps.left,
-          top: renderImageProps.top,
-        };
+      width: photo.width
+    };
+    const directionalCss: CSSProperties =
+      renderImageProps.direction === 'row'
+        ? { position: 'relative' }
+        : {
+            position: 'absolute',
+            left: renderImageProps.left,
+            top: renderImageProps.top
+          };
     return (
       <div
         className={style.imageContainer}
-        style={{...defaultCss, ...directionalCss}}
-        onClick={event => clickHandler(event, {...photo, index: renderImageProps.index})}
+        style={{ ...defaultCss, ...directionalCss }}
+        onClick={(event) => clickHandler(event, { ...photo, index: renderImageProps.index })}
       >
         <img src={photo.src} className={style.image} />
         <div className={style.overlay}>
@@ -83,13 +81,15 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
 
   render(): React.ReactNode {
     return (
-      <Gallery photos={this.props.photos}
-              direction={this.state.galleryDirection}
-              columns={1}
-              onClick={(event, {photo, index}) => this.props.openViewer(index)}
-              renderImage={this.renderImage}
-              targetRowHeight={photoGalleryRowHeight}
-              margin={photoGalleryMargin} />
+      <Gallery
+        photos={this.props.photos}
+        direction={this.state.galleryDirection}
+        columns={1}
+        onClick={(_event, { index }) => this.props.openViewer(index)}
+        renderImage={this.renderImage}
+        targetRowHeight={photoGalleryRowHeight}
+        margin={photoGalleryMargin}
+      />
     );
   }
 }
@@ -97,6 +97,6 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
 export const HomePageDefinitions: AnalyticsContentProps = {
   pageTitle: 'home',
   pagePath: '/'
-}
+};
 
 export default withAnalytics(PhotoGallery, HomePageDefinitions);

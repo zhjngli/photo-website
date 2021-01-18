@@ -1,17 +1,17 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { AboutPageDefinitions } from "../content/about";
-import { ContactPageDefinitions } from "../content/contact";
-import { HomePageDefinitions } from "../gallery";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { AboutPageDefinitions } from '../content/about';
+import { ContactPageDefinitions } from '../content/contact';
+import { HomePageDefinitions } from '../gallery';
 import InstaLink from '../instaLink';
 import style from './style.module.scss';
 
 type HeaderProps = {
-  homeClick: () => void,
-}
+  homeClick: () => void;
+};
 
 class Header extends React.Component<HeaderProps> {
-  render() {
+  render(): React.ReactNode {
     return (
       <div className={style.container}>
         <NavLink to={HomePageDefinitions.pagePath} className={style.title} onClick={this.props.homeClick}>
