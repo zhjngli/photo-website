@@ -51,12 +51,6 @@ module.exports = {
         'description': metaDescription,
       }
     }),
-    // new FontPreloadPlugin({
-    //   indexFile: 'index.html',
-    //   extensions: ['woff2', 'woff', 'ttf', 'eot'],
-    //   insertBefore: 'head > link:nth-child(1)',
-    //   crossorigin: false,
-    // }),
     new HtmlWebpackTagsPlugin({
       metas: [
         {
