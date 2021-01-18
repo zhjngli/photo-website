@@ -15,22 +15,14 @@ class Contact extends React.Component {
         <p className={style.text}>
           Please fill out the form below for prints and other inquiries. Or, message me on <InstaLink style={style.link} />.
         </p>
-        <NetlifyForm
-          name='contact'
-          recaptcha={{
-            sitekey: '6Ld24y8aAAAAACyyJM8H2wR0oAQnFqwfcSbICfQ_',
-            size: 'invisible'
-          }}
-          children={({ loading, error, recaptchaError, success, recaptcha }) => (
+        <NetlifyForm name='contact'
+          children={({ loading, error, success }) => (
             <div className={style.formContainer}>
               {loading &&
                 <p className={style.text}>Loading...</p>
               }
               {error &&
                 <p className={style.text}>Your submission was not sent. Please try again later.</p>
-              }
-              {recaptchaError &&
-                <p className={style.text}>Recaptcha did not match. Please make sure the box is checked.</p>
               }
               {success &&
                 <p className={style.text}>Thank you for the submission!</p>
@@ -70,13 +62,9 @@ class Contact extends React.Component {
                       <textarea id="message" name="message" rows={3} required />
                     </span>
                   </div>
-                  <div className={style.recaptcha}>
-                    This site is protected by reCAPTCHA and the Google <a className={style.link} target="_blank" href="https://policies.google.com/privacy">Privacy Policy</a> and <a className={style.link} target="_blank" href="https://policies.google.com/terms">Terms of Service</a> apply.
-                  </div>
                   <button className={style.submitButton}>send message</button>
                 </div>
               }
-              {recaptcha}
             </div>
           )}
         />
