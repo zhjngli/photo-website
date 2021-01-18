@@ -6,7 +6,7 @@
     "build": "webpack --mode production",
     "clean": "rm -r dist",
     "clean-packages": "rm -rf node_modules",
-    "prettier": "prettier -w src",
+    "lint": "tsc && eslint ./src --ext=js,ts,tsx --fix",
     "rebuild": "npm run clean && npm run build",
     "reinstall": "npm run clean-packages && rm package-lock.json && npm install",
     "start": "webpack serve --mode development --env development"
@@ -63,6 +63,11 @@
     "webpack-dev-server": "^3.11.0"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.13.0",
+    "@typescript-eslint/parser": "^4.13.0",
+    "eslint": "^7.18.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-react": "^7.22.0",
     "prettier": "^2.2.1"
   }
 }
