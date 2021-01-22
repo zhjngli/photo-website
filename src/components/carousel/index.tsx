@@ -93,7 +93,11 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
           </button>
         </div>
         <div className={style.imageContainer} id={'image'}>
-          <CarouselImage {...this.props.photos[this.state.index]} />
+          {this.props.photos.map((photo, i) => (
+            <span className={i === this.state.index ? style.appear : style.disappear} key={photo.src}>
+              <CarouselImage {...photo} />
+            </span>
+          ))}
         </div>
         <div className={style.navContainer}>
           <button className={`${style.button} ${style.prev}`} id={'prev'}>

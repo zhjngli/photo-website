@@ -67,6 +67,7 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
           };
     return (
       <div
+        key={photo.src}
         className={style.imageContainer}
         style={{ ...defaultCss, ...directionalCss }}
         onClick={(event) => clickHandler(event, { ...photo, index: renderImageProps.index })}

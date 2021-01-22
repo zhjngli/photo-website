@@ -14,6 +14,7 @@
 
 .button {
   border: none;
+  cursor: pointer;
   background-color: white;
   color: $default-copy-color;
   font-weight: bold;
@@ -37,7 +38,9 @@
 }
 
 .imageContainer {
-  display: flex;
+  display: block;
+  position: relative;
+  cursor: pointer;
   width: 100%;
   // subtract amount of pixels larger than header+footer
   height: calc(100vh - 378px);
@@ -48,6 +51,30 @@
   justify-content: center;
   margin-top: 10px;
   color: $default-copy-color;
+}
+
+$transitionSpeed: .6s;
+
+.disappear {
+  display: flex;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity $transitionSpeed ease;
+}
+
+.appear {
+  display: flex;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transition: opacity $transitionSpeed ease;
 }
 
 .carousel {
