@@ -1,4 +1,5 @@
 @import 'src/theme/colors.module.scss';
+@import 'src/theme/dimensions.module.scss';
 
 .container {
   display: flex;
@@ -53,8 +54,6 @@
   color: $default-copy-color;
 }
 
-$transitionSpeed: .6s;
-
 .disappear {
   display: flex;
   position: absolute;
@@ -63,7 +62,7 @@ $transitionSpeed: .6s;
   width: 100%;
   height: 100%;
   opacity: 0;
-  transition: opacity $transitionSpeed ease;
+  transition: opacity $transition-speed ease;
 }
 
 .appear {
@@ -74,7 +73,7 @@ $transitionSpeed: .6s;
   width: 100%;
   height: 100%;
   opacity: 1;
-  transition: opacity $transitionSpeed ease;
+  transition: opacity $transition-speed ease;
 }
 
 .carousel {

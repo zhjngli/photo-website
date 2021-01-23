@@ -1,5 +1,6 @@
 import React from 'react';
 import { PhotoProps } from 'react-photo-gallery';
+import { transitionTimeout } from '../../theme/dimensions';
 import CarouselImage from './carouselImage';
 import style from './style.module.scss';
 
@@ -15,6 +16,8 @@ type CarouselProps = {
 
 type CarouselState = {
   index: number;
+  lastNext: number;
+  lastPrev: number;
 };
 
 class Carousel extends React.Component<CarouselProps, CarouselState> {
@@ -25,7 +28,9 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
 
     this.numPhotos = this.props.photos.length;
     this.state = {
-      index: this.props.initialIndex
+      index: this.props.initialIndex,
+      lastNext: Date.now(),
+      lastPrev: Date.now()
     };
     this.handleClose = this.handleClose.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -57,15 +62,23 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
   }
 
   nextImage(): void {
-    this.setState((prevState: CarouselState) => ({
-      index: prevState.index + 1 >= this.numPhotos ? 0 : prevState.index + 1
-    }));
+    const now = Date.now();
+    if (now - this.state.lastNext > transitionTimeout) {
+      this.setState((prevState: CarouselState) => ({
+        index: prevState.index + 1 >= this.numPhotos ? 0 : prevState.index + 1,
+        lastNext: now
+      }));
+    }
   }
 
   prevImage(): void {
-    this.setState((prevState: CarouselState) => ({
-      index: prevState.index - 1 <= 0 ? this.numPhotos - 1 : prevState.index - 1
-    }));
+    const now = Date.now();
+    if (now - this.state.lastPrev > transitionTimeout) {
+      this.setState((prevState: CarouselState) => ({
+        index: prevState.index - 1 <= 0 ? this.numPhotos - 1 : prevState.index - 1,
+        lastPrev: now
+      }));
+    }
   }
 
   componentDidMount(): void {

@@ -3,8 +3,11 @@ $screen-reactive-width: 600px;
 $photo-gallery-row-height: 400px;
 $photo-gallery-margin: 4px;
 
+$transition-speed: 600ms;
+
 :export {
   photoGalleryRowHeight: $photo-gallery-row-height;
   photoGalleryMargin: $photo-gallery-margin;
   screenReactiveWidth: $screen-reactive-width;
+  transitionSpeed: $transition-speed;
 }
