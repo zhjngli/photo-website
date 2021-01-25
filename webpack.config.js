@@ -137,7 +137,7 @@ module.exports = {
       rel: 'preload',
       as: 'font',
       include: 'allAssets',
-      fileWhitelist: [/\.(woff2?|eot|ttf|otf)(\?.*)?$/i],
+      fileWhitelist: [/\.(woff2?|ttf|otf)(\?.*)?$/i],
     }),
     new RobotstxtPlugin({
       options: {
