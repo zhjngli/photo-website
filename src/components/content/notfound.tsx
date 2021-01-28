@@ -9,7 +9,7 @@ class NotFound extends React.Component {
   render() {
     return (
       <div className={style.container}>
-        <p className={style.text}>
+        <p className={`${style.text} ${style.center}`}>
           Sorry, content not found! Go to{' '}
           <NavLink to={HomePageDefinitions.pagePath} className={style.link}>
             home
