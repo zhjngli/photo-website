@@ -72,7 +72,7 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
         style={{ ...defaultCss, ...directionalCss }}
         onClick={(event) => clickHandler(event, { ...photo, index: renderImageProps.index })}
       >
-        <img src={photo.src} className={style.image} />
+        <img loading="lazy" src={photo.src} className={style.image} />
         <div className={style.overlay}>
           <span className={style.overlayAlt}>{photo.alt}</span>
         </div>
