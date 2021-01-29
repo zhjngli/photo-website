@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const RobotstxtPlugin = require("robotstxt-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const isProd = process.env.NODE_ENV === 'production';
 const outputDir = 'dist';
@@ -138,6 +139,12 @@ module.exports = {
       as: 'font',
       include: 'allAssets',
       fileWhitelist: [/\.(woff2?|ttf|otf)(\?.*)?$/i],
+    }),
+    new WorkboxPlugin.GenerateSW({
+      // these options encourage the ServiceWorkers to get in there fast
+      // and not allow any straggling "old" SWs to hang around
+      clientsClaim: true,
+      skipWaiting: true,
     }),
     new RobotstxtPlugin({
       options: {
