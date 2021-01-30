@@ -8,7 +8,7 @@ import style from './style.module.scss';
 class NotFound extends React.Component {
   render() {
     return (
-      <div className={style.container}>
+      <main className={style.container}>
         <p className={`${style.text} ${style.center}`}>
           Sorry, content not found! Go to{' '}
           <NavLink to={HomePageDefinitions.pagePath} className={style.link}>
@@ -16,7 +16,7 @@ class NotFound extends React.Component {
           </NavLink>
           .
         </p>
-      </div>
+      </main>
     );
   }
 }

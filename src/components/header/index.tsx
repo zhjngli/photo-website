@@ -13,11 +13,11 @@ type HeaderProps = {
 class Header extends React.Component<HeaderProps> {
   render(): React.ReactNode {
     return (
-      <div className={style.container}>
+      <header className={style.container}>
         <NavLink to={HomePageDefinitions.pagePath} className={style.title} onClick={this.props.homeClick}>
           ƶhijiang li
         </NavLink>
-        <div className={style.navbar}>
+        <nav className={style.navbar}>
           <NavLink to={AboutPageDefinitions.pagePath} className={style.links} activeClassName={style.activeNavLink}>
             about
           </NavLink>
@@ -25,8 +25,8 @@ class Header extends React.Component<HeaderProps> {
             contact
           </NavLink>
           <InstaLink style={style.links} />
-        </div>
-      </div>
+        </nav>
+      </header>
     );
   }
 }

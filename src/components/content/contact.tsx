@@ -8,7 +8,7 @@ import style from './style.module.scss';
 class Contact extends React.Component {
   render() {
     return (
-      <div className={style.container}>
+      <main className={style.container}>
         <p className={style.text}>Let&apos;s create something!</p>
         <p className={style.text}>
           Please fill out the form below for prints and other inquiries. Or, message me on{' '}
@@ -61,7 +61,7 @@ class Contact extends React.Component {
             </div>
           )}
         </NetlifyForm>
-      </div>
+      </main>
     );
   }
 }

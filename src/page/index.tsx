@@ -44,13 +44,13 @@ class Page extends React.Component<Record<string, never>, PageState> {
 
   renderHome(): React.ReactElement {
     return (
-      <div className={style.unselectable}>
+      <main className={style.unselectable}>
         {this.state.viewerIsOpen ? (
           <Carousel photos={photos} initialIndex={this.state.gallerySelectedImageIndex} onClose={this.closeViewer} />
         ) : (
           <PhotoGallery photos={photos} openViewer={this.openViewer} />
         )}
-      </div>
+      </main>
     );
   }
 
