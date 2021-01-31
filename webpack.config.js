@@ -3,12 +3,15 @@ const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const RobotstxtPlugin = require("robotstxt-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const safeParser = require('postcss-safe-parser');
 
+const analyze = process.env.BUNDLE_ANALYZE === 'true';
 const isProd = process.env.NODE_ENV === 'production';
 const outputDir = 'dist';
 
@@ -157,11 +160,12 @@ const plugins = [
     }
   })
 ];
-if (!isProd) {
+if (analyze) {
   plugins.push(new BundleAnalyzerPlugin());
 }
 
 module.exports = {
+  devtool: isProd ? 'source-map' : 'cheap-module-eval-source-map',
   plugins: plugins,
   entry: './src/index.tsx',
   module: {
@@ -171,7 +175,7 @@ module.exports = {
         test: /\.tsx?$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
+          loader: 'babel-loader'
         }
       },
       {
@@ -191,15 +195,9 @@ module.exports = {
         ]
       },
       {
-        test: /\.txt$/i,
-        use: 'raw-loader',
-      },
-      {
         test: /\.module\.scss$/,
         use: [
-          // Creates `style` nodes from JS strings. Style loader allows hot loading in dev builds
           isProd ? MiniCssExtractPlugin.loader : 'style-loader',
-          // Translates CSS into CommonJS
           {
             loader: 'css-loader',
             options: {
@@ -207,7 +205,22 @@ module.exports = {
               sourceMap: !isProd,
             }
           },
-          // Compiles Sass to CSS
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  require('postcss-flexbugs-fixes'),
+                  require('postcss-preset-env')({
+                    autoprefixer: {
+                      flexbox: 'no-2009'
+                    }
+                  })
+                ],
+              },
+              sourceMap: !isProd,
+            }
+          },
           {
             loader: 'sass-loader',
             options: {
@@ -222,7 +235,22 @@ module.exports = {
     extensions: [ '.tsx', '.ts', '.js' ],
   },
   optimization: {
-    minimizer: [new TerserPlugin()],
+    minimize: true,
+    minimizer: [
+      new TerserPlugin(),
+      new OptimizeCSSAssetsPlugin({
+        cssProcessorOptions: {
+          parser: safeParser,
+          // https://postcss.org/api/#previousmap
+          map: {
+            // forces sourcemap into a separate file
+            inline: false,
+            // appends sourceMappingUrl for browsers
+            annotation: true
+          }
+        }
+      }),
+    ],
     splitChunks: { // https://medium.com/@Yoriiis/the-real-power-of-webpack-4-splitchunks-plugin-fad097c45ba0
       chunks: 'all',
       name: !isProd,
