@@ -246,7 +246,7 @@ module.exports = {
             // forces sourcemap into a separate file
             inline: false,
             // appends sourceMappingUrl for browsers
-            annotation: true
+            annotation: !isProd
           }
         }
       }),
