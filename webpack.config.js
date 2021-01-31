@@ -165,7 +165,7 @@ if (analyze) {
 }
 
 module.exports = {
-  devtool: isProd ? 'source-map' : 'cheap-module-eval-source-map',
+  devtool: isProd ? '' : 'cheap-module-eval-source-map',
   plugins: plugins,
   entry: './src/index.tsx',
   module: {
@@ -240,14 +240,7 @@ module.exports = {
       new TerserPlugin(),
       new OptimizeCSSAssetsPlugin({
         cssProcessorOptions: {
-          parser: safeParser,
-          // https://postcss.org/api/#previousmap
-          map: {
-            // forces sourcemap into a separate file
-            inline: false,
-            // appends sourceMappingUrl for browsers
-            annotation: !isProd
-          }
+          parser: safeParser
         }
       }),
     ],
