@@ -1,14 +1,19 @@
-import React from 'react';
-import style from './style.module.scss';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import Footer from '../components/footer';
+
 import Header from '../components/header';
-import Carousel from '../components/carousel';
-import PhotoGallery, { HomePageDefinitions } from '../components/gallery';
-import { About, Contact, NotFound } from '../components/content';
+import Footer from '../components/footer';
+
+const PhotoGallery = lazy(() => import('../components/gallery'));
+const Carousel = lazy(() => import('../components/carousel'));
+const About = lazy(() => import('../components/content/about'));
+const Contact = lazy(() => import('../components/content/contact'));
+const NotFound = lazy(() => import('../components/content/notfound'));
+import { HomePageDefinitions } from '../components/gallery';
 import { AboutPageDefinitions } from '../components/content/about';
 import { ContactPageDefinitions } from '../components/content/contact';
 import { NotFoundPageDefinitions } from '../components/content/notfound';
+import style from './style.module.scss';
 import photos from './photos';
 
 type PageState = {
@@ -59,21 +64,23 @@ class Page extends React.Component<Record<string, never>, PageState> {
       <div className={style.container}>
         <BrowserRouter>
           <Header homeClick={this.closeViewer} />
-          <Switch>
-            <Route exact path={HomePageDefinitions.pagePath}>
-              {this.renderHome()}
-            </Route>
-            <Route exact path={AboutPageDefinitions.pagePath}>
-              <About />
-            </Route>
-            <Route exact path={ContactPageDefinitions.pagePath}>
-              <Contact />
-            </Route>
-            <Route exact path={NotFoundPageDefinitions.pagePath}>
-              <NotFound />
-            </Route>
-            <Redirect to={NotFoundPageDefinitions.pagePath} />
-          </Switch>
+          <Suspense fallback={<div></div>}>
+            <Switch>
+              <Route exact path={HomePageDefinitions.pagePath}>
+                {this.renderHome()}
+              </Route>
+              <Route exact path={AboutPageDefinitions.pagePath}>
+                <About />
+              </Route>
+              <Route exact path={ContactPageDefinitions.pagePath}>
+                <Contact />
+              </Route>
+              <Route exact path={NotFoundPageDefinitions.pagePath}>
+                <NotFound />
+              </Route>
+              <Redirect to={NotFoundPageDefinitions.pagePath} />
+            </Switch>
+          </Suspense>
           <Footer />
         </BrowserRouter>
       </div>
