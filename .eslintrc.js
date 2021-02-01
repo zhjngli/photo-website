@@ -17,17 +17,13 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module'
   },
-  plugins: [
-    'react',
-    '@typescript-eslint',
-    'prettier'
-  ],
+  plugins: ['react', '@typescript-eslint', 'prettier'],
   settings: {
     react: {
       version: 'detect'
     }
   },
   rules: {
-    '@typescript-eslint/no-unused-vars': ["error", { "argsIgnorePattern": "^_" }]
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }]
   }
 };

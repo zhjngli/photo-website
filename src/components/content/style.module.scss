@@ -34,7 +34,7 @@
 
 .link {
   color: $default-copy-color;
-  
+
   &:hover {
     color: $highlight-color;
   }
@@ -74,9 +74,10 @@
   margin-right: 16px;
 }
 
-textarea, input {
+textarea,
+input {
   @include contact-form-style;
-  width: calc(100% - 2*#{8px + 1px});
+  width: calc(100% - 2 *#{8px + 1px});
   background-color: #fafafa;
   padding: 8px;
   border: 1px solid $default-copy-color;

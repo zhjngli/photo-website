@@ -1,12 +1,12 @@
 const path = require('path');
-const CopyPlugin = require("copy-webpack-plugin");
+const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
-const RobotstxtPlugin = require("robotstxt-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
+const RobotstxtPlugin = require('robotstxt-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const safeParser = require('postcss-safe-parser');
@@ -16,8 +16,8 @@ const isProd = process.env.NODE_ENV === 'production';
 const outputDir = 'dist';
 
 const baseUrl = 'https://zhjngli.com';
-const metaTitle = "Zhijiang Li";
-const metaDescription = "Photo gallery of selected works.";
+const metaTitle = 'Zhijiang Li';
+const metaDescription = 'Photo gallery of selected works.';
 const metaImageName = 'me.jpg';
 const metaImage = baseUrl + '/' + metaImageName;
 
@@ -25,22 +25,25 @@ const plugins = [
   new CopyPlugin({
     // webpack won't bundle any content not being used in src. copy it instead
     patterns: [
-      { // metatag
+      {
+        // metatag
         from: 'src/assets/meta/metatag-1-1,5.jpg',
         transformPath(targetPath, absolutePath) {
           return metaImageName;
-        },
+        }
       },
-      { // favicons
-        from: "*",
-        context: path.resolve(__dirname, "src", "assets", "favicons"),
+      {
+        // favicons
+        from: '*',
+        context: path.resolve(__dirname, 'src', 'assets', 'favicons')
       },
-      { // self-hosted
-        from: "**/*",
-        context: path.resolve(__dirname, "src", "assets", "self-hosted"),
-        to: "i/[path]/[contenthash].[ext]",
+      {
+        // self-hosted
+        from: '**/*',
+        context: path.resolve(__dirname, 'src', 'assets', 'self-hosted'),
+        to: 'i/[path]/[contenthash].[ext]'
       }
-    ],
+    ]
   }),
   new MiniCssExtractPlugin({
     filename: '[name].[hash].min.css',
@@ -51,8 +54,8 @@ const plugins = [
     filename: 'index.html',
     favicon: 'src/assets/favicons/favicon.ico',
     meta: {
-      'viewport': 'width=device-width, initial-scale=1',
-      'description': metaDescription,
+      viewport: 'width=device-width, initial-scale=1',
+      description: metaDescription
     }
   }),
   new HtmlWebpackTagsPlugin({
@@ -84,25 +87,25 @@ const plugins = [
       {
         attributes: {
           property: 'og:image',
-          content: metaImage,
+          content: metaImage
         }
       },
       {
         attributes: {
           property: 'og:image:type',
-          content: "image/jpeg"
+          content: 'image/jpeg'
         }
       },
       {
         attributes: {
-            property: 'og:image:width',
-            content: "1080"
+          property: 'og:image:width',
+          content: '1080'
         }
       },
       {
         attributes: {
-            property: 'og:image:height',
-            content: "1618"
+          property: 'og:image:height',
+          content: '1618'
         }
       },
       {
@@ -120,7 +123,7 @@ const plugins = [
       {
         attributes: {
           name: 'twitter:title',
-          content: metaTitle,
+          content: metaTitle
         }
       },
       {
@@ -134,28 +137,28 @@ const plugins = [
           name: 'twitter:image',
           content: metaImage
         }
-      },
+      }
     ]
   }),
   new PreloadWebpackPlugin({
     rel: 'preload',
     as: 'font',
     include: 'allAssets',
-    fileWhitelist: [/\.(woff2?|ttf|otf)(\?.*)?$/i],
+    fileWhitelist: [/\.(woff2?|ttf|otf)(\?.*)?$/i]
   }),
   new WorkboxPlugin.GenerateSW({
     // these options encourage the ServiceWorkers to get in there fast
     // and not allow any straggling "old" SWs to hang around
     clientsClaim: true,
-    skipWaiting: true,
+    skipWaiting: true
   }),
   new RobotstxtPlugin({
     options: {
       policy: [
-          {
-            userAgent: "*",
-            disallow: "",
-          }
+        {
+          userAgent: '*',
+          disallow: ''
+        }
       ]
     }
   })
@@ -202,7 +205,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
-              sourceMap: !isProd,
+              sourceMap: !isProd
             }
           },
           {
@@ -216,25 +219,25 @@ module.exports = {
                       flexbox: 'no-2009'
                     }
                   })
-                ],
+                ]
               },
-              sourceMap: !isProd,
+              sourceMap: !isProd
             }
           },
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: !isProd,
+              sourceMap: !isProd
             }
-          },
-        ],
+          }
+        ]
       }
-    ],
+    ]
   },
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js' ],
+    extensions: ['.tsx', '.ts', '.js'],
     alias: {
-      'react': 'preact/compat',
+      react: 'preact/compat',
       'react-dom': 'preact/compat'
     }
   },
@@ -246,18 +249,19 @@ module.exports = {
         cssProcessorOptions: {
           parser: safeParser
         }
-      }),
+      })
     ],
-    splitChunks: { // https://medium.com/@Yoriiis/the-real-power-of-webpack-4-splitchunks-plugin-fad097c45ba0
+    splitChunks: {
+      // https://medium.com/@Yoriiis/the-real-power-of-webpack-4-splitchunks-plugin-fad097c45ba0
       chunks: 'all',
-      name: !isProd,
+      name: !isProd
     }
   },
   output: {
     chunkFilename: '[id].[hash].js',
     filename: '[hash].js',
     path: path.resolve(__dirname, `${outputDir}`),
-    publicPath: process.env.ASSET_PATH || '/',
+    publicPath: process.env.ASSET_PATH || '/'
   },
   devServer: {
     contentBase: path.join(__dirname, `${outputDir}`),
@@ -268,6 +272,6 @@ module.exports = {
     open: true,
     progress: true,
     historyApiFallback: true,
-    index: 'index.html',
+    index: 'index.html'
   }
 };

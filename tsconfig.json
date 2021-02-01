@@ -1,12 +1,7 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ES6",
-      "ScriptHost"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ES6", "ScriptHost"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -22,7 +17,5 @@
     "noEmit": true,
     "jsx": "react"
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }
