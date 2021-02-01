@@ -24,7 +24,7 @@ class Header extends React.Component<HeaderProps> {
           <NavLink to={ContactPageDefinitions.pagePath} className={style.links} activeClassName={style.activeNavLink}>
             contact
           </NavLink>
-          <InstaLink style={style.links} />
+          <InstaLink style={style.links} text={'instagram'} />
         </nav>
       </header>
     );

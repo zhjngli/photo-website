@@ -2,6 +2,7 @@ import React from 'react';
 
 type InstaLinkProps = {
   style: string;
+  text: string;
 };
 
 class InstaLink extends React.Component<InstaLinkProps> {
@@ -22,7 +23,7 @@ class InstaLink extends React.Component<InstaLinkProps> {
         onClick={this.onClick}
         className={this.props.style}
       >
-        Instagram
+        {this.props.text}
       </a>
     );
   }

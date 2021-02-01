@@ -12,7 +12,7 @@ class Contact extends React.Component {
         <p className={style.text}>Let&apos;s create something!</p>
         <p className={style.text}>
           Please fill out the form below for prints and other inquiries. Or, message me on{' '}
-          <InstaLink style={style.link} />.
+          <InstaLink style={style.link} text={'Instagram'} />.
         </p>
         <NetlifyForm name="contact">
           {({ loading, error, success }) => (
