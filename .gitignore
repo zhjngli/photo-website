@@ -18,6 +18,9 @@
 .env.test.local
 .env.production.local
 
+# next gen images
+*.webp
+
 # workspace
 .vscode
 *.code-workspace
