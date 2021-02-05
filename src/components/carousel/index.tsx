@@ -109,7 +109,7 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
         <div className={style.imageContainer} id={'image'}>
           {this.props.photos.map((photo, i) => (
             <span className={i === this.state.index ? style.appear : style.disappear} key={photo.src}>
-              <Image {...photo} style={style.carousel} />
+              <Image {...photo} pictureStyle={style.pictureWrapper} imageStyle={style.image} />
             </span>
           ))}
         </div>
