@@ -182,7 +182,7 @@ module.exports = {
         }
       },
       {
-        test: /\.(png)|(jpe?g)$/,
+        test: /\.(png)|(jpe?g)|(webp)$/,
         use: 'file-loader'
       },
       {

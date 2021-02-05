@@ -1,7 +1,7 @@
 import React from 'react';
 import { PhotoProps } from 'react-photo-gallery';
 import { transitionTimeout } from '../../theme/dimensions';
-import CarouselImage from './carouselImage';
+import Image from '../image';
 import style from './style.module.scss';
 
 const ESCAPE_KEYS = ['Escape', 27];
@@ -108,7 +108,7 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
         <div className={style.imageContainer} id={'image'}>
           {this.props.photos.map((photo, i) => (
             <span className={i === this.state.index ? style.appear : style.disappear} key={photo.src}>
-              <CarouselImage {...photo} />
+              <Image {...photo} style={style.carousel} />
             </span>
           ))}
         </div>

@@ -11,9 +11,13 @@ const photos = fs
   .filter((p) => p.isFile() && p.name.endsWith('.jpg'))
   .reverse()
   .map((p, i) => {
+    const name = p.name.split('.');
+    const nameWithoutExt = name[0];
     return {
-      name: p.name,
-      importName: `p${i}`
+      jpegName: p.name,
+      jpegImportName: `jpeg${i}`,
+      webpName: nameWithoutExt.concat('.webp'),
+      webpImportName: `webp${i}`
     };
   });
 console.log(`All photos:\n${photos.map(JSON.stringify).join('\n')}\n\n`);
@@ -21,9 +25,8 @@ console.log(`All photos:\n${photos.map(JSON.stringify).join('\n')}\n\n`);
 // Convert existing jpegs to webps
 // webp.grant_permission();
 console.log(`Converting existing jpegs in ${photosDir} to webps.\n\n`);
-photos.forEach((photo) => {
-  const p = photo.name.split('.');
-  const result = webp.cwebp(`${photosDir}/${photo.name}`, `${photosDir}/${p[0]}.webp`, '-q 90 -metadata all');
+photos.forEach((p) => {
+  const result = webp.cwebp(`${photosDir}/${p.jpegName}`, `${photosDir}/${p.webpName}`, '-q 90 -metadata all');
   result.then((response) => {
     console.log(response);
   });
@@ -31,11 +34,13 @@ photos.forEach((photo) => {
 
 // Create content to write
 const importStatements = photos
-  .map((photo) => {
-    return `import ${photo.importName} from '../assets/photos/${photo.name}';`;
+  .map((p) => {
+    return `import ${p.jpegImportName} from '../assets/photos/${p.jpegName}';\nimport ${p.webpImportName} from '../assets/photos/${p.webpName}';`;
   })
   .join('\n');
-const defaultSizes = `
+const constants = `
+export type ExtendedPhotoProps = { webpSrc?: string };
+
 const defaultSizes = [
   \`
   (min-width: 480px) 50vw,
@@ -45,18 +50,19 @@ const defaultSizes = [
 ];
 `;
 const photosArray = photos
-  .map((photo) => {
-    const dimensions = sizeOf(`${photosDir}/${photo.name}`);
+  .map((p) => {
+    const dimensions = sizeOf(`${photosDir}/${p.jpegName}`);
     return `{
-    src: \`\$\{${photo.importName}\}\`,
-    sizes: defaultSizes,
-    width: ${dimensions.width},
-    height: ${dimensions.height}
-  }`;
+      src: \`\$\{${p.jpegImportName}\}\`,
+      webpSrc: \`\$\{${p.webpImportName}\}\`,
+      sizes: defaultSizes,
+      width: ${dimensions.width},
+      height: ${dimensions.height}
+    }`;
   })
   .join(',');
 
-const content = [importStatements, defaultSizes, 'export default [', photosArray, '];'].join('\n');
+const content = [importStatements, constants, 'export default [', photosArray, '];'].join('\n');
 
 // Write content to photos.ts file
 console.log(`Writing ${photosTs}:\n\n${content}`);

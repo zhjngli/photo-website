@@ -1,13 +1,15 @@
 import React, { CSSProperties } from 'react';
 import Gallery, { PhotoProps, renderImageClickHandler, RenderImageProps } from 'react-photo-gallery';
-import withAnalytics from '../analyticsContent';
 import { screenReactiveWidth, photoGalleryMargin, photoGalleryRowHeight } from '../../theme/dimensions';
 import AnalyticsContentProps from '../analyticsContent/types';
+import { ExtendedPhotoProps } from '../../page/photos';
+import Image from '../image';
+import withAnalytics from '../analyticsContent';
 import style from './style.module.scss';
 
 type GalleryProps = {
   openViewer: (index: number) => void;
-  photos: Array<PhotoProps>;
+  photos: Array<PhotoProps<ExtendedPhotoProps>>;
 };
 
 type GalleryState = {
@@ -49,8 +51,8 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
     window.removeEventListener('resize', this.handleResize);
   }
 
-  renderImage(renderImageProps: RenderImageProps): React.ReactElement {
-    const photo: PhotoProps = renderImageProps.photo;
+  renderImage(renderImageProps: RenderImageProps<ExtendedPhotoProps>): React.ReactElement {
+    const photo: PhotoProps<ExtendedPhotoProps> = renderImageProps.photo;
     const clickHandler: renderImageClickHandler = renderImageProps.onClick ? renderImageProps.onClick : () => null;
     const defaultCss: CSSProperties = {
       margin: renderImageProps.margin,
@@ -72,7 +74,7 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
         style={{ ...defaultCss, ...directionalCss }}
         onClick={(event) => clickHandler(event, { ...photo, index: renderImageProps.index })}
       >
-        <img loading="lazy" src={photo.src} className={style.image} />
+        <Image {...photo} style={style.image} />
         <div className={style.overlay}>
           <span className={style.overlayAlt}>{photo.alt}</span>
         </div>
