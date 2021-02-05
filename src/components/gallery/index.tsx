@@ -1,10 +1,11 @@
 import React, { CSSProperties } from 'react';
 import Gallery, { PhotoProps, renderImageClickHandler, RenderImageProps } from 'react-photo-gallery';
-import { screenReactiveWidth, photoGalleryMargin, photoGalleryRowHeight } from '../../theme/dimensions';
-import AnalyticsContentProps from '../analyticsContent/types';
+
 import { ExtendedPhotoProps } from '../../page/photos';
-import Image from '../image';
+import { photoGalleryMargin, photoGalleryRowHeight, screenReactiveWidth } from '../../theme/dimensions';
 import withAnalytics from '../analyticsContent';
+import AnalyticsContentProps from '../analyticsContent/types';
+import Image from '../image';
 import style from './style.module.scss';
 
 type GalleryProps = {

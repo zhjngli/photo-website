@@ -1,20 +1,20 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 
-import Header from '../components/header';
 import Footer from '../components/footer';
+import Header from '../components/header';
 
 const PhotoGallery = lazy(() => import('../components/gallery'));
 const Carousel = lazy(() => import('../components/carousel'));
 const About = lazy(() => import('../components/content/about'));
 const Contact = lazy(() => import('../components/content/contact'));
 const NotFound = lazy(() => import('../components/content/notfound'));
-import { HomePageDefinitions } from '../components/gallery';
 import { AboutPageDefinitions } from '../components/content/about';
 import { ContactPageDefinitions } from '../components/content/contact';
 import { NotFoundPageDefinitions } from '../components/content/notfound';
-import style from './style.module.scss';
+import { HomePageDefinitions } from '../components/gallery';
 import photos from './photos';
+import style from './style.module.scss';
 
 type PageState = {
   gallerySelectedImageIndex: number;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+
 import { AboutPageDefinitions } from '../content/about';
 import { ContactPageDefinitions } from '../content/contact';
 import { HomePageDefinitions } from '../gallery';

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import AnalyticsContentProps from './types';
 
 function withAnalytics<P>(Component: React.ComponentType<P>, pageDefs: AnalyticsContentProps): React.ComponentClass<P> {

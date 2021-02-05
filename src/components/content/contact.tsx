@@ -1,5 +1,6 @@
 import React from 'react';
 import NetlifyForm from 'react-netlify-form';
+
 import withAnalytics from '../analyticsContent';
 import AnalyticsContentProps from '../analyticsContent/types';
 import InstaLink from '../instaLink';

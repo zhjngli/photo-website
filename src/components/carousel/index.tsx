@@ -1,5 +1,6 @@
 import React from 'react';
 import { PhotoProps } from 'react-photo-gallery';
+
 import { transitionTimeout } from '../../theme/dimensions';
 import Image from '../image';
 import style from './style.module.scss';
