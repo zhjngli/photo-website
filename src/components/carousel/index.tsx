@@ -76,7 +76,7 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
     const now = Date.now();
     if (now - this.state.lastPrev > transitionTimeout) {
       this.setState((prevState: CarouselState) => ({
-        index: prevState.index - 1 <= 0 ? this.numPhotos - 1 : prevState.index - 1,
+        index: prevState.index - 1 < 0 ? this.numPhotos - 1 : prevState.index - 1,
         lastPrev: now
       }));
     }
