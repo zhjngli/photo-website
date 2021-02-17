@@ -4,7 +4,7 @@ import AnalyticsContentProps from './types';
 
 function withAnalytics<P>(Component: React.ComponentType<P>, pageDefs: AnalyticsContentProps): React.ComponentClass<P> {
   return class AnalyticsComponent extends React.Component<P> {
-    componentDidMount() {
+    componentDidMount(): void {
       // console.log("location: ", window.location.href);
       // console.log("gtagging from: ", pageDefs.pageTitle, pageDefs.pagePath);
       window.gtag('config', 'G-R0M2056RBS', {
@@ -13,7 +13,7 @@ function withAnalytics<P>(Component: React.ComponentType<P>, pageDefs: Analytics
       });
     }
 
-    render() {
+    render(): React.ReactNode {
       return <Component {...this.props} />;
     }
   };

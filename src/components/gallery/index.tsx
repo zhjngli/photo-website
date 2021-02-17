@@ -1,17 +1,15 @@
 import React, { CSSProperties } from 'react';
 import Gallery, { PhotoProps, renderImageClickHandler, RenderImageProps } from 'react-photo-gallery';
+import { NavLink } from 'react-router-dom';
 
 import { ExtendedPhotoProps } from '../../page/photos';
+import photos from '../../page/photos';
 import { photoGalleryMargin, photoGalleryRowHeight, screenReactiveWidth } from '../../theme/dimensions';
 import withAnalytics from '../analyticsContent';
 import AnalyticsContentProps from '../analyticsContent/types';
+import { getCarouselPagePath } from '../carousel';
 import Image from '../image';
 import style from './style.module.scss';
-
-type GalleryProps = {
-  openViewer: (index: number) => void;
-  photos: Array<PhotoProps<ExtendedPhotoProps>>;
-};
 
 type GalleryState = {
   galleryDirection: string;
@@ -22,8 +20,8 @@ enum GalleryDirection {
   Col = 'column'
 }
 
-class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
-  constructor(props: GalleryProps) {
+class PhotoGallery extends React.Component<Record<string, never>, GalleryState> {
+  constructor(props: Record<string, never>) {
     super(props);
 
     this.state = {
@@ -69,27 +67,28 @@ class PhotoGallery extends React.Component<GalleryProps, GalleryState> {
             top: renderImageProps.top
           };
     return (
-      <div
-        key={photo.src}
-        className={style.imageContainer}
-        style={{ ...defaultCss, ...directionalCss }}
-        onClick={(event) => clickHandler(event, { ...photo, index: renderImageProps.index })}
-      >
-        <Image {...photo} pictureStyle={style.image} imageStyle={style.image} />
-        <div className={style.overlay}>
-          <span className={style.overlayAlt}>{photo.alt}</span>
+      <NavLink to={getCarouselPagePath(renderImageProps.index)}>
+        <div
+          key={photo.src}
+          className={style.imageContainer}
+          style={{ ...defaultCss, ...directionalCss }}
+          onClick={(event) => clickHandler(event, { ...photo, index: renderImageProps.index })}
+        >
+          <Image {...photo} pictureStyle={style.image} imageStyle={style.image} />
+          <div className={style.overlay}>
+            <span className={style.overlayAlt}>{photo.alt}</span>
+          </div>
         </div>
-      </div>
+      </NavLink>
     );
   }
 
   render(): React.ReactNode {
     return (
       <Gallery
-        photos={this.props.photos}
+        photos={photos}
         direction={this.state.galleryDirection}
         columns={1}
-        onClick={(_event, { index }) => this.props.openViewer(index)}
         renderImage={this.renderImage}
         targetRowHeight={photoGalleryRowHeight}
         margin={photoGalleryMargin}

@@ -1,7 +1,10 @@
 import React from 'react';
-import { PhotoProps } from 'react-photo-gallery';
+import { RouteComponentProps } from 'react-router-dom';
 
+import photos from '../../page/photos';
 import { transitionTimeout } from '../../theme/dimensions';
+import AnalyticsContentProps from '../analyticsContent/types';
+import { HomePageDefinitions } from '../gallery';
 import Image from '../image';
 import style from './style.module.scss';
 
@@ -9,30 +12,17 @@ const ESCAPE_KEYS = ['Escape', 27];
 const LEFT_ARROW_KEYS = ['ArrowLeft', 37];
 const RIGHT_ARROW_KEYS = ['ArrowRight', 39];
 
-type CarouselProps = {
-  onClose: () => void;
-  photos: Array<PhotoProps>;
-  initialIndex: number;
-};
+type CarouselProps = RouteComponentProps<{ index: string }>;
 
-type CarouselState = {
-  index: number;
-  lastNext: number;
-  lastPrev: number;
-};
-
-class Carousel extends React.Component<CarouselProps, CarouselState> {
+class Carousel extends React.Component<CarouselProps> {
+  loadTime: number;
   numPhotos: number;
 
   constructor(props: CarouselProps) {
     super(props);
 
-    this.numPhotos = this.props.photos.length;
-    this.state = {
-      index: this.props.initialIndex,
-      lastNext: Date.now(),
-      lastPrev: Date.now()
-    };
+    this.loadTime = Date.now();
+    this.numPhotos = photos.length;
     this.handleClose = this.handleClose.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleDivClick = this.handleDivClick.bind(this);
@@ -41,7 +31,7 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
   }
 
   handleClose(): void {
-    this.props.onClose();
+    this.props.history.push(HomePageDefinitions.pagePath);
   }
 
   handleKeyPress(event: KeyboardEvent): void {
@@ -64,22 +54,35 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
 
   nextImage(): void {
     const now = Date.now();
-    if (now - this.state.lastNext > transitionTimeout) {
-      this.setState((prevState: CarouselState) => ({
-        index: prevState.index + 1 >= this.numPhotos ? 0 : prevState.index + 1,
-        lastNext: now
-      }));
+    if (now - this.loadTime > transitionTimeout) {
+      const curr = +this.props.match.params.index;
+      const next = curr + 1 >= this.numPhotos ? 0 : curr + 1;
+      this.props.history.replace(getCarouselPagePath(next));
     }
   }
 
   prevImage(): void {
     const now = Date.now();
-    if (now - this.state.lastPrev > transitionTimeout) {
-      this.setState((prevState: CarouselState) => ({
-        index: prevState.index - 1 < 0 ? this.numPhotos - 1 : prevState.index - 1,
-        lastPrev: now
-      }));
+    if (now - this.loadTime > transitionTimeout) {
+      const curr = +this.props.match.params.index;
+      const prev = curr - 1 < 0 ? this.numPhotos - 1 : curr - 1;
+      this.props.history.replace(getCarouselPagePath(prev));
     }
+  }
+
+  logAnalytics(): void {
+    // custom analytics for carousel
+    // console.log("location: ", window.location.href);
+    // console.log("gtagging from: ", CarouselPageDefinitions.pageTitle, getCarouselPagePath(+this.props.match.params.index));
+    window.gtag('config', 'G-R0M2056RBS', {
+      page_title: CarouselPageDefinitions.pageTitle,
+      page_path: getCarouselPagePath(+this.props.match.params.index)
+    });
+  }
+
+  componentDidUpdate(): void {
+    this.loadTime = Date.now();
+    this.logAnalytics();
   }
 
   componentDidMount(): void {
@@ -88,6 +91,7 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
     document.getElementById('close')?.addEventListener('click', (_event) => this.handleClose());
     document.getElementById('prev')?.addEventListener('click', (_event) => this.prevImage());
     document.getElementById('next')?.addEventListener('click', (_event) => this.nextImage());
+    this.logAnalytics();
   }
 
   componentWillUnmount(): void {
@@ -107,8 +111,8 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
           </button>
         </div>
         <div className={style.imageContainer} id={'image'}>
-          {this.props.photos.map((photo, i) => (
-            <span className={i === this.state.index ? style.appear : style.disappear} key={photo.src}>
+          {photos.map((photo, i) => (
+            <span className={i === +this.props.match.params.index ? style.appear : style.disappear} key={photo.src}>
               <Image {...photo} pictureStyle={style.pictureWrapper} imageStyle={style.image} />
             </span>
           ))}
@@ -126,4 +130,14 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
   }
 }
 
+export function getCarouselPagePath(index: number): string {
+  return CarouselPageDefinitions.pagePath.replace(/:index/g, index.toString());
+}
+
+export const CarouselPageDefinitions: AnalyticsContentProps = {
+  pageTitle: 'carousel',
+  pagePath: '/i/:index'
+};
+
+// Carousel has custom analytics logic
 export default Carousel;

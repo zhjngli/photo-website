@@ -39,6 +39,8 @@ const importStatements = photos
   })
   .join('\n');
 const constants = `
+import { PhotoProps } from 'react-photo-gallery';
+
 export type ExtendedPhotoProps = { webpSrc?: string };
 
 const defaultSizes = [
@@ -62,7 +64,13 @@ const photosArray = photos
   })
   .join(',');
 
-const content = [importStatements, constants, 'export default [', photosArray, '];'].join('\n');
+const content = [
+  importStatements,
+  constants,
+  'export default [',
+  photosArray,
+  '] as PhotoProps<ExtendedPhotoProps>[];'
+].join('\n');
 
 // Write content to photos.ts file
 console.log(`Writing ${photosTs}:\n\n${content}`);

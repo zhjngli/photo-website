@@ -7,15 +7,11 @@ import { HomePageDefinitions } from '../gallery';
 import InstaLink from '../instaLink';
 import style from './style.module.scss';
 
-type HeaderProps = {
-  homeClick: () => void;
-};
-
-class Header extends React.Component<HeaderProps> {
+class Header extends React.Component {
   render(): React.ReactNode {
     return (
       <header className={style.container}>
-        <NavLink to={HomePageDefinitions.pagePath} className={style.title} onClick={this.props.homeClick}>
+        <NavLink to={HomePageDefinitions.pagePath} className={style.title}>
           ƶhijiang li
         </NavLink>
         <nav className={style.navbar}>
