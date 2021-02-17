@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
-import photos from '../../page/photos';
+import photos from '../../photos';
 import { transitionTimeout } from '../../theme/dimensions';
 import AnalyticsContentProps from '../analyticsContent/types';
 import { HomePageDefinitions } from '../gallery';

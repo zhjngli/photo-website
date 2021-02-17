@@ -1,7 +1,7 @@
 import React from 'react';
 import { PhotoProps } from 'react-photo-gallery';
 
-import { ExtendedPhotoProps } from '../../page/photos';
+import { ExtendedPhotoProps } from '../../photos';
 
 type StyledImageProps = PhotoProps<ExtendedPhotoProps> & { pictureStyle: string; imageStyle: string };
 

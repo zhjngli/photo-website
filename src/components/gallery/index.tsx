@@ -2,8 +2,7 @@ import React, { CSSProperties } from 'react';
 import Gallery, { PhotoProps, renderImageClickHandler, RenderImageProps } from 'react-photo-gallery';
 import { NavLink } from 'react-router-dom';
 
-import { ExtendedPhotoProps } from '../../page/photos';
-import photos from '../../page/photos';
+import photos, { ExtendedPhotoProps } from '../../photos';
 import { photoGalleryMargin, photoGalleryRowHeight, screenReactiveWidth } from '../../theme/dimensions';
 import withAnalytics from '../analyticsContent';
 import AnalyticsContentProps from '../analyticsContent/types';

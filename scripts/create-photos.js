@@ -3,7 +3,7 @@ const webp = require('webp-converter');
 const sizeOf = require('image-size');
 
 const photosDir = 'src/assets/photos';
-const photosTs = 'src/page/photos.ts';
+const photosTs = 'src/photos/index.ts';
 
 // Read photos
 const photos = fs
