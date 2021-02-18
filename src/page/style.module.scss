@@ -11,7 +11,8 @@
 
 @media only screen and (max-width: $screen-reactive-width) {
   .container {
-    min-width: 320px;
+    // 300 + 2 * 10 (margin) = 320px min width of iphone 5/SE
+    min-width: 300px;
     margin: 0 10px;
   }
 }
