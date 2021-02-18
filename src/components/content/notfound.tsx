@@ -1,4 +1,5 @@
 import React from 'react';
+import FadeIn from 'react-fade-in';
 import { NavLink } from 'react-router-dom';
 
 import withAnalytics from '../analyticsContent';
@@ -10,13 +11,15 @@ class NotFound extends React.Component {
   render() {
     return (
       <main className={style.container}>
-        <p className={`${style.text} ${style.center}`}>
-          Sorry, content not found! Go to{' '}
-          <NavLink to={HomePageDefinitions.pagePath} className={style.link}>
-            home
-          </NavLink>
-          .
-        </p>
+        <FadeIn>
+          <p className={`${style.text} ${style.center}`}>
+            Sorry, content not found! Go to{' '}
+            <NavLink to={HomePageDefinitions.pagePath} className={style.link}>
+              home
+            </NavLink>
+            .
+          </p>
+        </FadeIn>
       </main>
     );
   }

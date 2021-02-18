@@ -1,4 +1,5 @@
 import React from 'react';
+import FadeIn from 'react-fade-in';
 import { RouteComponentProps } from 'react-router-dom';
 
 import photos from '../../photos';
@@ -106,26 +107,28 @@ class Carousel extends React.Component<CarouselProps> {
   render(): React.ReactNode {
     return (
       <div className={`${style.container} ${commonStyle.unselectable}`}>
-        <div className={style.closeContainer}>
-          <button className={style.button} id={'close'}>
-            X
-          </button>
-        </div>
-        <div className={style.imageContainer} id={'image'}>
-          {photos.map((photo, i) => (
-            <span className={i === +this.props.match.params.index ? style.appear : style.disappear} key={photo.src}>
-              <Image {...photo} pictureStyle={style.pictureWrapper} imageStyle={style.image} />
-            </span>
-          ))}
-        </div>
-        <div className={style.navContainer}>
-          <button className={`${style.button} ${style.prev}`} id={'prev'}>
-            {'<'}
-          </button>
-          <button className={`${style.button} ${style.next}`} id={'next'}>
-            {'>'}
-          </button>
-        </div>
+        <FadeIn>
+          <div className={style.closeContainer}>
+            <button className={style.button} id={'close'}>
+              X
+            </button>
+          </div>
+          <div className={style.imageContainer} id={'image'}>
+            {photos.map((photo, i) => (
+              <span className={i === +this.props.match.params.index ? style.appear : style.disappear} key={photo.src}>
+                <Image {...photo} pictureStyle={style.pictureWrapper} imageStyle={style.image} />
+              </span>
+            ))}
+          </div>
+          <div className={style.navContainer}>
+            <button className={`${style.button} ${style.prev}`} id={'prev'}>
+              {'<'}
+            </button>
+            <button className={`${style.button} ${style.next}`} id={'next'}>
+              {'>'}
+            </button>
+          </div>
+        </FadeIn>
       </div>
     );
   }

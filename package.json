@@ -59,6 +59,7 @@
     "preload-webpack-plugin": "^3.0.0-beta.3",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "react-fade-in": "^2.0.1",
     "react-netlify-form": "^2.1.5",
     "react-photo-gallery": "^8.0.0",
     "react-router-dom": "^5.2.0",

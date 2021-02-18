@@ -1,4 +1,5 @@
 import React, { CSSProperties } from 'react';
+import FadeIn from 'react-fade-in';
 import Gallery, { PhotoProps, renderImageClickHandler, RenderImageProps } from 'react-photo-gallery';
 import { NavLink } from 'react-router-dom';
 
@@ -85,16 +86,19 @@ class PhotoGallery extends React.Component<Record<string, never>, GalleryState> 
 
   render(): React.ReactNode {
     return (
-      <div className={commonStyle.unselectable}>
-        <Gallery
-          photos={photos}
-          direction={this.state.galleryDirection}
-          columns={1}
-          renderImage={this.renderImage}
-          targetRowHeight={photoGalleryRowHeight}
-          margin={photoGalleryMargin}
-        />
-      </div>
+      // look into implementing this fade by row (if gallery direction is row) or by image (if gallery direction is col)
+      <FadeIn>
+        <div className={commonStyle.unselectable}>
+          <Gallery
+            photos={photos}
+            direction={this.state.galleryDirection}
+            columns={1}
+            renderImage={this.renderImage}
+            targetRowHeight={photoGalleryRowHeight}
+            margin={photoGalleryMargin}
+          />
+        </div>
+      </FadeIn>
     );
   }
 }
