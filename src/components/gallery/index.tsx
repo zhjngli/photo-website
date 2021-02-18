@@ -3,6 +3,7 @@ import Gallery, { PhotoProps, renderImageClickHandler, RenderImageProps } from '
 import { NavLink } from 'react-router-dom';
 
 import photos, { ExtendedPhotoProps } from '../../photos';
+import commonStyle from '../../theme/common.module.scss';
 import { photoGalleryMargin, photoGalleryRowHeight, screenReactiveWidth } from '../../theme/dimensions';
 import withAnalytics from '../analyticsContent';
 import AnalyticsContentProps from '../analyticsContent/types';
@@ -66,32 +67,34 @@ class PhotoGallery extends React.Component<Record<string, never>, GalleryState> 
             top: renderImageProps.top
           };
     return (
-      <NavLink to={getCarouselPagePath(renderImageProps.index)}>
-        <div
-          key={photo.src}
-          className={style.imageContainer}
-          style={{ ...defaultCss, ...directionalCss }}
-          onClick={(event) => clickHandler(event, { ...photo, index: renderImageProps.index })}
-        >
+      <div
+        key={photo.src}
+        className={style.imageContainer}
+        style={{ ...defaultCss, ...directionalCss }}
+        onClick={(event) => clickHandler(event, { ...photo, index: renderImageProps.index })}
+      >
+        <NavLink to={getCarouselPagePath(renderImageProps.index)}>
           <Image {...photo} pictureStyle={style.image} imageStyle={style.image} />
           <div className={style.overlay}>
             <span className={style.overlayAlt}>{photo.alt}</span>
           </div>
-        </div>
-      </NavLink>
+        </NavLink>
+      </div>
     );
   }
 
   render(): React.ReactNode {
     return (
-      <Gallery
-        photos={photos}
-        direction={this.state.galleryDirection}
-        columns={1}
-        renderImage={this.renderImage}
-        targetRowHeight={photoGalleryRowHeight}
-        margin={photoGalleryMargin}
-      />
+      <div className={commonStyle.unselectable}>
+        <Gallery
+          photos={photos}
+          direction={this.state.galleryDirection}
+          columns={1}
+          renderImage={this.renderImage}
+          targetRowHeight={photoGalleryRowHeight}
+          margin={photoGalleryMargin}
+        />
+      </div>
     );
   }
 }

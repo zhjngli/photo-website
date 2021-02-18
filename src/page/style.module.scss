@@ -1,14 +1,5 @@
 @import 'src/theme/dimensions.module.scss';
 
-.unselectable {
-  user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -o-user-select: none;
-  -webkit-tap-highlight-color: transparent;
-}
-
 @media only screen and (max-width: $screen-reactive-width) {
   .container {
     // 300 + 2 * 10 (margin) = 320px min width of iphone 5/SE

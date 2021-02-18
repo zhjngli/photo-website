@@ -2,6 +2,7 @@ import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
 import photos from '../../photos';
+import commonStyle from '../../theme/common.module.scss';
 import { transitionTimeout } from '../../theme/dimensions';
 import AnalyticsContentProps from '../analyticsContent/types';
 import { HomePageDefinitions } from '../gallery';
@@ -104,7 +105,7 @@ class Carousel extends React.Component<CarouselProps> {
 
   render(): React.ReactNode {
     return (
-      <div className={style.container}>
+      <div className={`${style.container} ${commonStyle.unselectable}`}>
         <div className={style.closeContainer}>
           <button className={style.button} id={'close'}>
             X
