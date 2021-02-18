@@ -106,7 +106,7 @@ class Carousel extends React.Component<CarouselProps> {
 
   render(): React.ReactNode {
     return (
-      <div className={`${style.container} ${commonStyle.unselectable}`}>
+      <main className={`${style.container} ${commonStyle.unselectable}`}>
         <FadeIn>
           <div className={style.closeContainer}>
             <button className={style.button} id={'close'}>
@@ -129,7 +129,7 @@ class Carousel extends React.Component<CarouselProps> {
             </button>
           </div>
         </FadeIn>
-      </div>
+      </main>
     );
   }
 }

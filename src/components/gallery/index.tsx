@@ -87,8 +87,8 @@ class PhotoGallery extends React.Component<Record<string, never>, GalleryState> 
   render(): React.ReactNode {
     return (
       // look into implementing this fade by row (if gallery direction is row) or by image (if gallery direction is col)
-      <FadeIn>
-        <div className={commonStyle.unselectable}>
+      <main className={commonStyle.unselectable}>
+        <FadeIn>
           <Gallery
             photos={photos}
             direction={this.state.galleryDirection}
@@ -97,8 +97,8 @@ class PhotoGallery extends React.Component<Record<string, never>, GalleryState> 
             targetRowHeight={photoGalleryRowHeight}
             margin={photoGalleryMargin}
           />
-        </div>
-      </FadeIn>
+        </FadeIn>
+      </main>
     );
   }
 }
