@@ -26,10 +26,12 @@ console.log(`All photos:\n${photos.map(JSON.stringify).join('\n')}\n\n`);
 // webp.grant_permission();
 console.log(`Converting existing jpegs in ${photosDir} to webps.\n\n`);
 photos.forEach((p) => {
-  const result = webp.cwebp(`${photosDir}/${p.jpegName}`, `${photosDir}/${p.webpName}`, '-q 90 -metadata all');
-  result.then((response) => {
-    console.log(response);
-  });
+  if (!fs.existsSync(`${photosDir}/${p.webpName}`)) {
+    const result = webp.cwebp(`${photosDir}/${p.jpegName}`, `${photosDir}/${p.webpName}`, '-q 90 -metadata all');
+    result.then((response) => {
+      console.log(response);
+    });
+  }
 });
 
 // Create content to write
