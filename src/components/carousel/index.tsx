@@ -4,7 +4,7 @@ import { RouteComponentProps } from 'react-router-dom';
 
 import photos from '../../photos';
 import commonStyle from '../../theme/common.module.scss';
-import { transitionTimeout } from '../../theme/dimensions';
+import { transitionSpeed } from '../../theme/dimensions';
 import AnalyticsContentProps from '../analyticsContent/types';
 import { HomePageDefinitions } from '../gallery';
 import Image from '../image';
@@ -13,6 +13,7 @@ import style from './style.module.scss';
 const ESCAPE_KEYS = ['Escape', 27];
 const LEFT_ARROW_KEYS = ['ArrowLeft', 37];
 const RIGHT_ARROW_KEYS = ['ArrowRight', 39];
+const transitionTimeoutOffset = 200;
 
 type CarouselProps = RouteComponentProps<{ index: string }>;
 
@@ -56,7 +57,7 @@ class Carousel extends React.Component<CarouselProps> {
 
   nextImage(): void {
     const now = Date.now();
-    if (now - this.loadTime > transitionTimeout) {
+    if (now - this.loadTime > transitionSpeed - transitionTimeoutOffset) {
       const curr = +this.props.match.params.index;
       const next = curr + 1 >= this.numPhotos ? 0 : curr + 1;
       this.props.history.replace(getCarouselPagePath(next));
@@ -65,7 +66,7 @@ class Carousel extends React.Component<CarouselProps> {
 
   prevImage(): void {
     const now = Date.now();
-    if (now - this.loadTime > transitionTimeout) {
+    if (now - this.loadTime > transitionSpeed - transitionTimeoutOffset) {
       const curr = +this.props.match.params.index;
       const prev = curr - 1 < 0 ? this.numPhotos - 1 : curr - 1;
       this.props.history.replace(getCarouselPagePath(prev));
