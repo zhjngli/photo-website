@@ -13,7 +13,9 @@ const photos = fs
   .map((p, i) => {
     const name = p.name.split('.');
     const nameWithoutExt = name[0];
+    const alt = nameWithoutExt.split('-')[2];
     return {
+      alt: alt,
       jpegName: p.name,
       jpegImportName: `jpeg${i}`,
       webpName: nameWithoutExt.concat('.webp'),
@@ -59,6 +61,7 @@ const photosArray = photos
     return `{
       src: \`\$\{${p.jpegImportName}\}\`,
       webpSrc: \`\$\{${p.webpImportName}\}\`,
+      alt: '${p.alt}',
       sizes: defaultSizes,
       width: ${dimensions.width},
       height: ${dimensions.height}

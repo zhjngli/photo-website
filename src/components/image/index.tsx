@@ -11,7 +11,7 @@ class Image extends React.Component<StyledImageProps> {
       <picture className={this.props.pictureStyle}>
         <source srcSet={this.props.webpSrc} type="image/webp" />
         <source srcSet={this.props.src} type="image/jpeg" />
-        <img loading="lazy" src={this.props.src} className={this.props.imageStyle} />
+        <img loading="lazy" src={this.props.src} className={this.props.imageStyle} alt={this.props.alt} />
       </picture>
     );
   }

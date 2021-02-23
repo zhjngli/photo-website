@@ -47,9 +47,7 @@ export default function GalleryImage(renderImageProps: RenderImageProps<Extended
       >
         <NavLink to={getCarouselPagePath(renderImageProps.index)}>
           <Image {...photo} pictureStyle={style.image} imageStyle={style.image} />
-          <div className={style.overlay}>
-            <span className={style.overlayAlt}>{photo.alt}</span>
-          </div>
+          <div className={style.overlay}>{/* <span className={style.overlayAlt}>{photo.alt}</span> */}</div>
         </NavLink>
       </div>
     </FadeIn>
