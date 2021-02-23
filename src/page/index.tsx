@@ -1,7 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 
-import Footer from '../components/footer';
 import Header from '../components/header';
 
 const PhotoGallery = lazy(() => import('../components/gallery'));
@@ -32,7 +31,6 @@ class Page extends React.Component<Record<string, never>> {
               <Redirect to={NotFoundPageDefinitions.pagePath} />
             </Switch>
           </Suspense>
-          <Footer />
         </BrowserRouter>
       </div>
     );

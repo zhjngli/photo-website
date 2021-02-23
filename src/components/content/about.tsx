@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 import withAnalytics from '../analyticsContent';
 import AnalyticsContentProps from '../analyticsContent/types';
+import Footer from '../footer';
 import InstaLink from '../instaLink';
 import { ContactPageDefinitions } from './contact';
 import style from './style.module.scss';
@@ -25,6 +26,7 @@ class About extends React.Component {
             </NavLink>{' '}
             or check out my <InstaLink style={style.link} text={'latest adventures'} />.
           </p>
+          <Footer />
         </FadeIn>
       </main>
     );

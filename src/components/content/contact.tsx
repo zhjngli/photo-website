@@ -4,6 +4,7 @@ import NetlifyForm from 'react-netlify-form';
 
 import withAnalytics from '../analyticsContent';
 import AnalyticsContentProps from '../analyticsContent/types';
+import Footer from '../footer';
 import InstaLink from '../instaLink';
 import style from './style.module.scss';
 
@@ -64,6 +65,7 @@ class Contact extends React.Component {
               </div>
             )}
           </NetlifyForm>
+          <Footer />
         </FadeIn>
       </main>
     );

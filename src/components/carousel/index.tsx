@@ -6,6 +6,7 @@ import photos from '../../photos';
 import commonStyle from '../../theme/common.module.scss';
 import { transitionSpeed } from '../../theme/dimensions';
 import AnalyticsContentProps from '../analyticsContent/types';
+import Footer from '../footer';
 import { HomePageDefinitions } from '../gallery';
 import Image from '../image';
 import style from './style.module.scss';
@@ -116,8 +117,13 @@ class Carousel extends React.Component<CarouselProps> {
           </div>
           <div className={style.imageContainer} id={'image'}>
             {photos.map((photo, i) => (
-              <span className={i === +this.props.match.params.index ? style.appear : style.disappear} key={photo.src}>
-                <Image {...photo} pictureStyle={style.pictureWrapper} imageStyle={style.image} />
+              <span
+                className={`${style.carouselImageWrapper} ${
+                  i === +this.props.match.params.index ? style.appear : style.disappear
+                }`}
+                key={photo.src}
+              >
+                <Image {...photo} pictureStyle={style.picture} imageStyle={style.image} />
               </span>
             ))}
           </div>
@@ -129,6 +135,7 @@ class Carousel extends React.Component<CarouselProps> {
               {'>'}
             </button>
           </div>
+          <Footer />
         </FadeIn>
       </main>
     );

@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 import withAnalytics from '../analyticsContent';
 import AnalyticsContentProps from '../analyticsContent/types';
+import Footer from '../footer';
 import { HomePageDefinitions } from '../gallery';
 import style from './style.module.scss';
 
@@ -19,6 +20,7 @@ class NotFound extends React.Component {
             </NavLink>
             .
           </p>
+          <Footer />
         </FadeIn>
       </main>
     );

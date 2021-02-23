@@ -1,4 +1,5 @@
 import React from 'react';
+import FadeIn from 'react-fade-in';
 import Gallery from 'react-photo-gallery';
 
 import photos from '../../photos';
@@ -6,6 +7,7 @@ import commonStyle from '../../theme/common.module.scss';
 import { photoGalleryMargin, photoGalleryRowHeight, screenReactiveWidth } from '../../theme/dimensions';
 import withAnalytics from '../analyticsContent';
 import AnalyticsContentProps from '../analyticsContent/types';
+import Footer from '../footer';
 import GalleryImage from './galleryImage';
 
 type GalleryState = {
@@ -49,16 +51,19 @@ class PhotoGallery extends React.Component<Record<string, never>, GalleryState> 
 
   render(): React.ReactNode {
     return (
-      <main className={commonStyle.unselectable}>
-        <Gallery
-          photos={photos}
-          direction={this.state.galleryDirection}
-          columns={1}
-          renderImage={GalleryImage}
-          targetRowHeight={photoGalleryRowHeight}
-          margin={photoGalleryMargin}
-        />
-      </main>
+      <FadeIn>
+        <main className={commonStyle.unselectable}>
+          <Gallery
+            photos={photos}
+            direction={this.state.galleryDirection}
+            columns={1}
+            renderImage={GalleryImage}
+            targetRowHeight={photoGalleryRowHeight}
+            margin={photoGalleryMargin}
+          />
+        </main>
+        <Footer />
+      </FadeIn>
     );
   }
 }
