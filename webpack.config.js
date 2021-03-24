@@ -16,7 +16,7 @@ const isProd = process.env.NODE_ENV === 'production';
 const outputDir = 'dist';
 
 const baseUrl = 'https://zhjngli.com';
-const metaTitle = 'Zhijiang Li';
+const metaTitle = 'zhijiang li';
 const metaDescription = 'Photo gallery of selected works.';
 const metaImageName = 'me.jpg';
 const metaImage = baseUrl + '/' + metaImageName;
