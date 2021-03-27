@@ -7,6 +7,7 @@
     "build": "npm run create-photos && webpack --mode production",
     "clean": "rm -r dist",
     "clean-packages": "rm -rf node_modules",
+    "clean-photos": "rm src/assets/photos/*.webp",
     "create-photos": "node scripts/create-photos.js",
     "lint": "tsc && eslint ./src --ext=js,ts,tsx --fix && prettier --write scripts",
     "rebuild": "npm run clean && npm run build",

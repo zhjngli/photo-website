@@ -13,7 +13,7 @@ const photos = fs
   .map((p, i) => {
     const name = p.name.split('.');
     const nameWithoutExt = name[0];
-    const alt = nameWithoutExt.split('-')[2];
+    const alt = nameWithoutExt.split('-').slice(2).join(' ');
     return {
       alt: alt,
       jpegName: p.name,
