@@ -10,7 +10,7 @@
     "clean-photos": "rm src/assets/photos/*.webp",
     "create-photos": "node scripts/create-photos.js",
     "lint": "tsc && eslint ./src --ext=js,ts,tsx --fix && prettier --write scripts",
-    "rebuild": "npm run clean && npm run build",
+    "rebuild": "npm run clean; npm run build",
     "reinstall": "npm run clean-packages && rm package-lock.json && npm install",
     "start": "npm run create-photos && webpack serve --mode development --env development"
   },
