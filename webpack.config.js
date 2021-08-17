@@ -38,8 +38,14 @@ const plugins = [
         context: path.resolve(__dirname, 'src', 'assets', 'favicons')
       },
       {
-        // self-hosted
-        from: '**/*',
+        // self-hosted resume
+        from: 'resume.pdf',
+        context: path.resolve(__dirname, 'src', 'assets', 'self-hosted'),
+        to: 'i/resume.pdf'
+      },
+      {
+        // self-hosted images
+        from: '**/*.{jpg,jpeg,png,gif}',
         context: path.resolve(__dirname, 'src', 'assets', 'self-hosted'),
         to: 'i/[path]/[contenthash].[ext]'
       }
