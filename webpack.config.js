@@ -3,7 +3,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const RobotstxtPlugin = require('robotstxt-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -52,8 +52,8 @@ const plugins = [
     ]
   }),
   new MiniCssExtractPlugin({
-    filename: '[name].[hash].min.css',
-    chunkFilename: '[id].[hash].min.css'
+    filename: '[name].[fullhash].min.css',
+    chunkFilename: '[id].[chunkhash].min.css'
   }),
   new HtmlWebpackPlugin({
     template: 'public/index.html',
@@ -174,7 +174,6 @@ if (analyze) {
 }
 
 module.exports = {
-  devtool: isProd ? '' : 'cheap-module-eval-source-map',
   plugins: plugins,
   entry: './src/index.tsx',
   module: {
@@ -251,33 +250,28 @@ module.exports = {
     minimize: true,
     minimizer: [
       new TerserPlugin(),
-      new OptimizeCSSAssetsPlugin({
-        cssProcessorOptions: {
+      new CssMinimizerPlugin({
+        minimizerOptions: {
           parser: safeParser
         }
       })
     ],
     splitChunks: {
-      // https://medium.com/@Yoriiis/the-real-power-of-webpack-4-splitchunks-plugin-fad097c45ba0
       chunks: 'all',
-      name: !isProd
+      name: false
     }
   },
   output: {
-    chunkFilename: '[id].[hash].js',
-    filename: '[hash].js',
+    chunkFilename: '[id].[chunkhash].js',
+    filename: '[id].[fullhash].js',
     path: path.resolve(__dirname, `${outputDir}`),
     publicPath: process.env.ASSET_PATH || '/'
   },
   devServer: {
-    contentBase: path.join(__dirname, `${outputDir}`),
     compress: true,
     port: 3000,
-    https: true,
-    overlay: true,
+    server: 'https',
     open: true,
-    progress: true,
-    historyApiFallback: true,
-    index: 'index.html'
+    historyApiFallback: true
   }
 };
