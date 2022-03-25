@@ -23,7 +23,7 @@ class Shop extends React.Component {
   }
 }
 
-export const shopURL = 'https://zhjngli.redbubble.com';
+export const shopURL = 'https://zhjngli.darkroom.tech';
 
 export const ShopPageDefinitions: AnalyticsContentProps = {
   pageTitle: 'shop',
