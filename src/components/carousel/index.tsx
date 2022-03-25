@@ -2,6 +2,7 @@ import React from 'react';
 import FadeIn from 'react-fade-in';
 import { RouteComponentProps } from 'react-router-dom';
 
+import gtag from '../../gtag';
 import photos from '../../photos';
 import commonStyle from '../../theme/common.module.scss';
 import { transitionSpeed } from '../../theme/dimensions';
@@ -78,7 +79,7 @@ class Carousel extends React.Component<CarouselProps> {
     // custom analytics for carousel
     // console.log("location: ", window.location.href);
     // console.log("gtagging from: ", CarouselPageDefinitions.pageTitle, getCarouselPagePath(+this.props.match.params.index));
-    window.gtag('config', 'G-R0M2056RBS', {
+    window.gtag('config', gtag, {
       page_title: CarouselPageDefinitions.pageTitle,
       page_path: getCarouselPagePath(+this.props.match.params.index)
     });

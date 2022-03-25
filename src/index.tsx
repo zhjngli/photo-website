@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import gtag from './gtag';
 import Page from './page';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
@@ -17,7 +18,7 @@ window.gtag = function (...args: any) {
   window.dataLayer.push(args);
 };
 window.gtag('js', new Date());
-window.gtag('config', 'G-R0M2056RBS');
+window.gtag('config', gtag);
 
 ReactDOM.render(<Page />, document.querySelector('#root'));
 
