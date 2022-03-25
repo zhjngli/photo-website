@@ -3,7 +3,7 @@ import FadeIn from 'react-fade-in';
 import { RouteComponentProps } from 'react-router-dom';
 
 import gtag from '../../gtag';
-import photos from '../../photos';
+import photos, { photosReverseIndex } from '../../photos';
 import commonStyle from '../../theme/common.module.scss';
 import { transitionSpeed } from '../../theme/dimensions';
 import AnalyticsContentProps from '../analyticsContent/types';
@@ -17,7 +17,7 @@ const LEFT_ARROW_KEYS = ['ArrowLeft', 37];
 const RIGHT_ARROW_KEYS = ['ArrowRight', 39];
 const transitionTimeoutOffset = 200;
 
-type CarouselProps = RouteComponentProps<{ index: string }>;
+type CarouselProps = RouteComponentProps<{ hash: string }>;
 
 class Carousel extends React.Component<CarouselProps> {
   loadTime: number;
@@ -60,7 +60,7 @@ class Carousel extends React.Component<CarouselProps> {
   nextImage(): void {
     const now = Date.now();
     if (now - this.loadTime > transitionSpeed - transitionTimeoutOffset) {
-      const curr = +this.props.match.params.index;
+      const curr = photosReverseIndex[this.props.match.params.hash];
       const next = curr + 1 >= this.numPhotos ? 0 : curr + 1;
       this.props.history.replace(getCarouselPagePath(next));
     }
@@ -69,7 +69,7 @@ class Carousel extends React.Component<CarouselProps> {
   prevImage(): void {
     const now = Date.now();
     if (now - this.loadTime > transitionSpeed - transitionTimeoutOffset) {
-      const curr = +this.props.match.params.index;
+      const curr = photosReverseIndex[this.props.match.params.hash];
       const prev = curr - 1 < 0 ? this.numPhotos - 1 : curr - 1;
       this.props.history.replace(getCarouselPagePath(prev));
     }
@@ -77,11 +77,12 @@ class Carousel extends React.Component<CarouselProps> {
 
   logAnalytics(): void {
     // custom analytics for carousel
+    const index = photosReverseIndex[this.props.match.params.hash];
     // console.log("location: ", window.location.href);
-    // console.log("gtagging from: ", CarouselPageDefinitions.pageTitle, getCarouselPagePath(+this.props.match.params.index));
+    // console.log("gtagging from: ", CarouselPageDefinitions.pageTitle, getCarouselPagePath(this.props.match.params.index));
     window.gtag('config', gtag, {
       page_title: CarouselPageDefinitions.pageTitle,
-      page_path: getCarouselPagePath(+this.props.match.params.index)
+      page_path: getCarouselPagePath(index)
     });
   }
 
@@ -120,7 +121,7 @@ class Carousel extends React.Component<CarouselProps> {
             {photos.map((photo, i) => (
               <span
                 className={`${style.carouselImageWrapper} ${
-                  i === +this.props.match.params.index ? style.appear : style.disappear
+                  i === photosReverseIndex[this.props.match.params.hash] ? style.appear : style.disappear
                 }`}
                 key={photo.src}
               >
@@ -144,12 +145,13 @@ class Carousel extends React.Component<CarouselProps> {
 }
 
 export function getCarouselPagePath(index: number): string {
-  return CarouselPageDefinitions.pagePath.replace(/:index/g, index.toString());
+  const hash = photos[index].hash as string;
+  return CarouselPageDefinitions.pagePath.replace(/:hash/g, hash);
 }
 
 export const CarouselPageDefinitions: AnalyticsContentProps = {
   pageTitle: 'carousel',
-  pagePath: '/i/:index'
+  pagePath: '/i/:hash'
 };
 
 // Carousel has custom analytics logic

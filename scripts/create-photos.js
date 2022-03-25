@@ -1,6 +1,7 @@
 const fs = require('fs');
 const webp = require('webp-converter');
 const sizeOf = require('image-size');
+const sha1 = require('sha1');
 
 const photosDir = 'src/assets/photos';
 const photosTs = 'src/photos/index.ts';
@@ -14,8 +15,10 @@ const photos = fs
     const name = p.name.split('.');
     const nameWithoutExt = name[0];
     const alt = nameWithoutExt.split('-').slice(2).join(' ');
+    const hash = sha1(alt).substring(0, 6);
     return {
       alt: alt,
+      hash: hash,
       jpegName: p.name,
       jpegImportName: `jpeg${i}`,
       webpName: nameWithoutExt.concat('.webp'),
@@ -45,7 +48,7 @@ const importStatements = photos
 const constants = `
 import { PhotoProps } from 'react-photo-gallery';
 
-export type ExtendedPhotoProps = { webpSrc?: string };
+export type ExtendedPhotoProps = { webpSrc?: string; hash?: string };
 
 const defaultSizes = [
   \`
@@ -55,6 +58,9 @@ const defaultSizes = [
   \`
 ];
 `;
+
+const photosReverseIndex = photos.map((p, i) => `'${p.hash}': ${i}`).join(',\n');
+
 const photosArray = photos
   .map((p) => {
     const dimensions = sizeOf(`${photosDir}/${p.jpegName}`);
@@ -62,6 +68,7 @@ const photosArray = photos
       src: \`\$\{${p.jpegImportName}\}\`,
       webpSrc: \`\$\{${p.webpImportName}\}\`,
       alt: '${p.alt}',
+      hash: '${p.hash}',
       sizes: defaultSizes,
       width: ${dimensions.width},
       height: ${dimensions.height}
@@ -72,9 +79,12 @@ const photosArray = photos
 const content = [
   importStatements,
   constants,
+  'export const photosReverseIndex = {',
+  photosReverseIndex,
+  '} as Record<string, number>;\n',
   'export default [',
   photosArray,
-  '] as PhotoProps<ExtendedPhotoProps>[];'
+  '] as PhotoProps<ExtendedPhotoProps>[];\n'
 ].join('\n');
 
 // Write content to photos.ts file
