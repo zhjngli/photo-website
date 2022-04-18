@@ -1,11 +1,11 @@
 import React from 'react';
 import FadeIn from 'react-fade-in';
-import NetlifyForm from 'react-netlify-form';
 
 import withAnalytics from '../analyticsContent';
 import AnalyticsContentProps from '../analyticsContent/types';
 import Footer from '../footer';
 import InstaLink from '../instaLink';
+import NetlifyForm from '../netlifyForm';
 import style from './style.module.scss';
 
 class Contact extends React.Component {
@@ -18,7 +18,7 @@ class Contact extends React.Component {
             Please fill out the form below for prints and other inquiries. Or, message me on{' '}
             <InstaLink style={style.link} text={'Instagram'} />.
           </p>
-          <NetlifyForm name="contact">
+          <NetlifyForm name="contact" action="/">
             {({ loading, error, success }) => (
               <div className={style.formContainer}>
                 {loading && <p className={style.text}>Loading...</p>}
