@@ -15,7 +15,7 @@ class Shop extends React.Component {
     return (
       <main className={style.container}>
         <FadeIn>
-          <p className={style.text}>Thanks for dropping by! Redirecting to my shop at RedBubble...</p>
+          <p className={style.text}>Thanks for dropping by! Redirecting to my shop...</p>
           <Footer />
         </FadeIn>
       </main>
@@ -23,7 +23,7 @@ class Shop extends React.Component {
   }
 }
 
-export const shopURL = 'https://zhjngli.darkroom.tech';
+export const shopURL = 'https://zhjngli.darkroom.com';
 
 export const ShopPageDefinitions: AnalyticsContentProps = {
   pageTitle: 'shop',
