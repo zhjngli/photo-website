@@ -4,7 +4,8 @@ import style from './style.module.scss';
 
 class Footer extends React.Component {
   render(): React.ReactNode {
-    return <footer className={style.container}>&copy; 2021.</footer>;
+    const year = new Date().getFullYear();
+    return <footer className={style.container}>&copy; {year}.</footer>;
   }
 }
 
