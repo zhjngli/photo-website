@@ -11,6 +11,10 @@ export default {
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)'
+      },
+      fontFamily: {
+        serif: ['var(--font-noto-serif)'],
+        sans: ['var(--font-hind-madurai)']
       }
     }
   },

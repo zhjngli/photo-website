@@ -3,6 +3,7 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import './globals.css';
 import Header from './components/header';
 import Footer from './components/footer';
+import { hindMadurai, notoSerif } from './fonts';
 
 export const metadata: Metadata = {
   title: 'zhijiang li',
@@ -15,9 +16,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${notoSerif.variable} ${hindMadurai.variable} font-serif`}>
       <head>
-        <title>zhijiang li</title>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
@@ -29,15 +29,14 @@ export default function RootLayout({
         <meta name="theme-color" content="#ffffff" />
       </head>
       <GoogleAnalytics gaId="G-R0M2056RBS" />
-      {/* TODO: style="display: block; margin: 0px" */}
-      <body>
+      <body className="m-0 block antialiased">
         <noscript>You need to enable JavaScript to run this app.</noscript>
         <div id="root">
           <Header />
           {children}
           <Footer />
           {/* netlify */}
-          <form name="contact" netlify-honeypot="say-hi" hidden>
+          <form name="contact" data-netlify="true" netlify-honeypot="say-hi" hidden>
             <input type="text" name="first_name" />
             <input type="text" name="last_name" />
             <input type="email" name="email" />
