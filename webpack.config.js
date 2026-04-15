@@ -29,7 +29,7 @@ const plugins = [
       {
         // metatag
         from: 'src/assets/meta/metatag-1-1,5.jpg',
-        transformPath(targetPath, absolutePath) {
+        to() {
           return metaImageName;
         }
       },
