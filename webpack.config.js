@@ -1,10 +1,8 @@
 const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -67,94 +65,6 @@ const plugins = [
       description: metaDescription
     }
   }),
-  new HtmlWebpackTagsPlugin({
-    metas: [
-      {
-        attributes: {
-          property: 'og:url',
-          content: baseUrl
-        }
-      },
-      {
-        attributes: {
-          property: 'og:type',
-          content: 'website'
-        }
-      },
-      {
-        attributes: {
-          property: 'og:title',
-          content: metaTitle
-        }
-      },
-      {
-        attributes: {
-          property: 'og:description',
-          content: metaDescription
-        }
-      },
-      {
-        attributes: {
-          property: 'og:image',
-          content: metaImage
-        }
-      },
-      {
-        attributes: {
-          property: 'og:image:type',
-          content: 'image/jpeg'
-        }
-      },
-      {
-        attributes: {
-          property: 'og:image:width',
-          content: '1080'
-        }
-      },
-      {
-        attributes: {
-          property: 'og:image:height',
-          content: '1618'
-        }
-      },
-      {
-        attributes: {
-          name: 'twitter:card',
-          content: 'summary'
-        }
-      },
-      {
-        attributes: {
-          name: 'twitter:site',
-          content: '@zhjngli'
-        }
-      },
-      {
-        attributes: {
-          name: 'twitter:title',
-          content: metaTitle
-        }
-      },
-      {
-        attributes: {
-          name: 'twitter:description',
-          content: metaDescription
-        }
-      },
-      {
-        attributes: {
-          name: 'twitter:image',
-          content: metaImage
-        }
-      }
-    ]
-  }),
-  new PreloadWebpackPlugin({
-    rel: 'preload',
-    as: 'font',
-    include: 'allAssets',
-    fileWhitelist: [/\.(woff2?|ttf|otf)(\?.*)?$/i]
-  }),
   new WorkboxPlugin.GenerateSW({
     // these options encourage the ServiceWorkers to get in there fast
     // and not allow any straggling "old" SWs to hang around
@@ -181,19 +91,17 @@ module.exports = {
       },
       {
         test: /\.(png)|(jpe?g)|(webp)$/,
-        use: 'file-loader'
+        type: 'asset/resource',
+        generator: {
+          filename: '[contenthash][ext]'
+        }
       },
       {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'fonts/'
-            }
-          }
-        ]
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[name][ext]'
+        }
       },
       {
         test: /\.module\.scss$/,
