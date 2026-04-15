@@ -18,6 +18,17 @@ Each dependency is evaluated for:
 
 Output stability is the default priority. Build and deploy viability are required secondary constraints.
 
+## Status Update
+
+As of April 15, 2026 on `chore/dependabot-remediation`, the repo has already completed part of this audit roadmap:
+
+- Removed: `ts-loader`, `robotstxt-webpack-plugin`, `file-loader`, `html-webpack-tags-plugin`, `preload-webpack-plugin`, `workbox-webpack-plugin`
+- Replaced: generated `robots.txt` with `public/robots.txt`, plugin-generated social tags with static `public/index.html` tags, plugin-generated font preloads with static template-driven preload tags, `file-loader` rules with webpack 5 asset modules
+- Changed behavior intentionally: service-worker generation and registration were removed to clear the remaining local security findings carried by `workbox-webpack-plugin`
+- Kept under review: `@types/react-netlify-form` and `@types/webpack-env` were verified as not clearly required, but left in place because they were not part of the active security path
+
+This document should therefore be read as the original hardening audit baseline plus roadmap, not a perfect reflection of the current dependency manifest after those removals.
+
 ## Build Core
 
 | Dependency | Type | Current Range | Role | Repo Evidence | Output Sensitivity | Build/Deploy Sensitivity | Upgrade Drag | Maintenance Burden | Transitive Context | Recommendation |
