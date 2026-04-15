@@ -5,7 +5,6 @@ const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
-const RobotstxtPlugin = require('robotstxt-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -25,6 +24,10 @@ const plugins = [
   new CopyPlugin({
     // webpack won't bundle any content not being used in src. copy it instead
     patterns: [
+      {
+        from: 'robots.txt',
+        context: path.resolve(__dirname, 'public')
+      },
       {
         // metatag
         from: 'src/assets/meta/metatag-1-1,5.jpg',
@@ -157,16 +160,6 @@ const plugins = [
     // and not allow any straggling "old" SWs to hang around
     clientsClaim: true,
     skipWaiting: true
-  }),
-  new RobotstxtPlugin({
-    options: {
-      policy: [
-        {
-          userAgent: '*',
-          disallow: ''
-        }
-      ]
-    }
   })
 ];
 if (analyze) {
