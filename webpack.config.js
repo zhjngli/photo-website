@@ -60,6 +60,7 @@ const plugins = [
     template: 'public/index.html',
     filename: 'index.html',
     favicon: 'src/assets/favicons/favicon.ico',
+    assetPath: process.env.ASSET_PATH || '/',
     meta: {
       viewport: 'width=device-width, initial-scale=1',
       description: metaDescription
