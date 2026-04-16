@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import gtag from './gtag';
 import Page from './page';
 import reportWebVitals from './reportWebVitals';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 declare global {
@@ -20,6 +21,19 @@ window.gtag('js', new Date());
 window.gtag('config', gtag);
 
 ReactDOM.render(<Page />, document.querySelector('#root'));
+serviceWorkerRegistration.register();
+
+let hasRefreshedForServiceWorker = false;
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (hasRefreshedForServiceWorker) {
+      return;
+    }
+
+    hasRefreshedForServiceWorker = true;
+    window.location.reload();
+  });
+}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
