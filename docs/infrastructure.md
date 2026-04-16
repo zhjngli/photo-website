@@ -183,7 +183,3 @@ Before changing dependency, build, or deploy infrastructure, check these first:
   - current metadata in [`public/index.html`](../public/index.html)
   - current absence of a registered service worker in [`src/index.tsx`](../src/index.tsx)
   - current Netlify Lighthouse and Prerender UI-managed settings
-
-## Related Docs
-
-- Dependency cleanup and dependency-surface notes: [docs/dependency-audit.md](docs/dependency-audit.md)
