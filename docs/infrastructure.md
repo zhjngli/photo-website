@@ -10,7 +10,10 @@ This document is a current-state maintenance guide for the `photo-website` repo.
 - Primary deploy target: Netlify
 
 Important current-state note:
-- there is no active service-worker registration or generated offline-cache service worker in the app today
+- the site uses a custom generated service worker for same-origin offline caching
+- service-worker generation is part of the production build, not a Workbox plugin
+
+The worker is generated instead of being a fully static hand-written file because webpack output and asset paths depend on the build. Generating it keeps the offline asset list in sync without reintroducing Workbox.
 
 ## Build And Deploy
 
@@ -126,11 +129,12 @@ Static/copied files are handled by [`copy-webpack-plugin`](../webpack.config.js)
 
 ### Current PWA-related state
 
-- `public/index.html` still links a web manifest and touch icons
-- there is currently no active service-worker registration in [`src/index.tsx`](../src/index.tsx)
-- there is currently no generated Workbox service worker in the build pipeline
+- `public/index.html` links a web manifest and touch icons
+- [`src/index.tsx`](../src/index.tsx) registers the service worker in production
+- the production build generates `dist/service-worker.js` from [`scripts/create-service-worker.js`](../scripts/create-service-worker.js)
+- the service worker caches same-origin app shell and portfolio assets for offline use
 
-So the site still has some installability-related metadata, but not an active offline-cache service worker.
+The site therefore keeps installability-related metadata and an active custom offline-cache layer, without relying on Workbox.
 
 ## Netlify Operational Notes
 
@@ -181,5 +185,9 @@ Before changing dependency, build, or deploy infrastructure, check these first:
   - required GitHub status checks
 - If changing performance/PWA-related behavior:
   - current metadata in [`public/index.html`](../public/index.html)
-  - current absence of a registered service worker in [`src/index.tsx`](../src/index.tsx)
+  - current service-worker registration and generated asset list in [`src/index.tsx`](../src/index.tsx) and [`scripts/create-service-worker.js`](../scripts/create-service-worker.js)
   - current Netlify Lighthouse and Prerender UI-managed settings
+- If changing service-worker behavior:
+  - [`scripts/create-service-worker.js`](../scripts/create-service-worker.js)
+  - [`src/index.tsx`](../src/index.tsx)
+  - local offline verification from a static server after `npm run build`
