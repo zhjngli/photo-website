@@ -21,10 +21,14 @@ window.gtag('js', new Date());
 window.gtag('config', gtag);
 
 ReactDOM.render(<Page />, document.querySelector('#root'));
+
+const hadServiceWorkerController =
+  'serviceWorker' in navigator && Boolean(navigator.serviceWorker.controller);
+
 serviceWorkerRegistration.register();
 
 let hasRefreshedForServiceWorker = false;
-if ('serviceWorker' in navigator) {
+if (hadServiceWorkerController && 'serviceWorker' in navigator) {
   navigator.serviceWorker.addEventListener('controllerchange', () => {
     if (hasRefreshedForServiceWorker) {
       return;
