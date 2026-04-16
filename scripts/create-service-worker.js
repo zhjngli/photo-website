@@ -36,6 +36,7 @@ const precacheUrls = Array.from(
 );
 
 const versionHash = crypto.createHash('sha1');
+versionHash.update(JSON.stringify(precacheUrls));
 files.forEach((filePath) => {
   versionHash.update(fs.readFileSync(filePath));
 });
@@ -85,8 +86,11 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       fetch(request)
         .then((response) => {
-          const responseClone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put('/index.html', responseClone));
+          if (response.ok) {
+            event.waitUntil(
+              caches.open(CACHE_NAME).then((cache) => cache.put('/index.html', response.clone()))
+            );
+          }
           return response;
         })
         .catch(() => caches.match(request).then((match) => match || caches.match('/index.html')))
@@ -105,8 +109,9 @@ self.addEventListener('fetch', (event) => {
           return networkResponse;
         }
 
-        const responseClone = networkResponse.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(request, responseClone));
+        event.waitUntil(
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, networkResponse.clone()))
+        );
         return networkResponse;
       });
     })

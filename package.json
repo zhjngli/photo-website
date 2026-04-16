@@ -7,7 +7,7 @@
   },
   "scripts": {
     "analyze": "BUNDLE_ANALYZE=true NODE_ENV=production npm run build",
-    "build": "NODE_ENV=production npm run create-photos && webpack --mode production && node scripts/create-service-worker.js",
+    "build": "rm -rf dist && NODE_ENV=production npm run create-photos && webpack --mode production && node scripts/create-service-worker.js",
     "clean": "rm -r dist",
     "clean-packages": "rm -rf node_modules",
     "clean-photos": "rm src/assets/photos/*.webp",
