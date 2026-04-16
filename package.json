@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": ">=18.12.0"
+    "node": "^20.9.0 || >=22.0.0"
   },
   "scripts": {
     "analyze": "BUNDLE_ANALYZE=true NODE_ENV=production npm run build",

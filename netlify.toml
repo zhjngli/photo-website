@@ -3,9 +3,6 @@
   publish = "dist/"
   command = "npm run-script build"
 
-[build.environment]
-  NODE_VERSION = "18.12.0"
-
 [context.production.environment]
   NODE_ENV = "production"
 
